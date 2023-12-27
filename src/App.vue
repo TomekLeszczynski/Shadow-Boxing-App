@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+// router import
+import { RouterView } from 'vue-router'
+
+// component import
+import MainNav from '@/components/Navigation/MainNav.vue'
+import FlaticonCredits from '@/components/Footer/FlaticonCredits.vue'
 </script>
 
 <template>
   <nav>
-    <router-link to="/">| Home</router-link>
-    <router-link to="/:userId/shadow-boxing">| Shadow Boxing</router-link>
-    <router-link to="/:userId/weight-monitor">| Weight Monitor</router-link>
-    <router-link to="/login-register">| Sign in/Log in </router-link>
+    <main-nav />
   </nav>
-
-  <RouterView />
+  <main>
+    <router-view />
+  </main>
   <footer>
-    <div>
-      <a
-        style="text-decoration: none"
-        href="https://www.flaticon.com/free-icons/fight"
-        title="fight icons"
-        >Fight icons created by Freepik - Flaticon</a
-      >
-    </div>
+    <flaticon-credits />
   </footer>
 </template>
