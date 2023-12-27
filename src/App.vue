@@ -1,12 +1,3 @@
-<script setup lang="ts">
-// router import
-import { RouterView } from 'vue-router'
-
-// component import
-import MainNav from '@/components/Navigation/MainNav.vue'
-import FlaticonCredits from '@/components/Footer/FlaticonCredits.vue'
-</script>
-
 <template>
   <nav>
     <main-nav />
@@ -18,3 +9,12 @@ import FlaticonCredits from '@/components/Footer/FlaticonCredits.vue'
     <flaticon-credits />
   </footer>
 </template>
+
+<script setup lang="ts">
+// router import
+import { RouterView } from 'vue-router'
+
+// component import
+import MainNav from '@/components/site_structure/navigation/MainNav.vue'
+import FlaticonCredits from '@/components/site_structure/footer/FlaticonCredits.vue'
+</script>
