@@ -1,31 +1,36 @@
 import { defineStore } from 'pinia'
 
 // firebase import
-import { getAuth, signInAnonymously, signOut, onAuthStateChanged } from 'firebase/auth'
+import {
+  signInAnonymously,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+  createUserWithEmailAndPassword
+} from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 import type { User } from 'firebase/auth'
 
 // vue-router import
 import type { RouteLocationNamedRaw } from 'vue-router'
 
+// firebase getAuth instance
+import { firebaseAuth } from '@/main'
+
 // create authentification store
 export const useAuthStore = defineStore('Auth', {
   state: () => {
     return {
       user: null as User | null,
-      isLoggedIn: false,
       authCompleted: false,
-      isAnonymous: false
     }
   },
 
   actions: {
-    
-    // signin anonymously with firebase
+    // sign in anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
-      const auth = getAuth()
       try {
-        await signInAnonymously(auth)
+        await signInAnonymously(firebaseAuth)
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           console.error('Firebase Authentification Error:', error.code, error.message)
@@ -37,16 +42,30 @@ export const useAuthStore = defineStore('Auth', {
     },
 
     // register user via form
-    // sign in with google account
+    async createUser(email: string, password: string, displayName: string): Promise<void> {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password)
+        await updateProfile(userCredential.user, { displayName: displayName })
+        this.user = userCredential.user
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error('Unexpected error: from authStore.ts:', error)
+          throw error
+        } else {
+          console.error('Unexpected error: from authStore.ts:', error)
+          throw new Error('Unexpected error')
+        }
+      }
+    },
+
     // sign in user via form
 
     // logout current user with firebase
     async logoutUser(
       routerPush: (location: string | RouteLocationNamedRaw) => void
     ): Promise<void> {
-      const auth = getAuth()
       try {
-        await signOut(auth)
+        await signOut(firebaseAuth)
         routerPush({ name: 'home' })
       } catch (error) {
         console.error('Unexpected error during logging out:', error)
@@ -55,16 +74,11 @@ export const useAuthStore = defineStore('Auth', {
 
     // check user's authentification state and update properties accordingly
     async checkUserAuthState() {
-      const auth = getAuth()
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
+      onAuthStateChanged(firebaseAuth, (user) => {
+        if (user !== null) {
           this.user = user
-          this.isLoggedIn = true
-          this.isAnonymous = user.isAnonymous
         } else {
           this.user = null
-          this.isLoggedIn = false
-          this.isAnonymous = false
         }
         this.authCompleted = true
       })

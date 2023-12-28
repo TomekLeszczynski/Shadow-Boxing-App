@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-slate-100">
     <a
       style="text-decoration: none"
       href="https://www.flaticon.com/free-icons/fight"

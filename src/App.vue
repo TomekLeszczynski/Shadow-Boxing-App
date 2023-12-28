@@ -1,13 +1,15 @@
 <template>
-  <nav>
-    <main-nav />
-  </nav>
-  <main>
-    <router-view />
-  </main>
-  <footer>
-    <flaticon-credits />
-  </footer>
+  <div  class="flex flex-col min-h-screen">
+    <nav>
+      <main-nav />
+    </nav>
+    <main class=" flex  flex-1">
+      <router-view />
+    </main>
+    <footer>
+      <flaticon-credits />
+    </footer>
+  </div>
 </template>
 
 <script setup lang="ts">
