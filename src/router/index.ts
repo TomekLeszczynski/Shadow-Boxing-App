@@ -29,7 +29,7 @@ const router = createRouter({
       component: () => import('@/views/Login-RegisterView.vue')
     },
 
-    // weight measuremnts charts
+    // weight measurements charts
     {
       path: '/:userId/weight-monitor',
       name: 'weight-monitor',

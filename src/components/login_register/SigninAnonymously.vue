@@ -5,13 +5,13 @@
 // router import
 import { useRouter } from 'vue-router'
 
-//pinia import
+// pinia import
 import { useAuthStore } from '@/stores/AuthentificationStore'
 
 const router = useRouter()
 const authStore = useAuthStore()
 
-// get access for anonynous user, redirect user to Home page with Nav items accessible only for auth users
+// get access by an anonymous user, redirect user to Home page with Nav items accessible only for auth users
 const getAccess = () => {
   authStore
     .getAccessAsAnAnonymous()
