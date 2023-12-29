@@ -7,7 +7,13 @@
 </template>
 
 <script setup lang="ts">
+// vue import
+import { onMounted } from 'vue';
 // import component
 // import SigninAnonymously from '@/components/login_register/SigninAnonymously.vue'
 import RegisterNewUser from '@/components/login_register/RegisterNewUser.vue';
+
+onMounted(() => {
+    // loading animations
+})
 </script>

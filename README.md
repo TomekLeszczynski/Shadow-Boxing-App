@@ -50,3 +50,14 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+
+## Design Inspirations
+https://www.awwwards.com/sites/memphis-milano
+https://www.emergentx.org/
+https://pressplayontape.studio/
+https://www.eclipse.builders/
+https://tinywins.com/
+
+## Color palette
+red: rgb(217, 46, 28)
