@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <nav>
+    <nav class="flex flex-row justify-between w-screen px-3 bg-black py-5" >
       <main-nav />
     </nav>
     <main class="flex flex-1">

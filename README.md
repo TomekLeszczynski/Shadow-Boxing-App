@@ -59,5 +59,4 @@ https://pressplayontape.studio/
 https://www.eclipse.builders/
 https://tinywins.com/
 
-## Color palette
-red: rgb(217, 46, 28)
+

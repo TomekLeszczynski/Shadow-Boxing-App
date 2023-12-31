@@ -1,7 +1,7 @@
 <template>
-  <div v-if="authStore.authCompleted">
-    <div v-if="authStore.authCompleted">
-      <router-link to="/">| Home</router-link>
+  <div v-if="authStore.authCompleted" class="w-full">
+    <div v-if="authStore.authCompleted" class="text-white w-100 flex justify-between">
+      <router-link to="/">Home</router-link>
       <router-link
         v-if="authStore.user"
         :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
@@ -12,9 +12,9 @@
         :to="{ name: 'weight-monitor', params: { userId: authStore.user.uid } }"
         >| Weight Monitor</router-link
       >
-      <router-link v-if="!authStore.user" to="/login-register">| Sign in/Log in </router-link>
+      <!-- <router-link v-if="!authStore.user" to="/login-register">Sign in/Log in </router-link> -->
+      <button v-if="authStore.user" @click.prevent="logoutUser">Logout</button>
     </div>
-    <button v-if="authStore.user" @click.prevent="logoutUser">Logout</button>
     <div v-if="authStore.user">
       <p>User: {{ authStore.user.displayName || 'Guest' }}</p>
     </div>

@@ -25,11 +25,18 @@ const router = createRouter({
       props: true
     },
 
-    // login-register
+    // sign up
     {
-      path: '/login-register',
-      name: 'login-register',
-      component: () => import('@/views/Login-RegisterView.vue')
+      path: '/signup',
+      name: 'signup',
+      component: () => import('@/views/SignupView.vue')
+    },
+
+    // login
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/LoginView.vue')
     },
 
     // weight measurements charts
@@ -58,7 +65,7 @@ function getCurrentUser() {
 
 // protects routes from non-users
 router.beforeEach(async (to) => {
-  if (to.meta.requiresAuth && !(await getCurrentUser())) return 'login-register'
+  if (to.meta.requiresAuth && !(await getCurrentUser())) return 'home'
 })
 
 export default router
