@@ -7,7 +7,8 @@ import {
   onAuthStateChanged,
   updateProfile,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  sendEmailVerification
 } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 import type { User } from 'firebase/auth'
@@ -42,7 +43,7 @@ export const useAuthStore = defineStore('Auth', {
       try {
         const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password)
         await updateProfile(userCredential.user, { displayName: displayName })
-        this.user = userCredential.user
+        await sendEmailVerification(userCredential.user)
       } catch (error: unknown) {
         this.errorsHandling(error)
       }

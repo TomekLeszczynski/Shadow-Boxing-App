@@ -43,7 +43,6 @@
                 aria-label="log in"
                 role="button"
                 @click="signingIn"
-                disabled
                 class="bg-black text-white text-lg font-semibold mt-5 py-5 px-12 flex flex-row items-center justify-center group tracking-wide w-full"
               >
                 Log in

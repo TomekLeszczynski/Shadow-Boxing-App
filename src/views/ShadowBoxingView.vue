@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>Shadow View</h1>
+    <h1 class="text-9xl text-white">Shadow View</h1>
   </div>
 </template>
