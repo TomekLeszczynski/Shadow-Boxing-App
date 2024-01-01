@@ -54,7 +54,12 @@ export const useAuthStore = defineStore('Auth', {
       try {
         const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
         const authenticatedUser = userCredential.user
-        this.user = authenticatedUser
+        if (authenticatedUser && authenticatedUser.emailVerified) {
+          this.user = authenticatedUser
+        } else {
+          alert('Ni chuja')
+          return
+        }
       } catch (error: unknown) {
         this.errorsHandling(error)
       }
@@ -75,7 +80,7 @@ export const useAuthStore = defineStore('Auth', {
     // check user's authentification state and update properties accordingly
     async checkUserAuthState() {
       onAuthStateChanged(firebaseAuth, (user) => {
-        if (user !== null) {
+        if (user !== null && user.emailVerified) {
           this.user = user
         } else {
           this.user = null
