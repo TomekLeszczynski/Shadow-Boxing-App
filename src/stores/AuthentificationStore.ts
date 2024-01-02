@@ -31,10 +31,12 @@ export const useAuthStore = defineStore('Auth', {
   actions: {
     // sign up anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
-      try {
-        await signInAnonymously(firebaseAuth)
-      } catch (error: unknown) {
-        this.errorsHandling(error)
+      if (!this.user) {
+        try {
+          await signInAnonymously(firebaseAuth)
+        } catch (error: unknown) {
+          this.errorsHandling(error)
+        }
       }
     },
 
@@ -49,19 +51,20 @@ export const useAuthStore = defineStore('Auth', {
       }
     },
 
-    // Sign in user via form
+    // sign in user via form
     async signInUser(email: string, password: string): Promise<void> {
-      try {
-        const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
-        const authenticatedUser = userCredential.user
-        if (authenticatedUser && authenticatedUser.emailVerified) {
-          this.user = authenticatedUser
-        } else {
-          alert('Ni chuja')
-          return
+      if (!this.user) {
+        try {
+          const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
+          const authenticatedUser = userCredential.user
+          if (authenticatedUser && authenticatedUser.emailVerified) {
+            this.user = authenticatedUser
+          } else {
+            throw new Error('User not authenticated or email not verified.')
+          }
+        } catch (error: unknown) {
+          this.errorsHandling(error)
         }
-      } catch (error: unknown) {
-        this.errorsHandling(error)
       }
     },
 

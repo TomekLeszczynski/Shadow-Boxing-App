@@ -39,6 +39,13 @@ const router = createRouter({
       component: () => import('@/views/LoginView.vue')
     },
 
+    // reset password
+    {
+      path: '/password-reset',
+      name: '/password-reset',
+      component: () => import('@/views/PasswordResetView.vue')
+    },
+
     // weight measurements charts
     {
       path: '/profile/:userId/weight-monitor',
