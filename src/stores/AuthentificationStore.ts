@@ -31,12 +31,10 @@ export const useAuthStore = defineStore('Auth', {
   actions: {
     // sign up anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
-      if (!this.user) {
-        try {
-          await signInAnonymously(firebaseAuth)
-        } catch (error: unknown) {
-          this.errorsHandling(error)
-        }
+      try {
+        await signInAnonymously(firebaseAuth)
+      } catch (error: unknown) {
+        this.errorsHandling(error)
       }
     },
 
@@ -74,7 +72,7 @@ export const useAuthStore = defineStore('Auth', {
     ): Promise<void> {
       try {
         await signOut(firebaseAuth)
-        routerPush({ name: 'home' })
+        routerPush({ name: '/' })
       } catch (error: unknown | FirebaseError) {
         this.errorsHandling(error)
       }
@@ -83,7 +81,7 @@ export const useAuthStore = defineStore('Auth', {
     // check user's authentification state and update properties accordingly
     async checkUserAuthState() {
       onAuthStateChanged(firebaseAuth, (user) => {
-        if (user !== null && user.emailVerified) {
+        if (user !== null && (user.emailVerified || user.isAnonymous)) {
           this.user = user
         } else {
           this.user = null

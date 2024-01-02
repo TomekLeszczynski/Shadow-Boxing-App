@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="getAccess">Signin anonymously</button>
+  <button @click.prevent="getAccess" class="text-white bg-boxingRed py-5 text-center mb-4">Try as guest</button>
 </template>
 <script setup lang="ts">
 // router import
