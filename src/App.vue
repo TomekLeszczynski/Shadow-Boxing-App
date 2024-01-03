@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col h-screen">
     <nav>
       <main-nav />
     </nav>
-    <main class="flex-1">
+    <main class="flex flex-1">
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"
@@ -17,7 +17,7 @@
       </router-view>
     </main>
     <footer
-      class="flex flex-row justify-between items-center w-screen px-5 bg-black text-white py-3"
+      class="flex flex-row justify-between items-center px-5 bg-black text-white py-3"
     >
       <author-credits />
       <flaticon-credits />

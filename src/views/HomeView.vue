@@ -1,16 +1,32 @@
 <template>
-  <div>
-    <h1 class="text-white text-9xl">Home View</h1>
-    <div class="flex flex-col">
-      <router-link to="/signup" class="text-white bg-boxingRed py-5 text-center mb-4"
-        >Get Started</router-link
-      >
-      <try-as-guest />
+  <div class="relative border-dashed max-h-100">
+    <video
+      src="@/assets/video/production_id_4761738 (2160p).mp4"
+      class="abosulte h-full opacity-30 -z-998"
+      autoplay
+      muted
+      loop
+    ></video>
+    <div class="absolute inset-0 flex flex-col justify-center">
+      <h1 class="text-white text-9xl">Home View</h1>
+      <div class="grid grid-cols-8">
+        <div class="flex-col flex ml-9 mt-10">
+          <div class="flex-row flex justify-between">
+            <router-link
+              to="/signup"
+              class="text-white bg-boxingRed flex justify-center items-center min-w-48 py-3"
+              >Get Started</router-link
+            >
+            <info-modal :modalText="getStartedModalText" class="" />
+          </div>
+          <div class="flex-row flex mt-5">
+            <try-as-guest class="text-white bg-boxingRed flex justify-center items-center min-w-48 py-3" />
+            <info-modal :modalText="tryOutModalText" />
+          </div>
+        </div>
+      </div>
     </div>
-    <info-modal :modalText="getStartedModalText" />
-    <info-modal :modalText="tryOutModalText" />
   </div>
-
 </template>
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'

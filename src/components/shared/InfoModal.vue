@@ -16,7 +16,7 @@
     </svg>
   </button>
   <teleport to="body">
-    <div v-if="openModal" class="fixed top-0 left-0 flex">
+    <div v-if="openModal" class="fixed top-0 left-0 flex z-50">
       <div
         class="bg-black bg-opacity-50 w-screen h-screen flex-grow flex justify-center items-center"
       >
