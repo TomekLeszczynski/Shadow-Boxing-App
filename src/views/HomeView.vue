@@ -7,9 +7,15 @@
       >
       <try-as-guest />
     </div>
+    <info-modal :modalText="getStartedModalText" />
+    <info-modal :modalText="tryOutModalText" />
   </div>
 </template>
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import TryAsGuest from '@/components/login_register/TryAsGuest.vue'
+import InfoModal from '@/components/shared/InfoModal.vue'
+
+const getStartedModalText = 'This is "Get Started" modal info text!'
+const tryOutModalText = 'This is "Try Out" modal info text!'
 </script>

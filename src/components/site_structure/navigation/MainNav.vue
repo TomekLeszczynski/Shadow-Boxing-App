@@ -5,18 +5,18 @@
       <router-link
         v-if="authStore.user"
         :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
-        >| Shadow Boxing</router-link
+        >Shadow Boxing</router-link
       >
       <router-link
         v-if="authStore.user"
         :to="{ name: 'weight-monitor', params: { userId: authStore.user.uid } }"
-        >| Weight Monitor</router-link
+        >Weight Monitor</router-link
       >
       <!-- <router-link v-if="!authStore.user" to="/login-register">Sign in/Log in </router-link> -->
       <button v-if="authStore.user" @click.prevent="logoutUser">Logout</button>
     </div>
-    <div v-if="authStore.user">
-      <p>User: {{ authStore.user.displayName || 'Guest' }}</p>
+    <div v-if="authStore.user" class="text-white text-xl">
+      <p>Hey {{ authStore.user.displayName || 'Champ' }}!</p>
     </div>
   </div>
 </template>
