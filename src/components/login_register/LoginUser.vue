@@ -17,7 +17,7 @@
                   id="email"
                   v-model="email"
                   type="email"
-                  class="h-10 my-1 px-4 w-full bg-white border-none"
+                  class="h-10 my-1 px-4 w-full bg-white"
                   placeholder="example@mail.com"
                 />
               </div>
@@ -28,7 +28,7 @@
                   id="password"
                   v-model="password"
                   type="password"
-                  class="h-10 my-1 px-4 w-full bg-white border-none"
+                  class="h-10 my-1 px-4 w-full bg-white"
                   placeholder="********"
                 />
               </div>
@@ -94,6 +94,7 @@
                   </span>
                 </div>
               </button>
+              <div class="text-boxingRed h-5 mt-5 font-semibold text-center">{{ authStore.authError }}</div>
             </form>
           </div>
         </div>

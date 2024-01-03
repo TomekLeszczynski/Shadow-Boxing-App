@@ -1,10 +1,10 @@
 <template>
-  <div class="max-w-100-lg mx-auto h-full flex-grow flex justify-center items-center">
+  <div class="max-w-100-lg mx-auto max-h-100 flex-grow flex justify-center items-center">
     <div class="bg-boxingRed p-5 md:p-8">
       <!-- Header -->
       <h2 class="text-black md:text-9xl text-6xl font-bold py-4">CREATE ACCOUNT</h2>
 
-      <div class="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+      <div class="grid text-sm grid-cols-1 lg:grid-cols-1">
         <div class="lg:col-span-5">
           <!-- form -->
           <form @submit.prevent class="gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
@@ -88,7 +88,7 @@
               </div>
             </div>
 
-            <div class="sm:flex justify-between items-center py-6">
+            <div class="sm:flex justify-between items-center pt-6">
               <!-- already a member link -->
               <div class="text-lg">
                 <span>Already a Member?</span>
@@ -157,6 +157,7 @@
                 </div>
               </button>
             </div>
+            <div class="text-white h-5 mt-5 font-semibold">{{ authStore.authError }}</div>
           </form>
         </div>
       </div>

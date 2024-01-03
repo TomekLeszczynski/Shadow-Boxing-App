@@ -24,7 +24,8 @@ export const useAuthStore = defineStore('Auth', {
   state: () => {
     return {
       user: null as User | null,
-      authCompleted: false
+      authCompleted: false,
+      authError: ''
     }
   },
 
@@ -94,6 +95,29 @@ export const useAuthStore = defineStore('Auth', {
     errorsHandling(error: unknown | FirebaseError) {
       if (error instanceof FirebaseError) {
         console.error('Firebase Error:', error.code, error.message)
+        switch (error.code) {
+          case 'auth/email-already-exists':
+            this.authError =
+              'Registration failed. The email address is already associated with an existing account. Please use a different email address or try to log in.'
+            break
+          case 'auth/user-not-found':
+            this.authError =
+              'Invalid login credentials. User not found. Please check your email or sign up for an account.'
+            break
+          case 'auth/invalid-email':
+            this.authError = 'Invalid email. Please check the email and try again.'
+            break
+          case 'auth/invalid-password':
+            this.authError = 'Invalid password. Please check the password and try again.'
+            break
+          case 'auth/invalid-credential':
+            this.authError =
+              'Invalid login credentials. Please check your email and password and try again.'
+            break
+          default:
+            this.authError =
+              'Oops! Something went wrong on our end. Please try again later or contact support if the issue persists'
+        }
       } else {
         console.error('Unexpected Error:', error)
         throw new Error('Unexpected Error')
@@ -101,3 +125,15 @@ export const useAuthStore = defineStore('Auth', {
     }
   }
 })
+
+//shared errors:
+// auth/internal-error:"Oops! Something went wrong on our end. Please try again later or contact support if the issue persists"
+
+// sign up errors:
+// auth/email-already-exists: "Registration failed. The email address is already associated with an existing account. Please use a different email address or try to log in."
+
+// login errors:
+// auth/user-not-found: text: "Invalid login credentials. User not found. Please check your email or sign up for an account."
+// auth/invalid-argument: "Invalid login credentials. Please check your email and password and try again."
+// auth/invalid-email: "Invalid email. Please check the email and try again."
+// auth/invalid-password: "Invalid password. Please check the password and try again."
