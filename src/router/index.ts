@@ -72,7 +72,7 @@ function getCurrentUser() {
 
 // protects routes from non-users
 router.beforeEach(async (to) => {
-  if (to.meta.requiresAuth && !(await getCurrentUser())) return 'home'
+  if (to.meta.requiresAuth && !(await getCurrentUser())) return 'login'
 })
 
 export default router

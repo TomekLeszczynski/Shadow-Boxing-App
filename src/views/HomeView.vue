@@ -10,6 +10,7 @@
     <info-modal :modalText="getStartedModalText" />
     <info-modal :modalText="tryOutModalText" />
   </div>
+
 </template>
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'

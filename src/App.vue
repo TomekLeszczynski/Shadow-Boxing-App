@@ -1,12 +1,24 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <nav class="flex flex-row justify-between w-screen px-3 bg-black py-5" >
+    <nav>
       <main-nav />
     </nav>
-    <main class="flex flex-1">
-      <router-view />
+    <main class="flex-1">
+      <router-view v-slot="{ Component }">
+        <transition
+          mode="out-in"
+          enter-active-class="transition-opacity duration-500"
+          leave-active-class="transition-opacity duration-500"
+          enter-from-class="opacity-0"
+          leave-to-class="opacity-0"
+        >
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
-    <footer class="flex flex-row justify-between items-center w-screen px-5 bg-black text-white py-5">
+    <footer
+      class="flex flex-row justify-between items-center w-screen px-5 bg-black text-white py-3"
+    >
       <author-credits />
       <flaticon-credits />
     </footer>

@@ -72,7 +72,7 @@ export const useAuthStore = defineStore('Auth', {
     ): Promise<void> {
       try {
         await signOut(firebaseAuth)
-        routerPush({ name: '/' })
+        routerPush({ name: 'home' })
       } catch (error: unknown | FirebaseError) {
         this.errorsHandling(error)
       }
