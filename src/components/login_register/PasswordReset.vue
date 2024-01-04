@@ -9,19 +9,27 @@
       <div
         class="bg-boxingPurple p-5 md:p-8 w-full sm:w-auto sm:h-auto h-full flex-col justify-center items-center flex"
       >
+        <!-- HEADING CONTAINER -->
         <div class="mb-8 text-center">
-          <h2 class="text-black md:text-6xl text-5xl font-bold mb-3">Reset your password</h2>
-          <p class="">
-            Enter your email address below and we'll send you a link with instructions.
-          </p>
+          <!-- HEADING -->
+          <h2
+            aria-label="password-reset-heading"
+            class="text-black md:text-6xl text-5xl font-bold mb-3"
+          >
+            Reset your password
+          </h2>
+          <p>Enter your email address below and we'll send you a link with instructions.</p>
         </div>
+
+        <!-- FORM -->
         <div class="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
           <div class="lg:col-span-5 pb-8">
             <form
               @submit.prevent
+              autocomplete="on"
               class="gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-2 border-red-50"
             >
-              <!--  email input -->
+              <!--  EMAIL INPUT -->
               <div class="md:col-span-1 mb-6">
                 <label for="email" class="text-lg">Email</label>
                 <input
@@ -33,30 +41,15 @@
                 />
               </div>
 
-              <!-- submit button -->
+              <!-- SUBMIT BUTTON -->
               <button
                 aria-label="submit"
                 role="button"
                 @click="sendPasswordResetRequest"
                 class="bg-black text-white text-lg font-semibold mt-5 py-5 px-12 flex flex-row items-center justify-center group tracking-wide w-full"
               >
-                <span>Submit</span>
-                <span class="group-hover:translate-x-3 transition duration-300 ease-in-out">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                    />
-                  </svg>
-                </span>
+                <!-- BUTTON LABEL FROM SUPPORT-COMPONENTS -->
+                <button-label labelText="Submit" />
               </button>
             </form>
           </div>
@@ -76,6 +69,9 @@ import { sendPasswordResetEmail } from 'firebase/auth'
 // router import
 import { useRouter } from 'vue-router'
 
+// component import
+import ButtonLabel from '@/components/login_register/supportComponents/ButtonLabel.vue'
+
 // vue-router instance
 const router = useRouter()
 
@@ -84,19 +80,23 @@ const email = ref<string>('')
 
 // send password-reset-link and redirect to 'log in' route
 const sendPasswordResetRequest = () => {
+  // check if input has value
   if (!email.value) {
-    // show error
     return
   } else {
+    // send request to firebase
     sendPasswordResetEmail(firebaseAuth, email.value)
+      // move to login page
       .then(() => {
         router.push({ name: 'login' })
       })
       .catch((error) => {
         console.error('Password-Reset-Request error:', error.message)
       })
-    // clear input
-    email.value = ''
+      // clear input
+      .finally(() => {
+        email.value = ''
+      })
   }
 }
 </script>

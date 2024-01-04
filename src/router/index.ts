@@ -42,8 +42,15 @@ const router = createRouter({
     // reset password
     {
       path: '/password-reset',
-      name: '/password-reset',
+      name: 'password-reset',
       component: () => import('@/views/PasswordResetView.vue')
+    },
+
+    // it's done
+    {
+      path: '/done',
+      name: 'done',
+      component: () => import('@/views/ItsDoneView.vue')
     },
 
     // weight measurements charts
@@ -61,7 +68,7 @@ const router = createRouter({
     } else {
       return { top: 0 }
     }
-  },
+  }
 })
 
 function getCurrentUser() {

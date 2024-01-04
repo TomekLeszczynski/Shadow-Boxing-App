@@ -114,26 +114,27 @@ export const useAuthStore = defineStore('Auth', {
             this.authError =
               'Invalid login credentials. Please check your email and password and try again.'
             break
+          case 'auth/too-many-requests':
+            this.authError =
+              'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'
+            break
           default:
             this.authError =
               'Oops! Something went wrong on our end. Please try again later or contact support if the issue persists'
         }
       } else {
         console.error('Unexpected Error:', error)
+        switch (error) {
+          case 'Error: User not authenticated or email not verified.':
+            this.authError =
+              'Authentication Failed: Your account has not been authenticated or your email address is not verified.'
+            break
+          default:
+            this.authError =
+              'Oops! Something went wrong on our end. Please try again later or contact support if the issue persists'
+        }
         throw new Error('Unexpected Error')
       }
     }
   }
 })
-
-//shared errors:
-// auth/internal-error:"Oops! Something went wrong on our end. Please try again later or contact support if the issue persists"
-
-// sign up errors:
-// auth/email-already-exists: "Registration failed. The email address is already associated with an existing account. Please use a different email address or try to log in."
-
-// login errors:
-// auth/user-not-found: text: "Invalid login credentials. User not found. Please check your email or sign up for an account."
-// auth/invalid-argument: "Invalid login credentials. Please check your email and password and try again."
-// auth/invalid-email: "Invalid email. Please check the email and try again."
-// auth/invalid-password: "Invalid password. Please check the password and try again."
