@@ -11,10 +11,32 @@ const config = {
         boxingPurple: '#7649be',
         boxingDarkBlue: '#214287',
         boxingGrey: '#dcdacd'
+      },
+      keyframes: {
+        flyIn: {
+          '0%': {
+            transform: 'translateY(100%)',
+            'clip-path': 'inset(0 0 100% 0)'
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            'clip-path': 'inset(0)'
+          }
+        },
+        showInfo: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 }
+        }
+      },
+      animation: {
+        flyInSlow: 'flyIn 400ms linear 1000ms both',
+        flyInMid: 'flyIn 600ms linear 200ms both',
+        flyInFast: 'flyIn 600ms linear 100ms both',
+        showInfo: 'showInfo 500ms linear 2s both'
       }
-    }
-  },
-  plugins: [require('@tailwindcss/forms')]
+    },
+    plugins: [require('@tailwindcss/forms')]
+  }
 }
 
 export default config

@@ -7,8 +7,8 @@
       muted
       loop
     ></video>
-    <div class="absolute inset-0 flex flex-col justify-center">
-      <h1 class="text-white text-9xl">Home View</h1>
+    <div class="absolute inset-0 flex flex-col">
+      <h1 class="text-white text-9xl font-bold text-center">SHADOW BOXING WORKOUT</h1>
       <div class="grid grid-cols-8">
         <div class="flex-col flex ml-9 mt-10">
           <div class="flex-row flex justify-between">
@@ -17,10 +17,12 @@
               class="text-white bg-boxingRed flex justify-center items-center min-w-48 py-3"
               >Get Started</router-link
             >
-            <info-modal :modalText="getStartedModalText" class="" />
+            <info-modal :modalText="getStartedModalText" />
           </div>
           <div class="flex-row flex mt-5">
-            <try-as-guest class="text-white bg-boxingRed flex justify-center items-center min-w-48 py-3" />
+            <try-as-guest
+              class="text-white bg-boxingRed flex justify-center items-center min-w-48 py-3"
+            />
             <info-modal :modalText="tryOutModalText" />
           </div>
         </div>

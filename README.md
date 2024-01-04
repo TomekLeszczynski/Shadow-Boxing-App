@@ -59,4 +59,7 @@ https://pressplayontape.studio/
 https://www.eclipse.builders/
 https://tinywins.com/
 
+# Clip-path animation inspiration
+https://css-tricks.com/animating-with-clip-path/
+
 
