@@ -12,7 +12,7 @@
         :to="{ name: 'weight-monitor', params: { userId: authStore.user.uid } }"
         >Weight Monitor</router-link
       >
-      <router-link v-if="!authStore.user" to="/login" class="border px-5 py-2">Log in</router-link>
+      <router-link v-if="!authStore.user" to="/login" class="px-5 py-2">Log in</router-link>
       <button v-if="authStore.user" @click.prevent="logoutUser" class="border px-5 py-2">Logout</button>
     </div>
     <div v-if="authStore.user" class="text-xl">

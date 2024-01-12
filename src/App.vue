@@ -1,14 +1,14 @@
 <template>
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-screen relative">
     <nav>
       <main-nav />
     </nav>
-    <main class="flex flex-1">
+    <main class="flex flex-1 container mx-auto">
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"
-          enter-active-class="transition-opacity duration-500"
-          leave-active-class="transition-opacity duration-500"
+          enter-active-class="transition-opacity duration-350"
+          leave-active-class="transition-opacity duration-350"
           enter-from-class="opacity-0"
           leave-to-class="opacity-0"
         >
@@ -16,9 +16,7 @@
         </transition>
       </router-view>
     </main>
-    <footer
-      class="flex flex-row justify-between items-center px-5 bg-black text-white py-3"
-    >
+    <footer class="flex flex-row justify-between items-center px-5 text-white py-3">
       <author-credits />
       <flaticon-credits />
     </footer>
