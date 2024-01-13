@@ -3,7 +3,8 @@ const config = {
   theme: {
     extend: {
       backgroundImage: {
-        'small-hero': "url('@/assets/photos/pexels-jermaine-ulinwa-3225889.jpg')"
+        'small-hero': "url('@/assets/photos/pexels-jermaine-ulinwa-3225889.jpg')",
+        'big-hero': "url('@/assets/photos/zachary-kadolph-CoTJ4Srrl5E-unsplash.jpg')"
       },
       colors: {
         boxingRed: '#d92e1c',
@@ -18,7 +19,7 @@ const config = {
       keyframes: {
         'infinite-scroll': {
           '0%': {
-            transform: 'translateX(100%)'
+            transform: 'translateX(0)'
           },
           '100%': {
             transform: 'translateX(-100%)'
@@ -44,13 +45,13 @@ const config = {
             'clip-path': 'inset(0)'
           }
         },
-        flyOutBackgound: {
+        flyOutBackground: {
           '0%': {
-            transform: 'scaleY(1)',
+            transform: 'translateY(0)',
             backgroundColor: '#fed001'
           },
           '100%': {
-            transform: 'scaleY(0)',
+            transform: 'translateY(-100%)',
             backgroundColor: '#7649be'
           }
         },
@@ -64,9 +65,10 @@ const config = {
         flyInMid: 'flyIn 600ms ease-out 200ms both',
         flyInFast: 'flyIn 600ms ease-out 100ms both',
         showInfo: 'showInfo 500ms ease-out 2s both',
-        headerFlyIn: 'flyIn 600ms ease-out 1000ms both',
-        flyInLeft: 'flyInLeft 1000ms cubic-bezier(0.5, 1, 0.5, 1) 1s both',
-        'infinite-scroll': 'infinite-scroll 9s linear infinite',
+        headerFlyIn: 'flyIn 600ms ease-out both',
+        flyInLeft: 'flyInLeft 1000ms cubic-bezier(0.5, 1, 0.5, 1) both',
+        'infinite-scroll': 'infinite-scroll 10s linear infinite',
+        'preloader-animation' : 'flyOutBackground 700ms ease-in 2.7s forwards'
       }
     },
     plugins: [require('@tailwindcss/forms')]

@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col h-screen relative">
+  <preloader-comp v-if="usePreloader" />
+  <div v-if="!usePreloader" class="flex flex-col h-screen relative">
     <nav>
       <main-nav />
     </nav>
@@ -25,7 +26,7 @@
 
 <script setup lang="ts">
 // vue import
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // router import
 import { RouterView } from 'vue-router'
@@ -34,11 +35,17 @@ import { RouterView } from 'vue-router'
 import MainNav from '@/components/site_structure/navigation/MainNav.vue'
 import FlaticonCredits from '@/components/site_structure/footer/FlaticonCredits.vue'
 import AuthorCredits from './components/site_structure/footer/AuthorCredits.vue'
+import preloaderComp from '@/components/site_structure/preloader/preloaderComp.vue'
 
 // pinia import
 import { useAuthStore } from '@/stores/AuthentificationStore'
 
+const usePreloader = ref(true)
+
 onMounted(async () => {
+  setTimeout(() => {
+    usePreloader.value = false
+  }, 3300)
   const authStore = useAuthStore()
   await authStore.checkUserAuthState()
 })
