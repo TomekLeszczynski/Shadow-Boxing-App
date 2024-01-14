@@ -41,7 +41,7 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 // component import
-import navigationLabel from '@/components/shared/navigationLabel.vue'
+import NavigationLabel from '@/components/shared/NavigationLabel.vue'
 
 // logout user (store function) and redirect to Home page
 const logoutUser = () => authStore.logoutUser(router.push)
