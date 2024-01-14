@@ -3,7 +3,7 @@ const config = {
   theme: {
     extend: {
       backgroundImage: {
-        'small-hero': "url('@/assets/photos/pexels-jermaine-ulinwa-3225889.jpg')",
+        'small-hero': "url('@/assets/photos/hush-naidoo-jade-photography-23h4tMUzGZk-unsplash_opt.webp')",
         'big-hero': "url('@/assets/photos/zachary-kadolph-CoTJ4Srrl5E-unsplash.jpg')"
       },
       colors: {
@@ -68,7 +68,7 @@ const config = {
         headerFlyIn: 'flyIn 600ms ease-out both',
         flyInLeft: 'flyInLeft 1000ms cubic-bezier(0.5, 1, 0.5, 1) both',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
-        'preloader-animation' : 'flyOutBackground 700ms ease-in 2.7s forwards'
+        'preloader-animation': 'flyOutBackground 700ms ease-in 2.7s forwards'
       }
     },
     plugins: [require('@tailwindcss/forms')]
