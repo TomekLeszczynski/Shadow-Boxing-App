@@ -4,7 +4,7 @@
   >
     <div class="flex flex-col container justify-evenly h-full p-5">
       <div>
-        <p class="text-3xl md:text-5xl lg:text-6xl uppercase font-bold">
+        <p class="text-3xl md:text-5xl lg:text-6xl uppercase font-bold mb-3">
           {{ quote }}
         </p>
         <p class="text-xl md:text-3xl lg:text-4xl text-end italic">{{ author }}</p>
