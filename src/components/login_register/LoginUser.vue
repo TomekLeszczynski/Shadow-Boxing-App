@@ -81,7 +81,7 @@ import { useAuthStore } from '@/stores/AuthentificationStore'
 
 // component import
 import IsLoadingLabel from '@/components/login_register/supportComponents/IsLoadingLabel.vue'
-import ButtonLabel from '@/components/login_register/supportComponents/ButtonLabel.vue'
+import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 // vue-router instance
 const router = useRouter()
