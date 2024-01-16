@@ -2,9 +2,9 @@ const config = {
   content: ['./index.html', './src/**/*.{vue,ts,js}'],
   theme: {
     extend: {
-      backgroundImage: {
-        'small-hero': "url('@/assets/photos/hush-naidoo-jade-photography-23h4tMUzGZk-unsplash_opt.webp')",
-        'big-hero': "url('@/assets/photos/zachary-kadolph-CoTJ4Srrl5E-unsplash.jpg')"
+      fontFamily: {
+        'playfair-display': ['Playfair Display', 'serif'],
+        'bebas-neue': ['Bebas Neue', 'sans-serif']
       },
       colors: {
         boxingRed: '#d92e1c',
