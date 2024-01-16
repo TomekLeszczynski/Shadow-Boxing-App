@@ -4,7 +4,7 @@
     <nav>
       <main-nav />
     </nav>
-    <main class="flex flex-1 container mx-auto">
+    <main class="flex flex-1 container mx-auto ">
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"
@@ -40,12 +40,16 @@ import preloaderComp from '@/components/site_structure/preloader/preloaderComp.v
 // pinia import
 import { useAuthStore } from '@/stores/AuthentificationStore'
 
+// preloader indicator
 const usePreloader = ref(true)
 
 onMounted(async () => {
+  // after timeout preloader indicator changes value and allows content to load.
   setTimeout(() => {
     usePreloader.value = false
   }, 3300)
+
+  // runs authorization stage checkers
   const authStore = useAuthStore()
   await authStore.checkUserAuthState()
 })
