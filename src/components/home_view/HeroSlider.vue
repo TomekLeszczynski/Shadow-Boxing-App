@@ -10,12 +10,14 @@
 // vue import
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
+// images-object interface
 interface ImageInfo {
   src: string
   alt: string
   author: string
 }
 
+// array of slider images - consider move the array to database
 const heroImages: ImageInfo[] = [
   {
     src: 'victor-marques-J-hY05bznes-unsplash_opt.webp',
@@ -49,9 +51,14 @@ const intervalId = ref<number | undefined>(undefined)
 const src = ref('brandon-webb-hB4p3h5dew0-unsplash_opt.webp')
 const alt = ref('a woman in boxing gym doing drills training')
 const author = ref('Photo by Brandon Webb')
+
+// display images from the array one-by-one
 const changeImage = () => {
+  // set interval to change image every 3 secs.
   intervalId.value = setInterval(() => {
+    // change currentIndex value
     currentIndex.value = (currentIndex.value + 1) % heroImages.length
+    // set diplayed image according to updated currentIndex
     src.value = heroImages[currentIndex.value].src
     alt.value = heroImages[currentIndex.value].alt
     author.value = heroImages[currentIndex.value].author
@@ -59,9 +66,11 @@ const changeImage = () => {
 }
 
 onMounted(() => {
+  // start display images from the array
   changeImage()
 })
 onBeforeUnmount(() => {
+  // reset display interval before component unmount
   clearInterval(intervalId.value)
 })
 </script>

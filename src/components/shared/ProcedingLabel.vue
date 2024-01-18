@@ -1,8 +1,10 @@
 <template>
   <div class="flex flex-row items-center justify-center">
-    <span>Sending</span>
+    <span>{{ procedingLabel }}</span>
     <span
-      ><svg
+      >
+      <!-- dynamic spinner icon -->
+      <svg
         class="text-gray-300 animate-spin ml-2"
         viewBox="0 0 64 64"
         fill="none"
@@ -29,3 +31,7 @@
     </span>
   </div>
 </template>
+
+<script setup lang="ts">
+defineProps(['procedingLabel'])
+</script>

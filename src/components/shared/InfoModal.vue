@@ -1,4 +1,9 @@
 <template>
+
+  <!--  THIS MODAL IS NOT STYLED YET -->
+
+
+
   <button @click="openModal = true" class="p-1 flex justify-center items-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,5 +38,5 @@
 import { ref } from 'vue'
 
 const openModal = ref<boolean>(false)
-const { modalText } = defineProps(['modalText'])
+defineProps(['modalText'])
 </script>

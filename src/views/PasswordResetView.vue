@@ -1,7 +1,7 @@
 <template>
-  <password-reset />
+  <password-reset-container />
 </template>
 <script setup lang="ts">
 // component import
-import PasswordReset from '@/components/login_register/PasswordReset.vue'
+import PasswordResetContainer from '@/components/login_register/PasswordResetContainer.vue'
 </script>

@@ -113,7 +113,7 @@
                 :aria-disabled="v$.$invalid ? 'true' : 'false'"
               >
                 <!-- IS LOADING BUTTON LABEL -->
-                <is-loading-label v-if="inProgress" />
+                <proceding-label v-if="inProgress" procedingLabel="Sending" />
                 <!-- DEFAULT BUTTON LABEL -->
                 <div v-if="!inProgress" class="flex flex-row items-center justify-center">
                   <span>Sign up</span>
@@ -163,7 +163,7 @@ import useValidate from '@vuelidate/core'
 import { required, email, minLength, alphaNum, sameAs } from '@vuelidate/validators'
 
 // component import
-import IsLoadingLabel from '@/components/login_register/supportComponents/IsLoadingLabel.vue'
+import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
 
 // interface import
 import { type ValidationUserData } from '@/interfaces'
