@@ -2,7 +2,6 @@
   <button
     @click.prevent="getAccessAsGuest"
     aria-label="Try as Guest - Access all features without an account"
-    role="button"
     class="bg-boxingRed text-white text-md md:text-lg font-semibold mt-5 py-4 md:py-5 md:px-6 flex items-center justify-center group tracking-wide w-full animate-[flyInLeft_900ms_ease-out_900ms_both]"
   >
     <button-label labelText="Try As Guest" class="animate-[flyIn_900ms_ease-out_900ms_both]" />
