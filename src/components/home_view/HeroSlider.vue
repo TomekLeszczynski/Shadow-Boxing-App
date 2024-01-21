@@ -1,6 +1,10 @@
 <template>
   <div class="animate-flyInLeft h-0 md:h-auto relative" aria-live="polite">
-    <img :src="'src/assets/photos/' + src" :alt="alt" class="absolute inset-0 object-cover h-full w-full" />
+    <img
+      :src="'src/assets/photos/' + src"
+      :alt="alt"
+      class="absolute inset-0 object-cover h-full w-full"
+    />
     <div class="absolute w-full opacity-50 bottom-0 pr-3 py-2">
       <p class="text-gray-100 text-right text-xs">{{ author }}</p>
     </div>
@@ -10,12 +14,8 @@
 // vue import
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-// images-object interface
-interface ImageInfo {
-  src: string
-  alt: string
-  author: string
-}
+// interface import
+import { type ImageInfo } from '@/interfaces'
 
 // array of slider images - consider move the array to database
 const heroImages: ImageInfo[] = [
