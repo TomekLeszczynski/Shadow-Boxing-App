@@ -21,10 +21,12 @@ import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 const router = useRouter()
 const authStore = useAuthStore()
 
-// get access by an anonymous user, redirect user to Home page with Nav items accessible only for auth users
+// get access as an anonymous user, redirect user to Home page with Nav items accessible only for auth users
 const getAccessAsGuest = () => {
   authStore
+    // run firebase function
     .getAccessAsAnAnonymous()
+    // change route - Shadow Boxing view with userId data or "Guest"
     .then(() => {
       router.push({ name: 'shadow-boxing', params: { userId: authStore.user?.uid || 'Guest' } })
     })
