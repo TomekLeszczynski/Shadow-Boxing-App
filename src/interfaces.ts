@@ -6,3 +6,10 @@ export interface ValidationUserData {
     confirm: string
   }
 }
+
+// hero-images-object interface
+export interface ImageInfo {
+  src: string
+  alt: string
+  author: string
+}
