@@ -55,6 +55,16 @@ const config = {
             backgroundColor: '#7649be'
           }
         },
+        loginEntrance: {
+          '0%': {
+            transform: 'translateX(-100%)',
+            backgroundColor: 'black'
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            backgroundColor: 'black'
+          }
+        },
         showInfo: {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 }
@@ -68,7 +78,8 @@ const config = {
         headerFlyIn: 'flyIn 600ms ease-out both',
         flyInLeft: 'flyInLeft 1000ms cubic-bezier(0.5, 1, 0.5, 1) both',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
-        'preloader-animation': 'flyOutBackground 700ms ease-in 2.7s forwards'
+        'preloader-animation': 'flyOutBackground 700ms ease-in forwards',
+        'login-entrance': 'loginEntrance 700ms ease-in forwards'
       }
     },
     plugins: [require('@tailwindcss/forms')]
