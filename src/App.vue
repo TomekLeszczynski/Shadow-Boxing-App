@@ -45,7 +45,7 @@ import { RouterView, useRoute, useRouter } from 'vue-router'
 import MainNav from '@/components/site_structure/navigation/MainNav.vue'
 import FlaticonCredits from '@/components/site_structure/footer/FlaticonCredits.vue'
 import AuthorCredits from './components/site_structure/footer/AuthorCredits.vue'
-import preloaderComp from '@/components/site_structure/preloader/preloaderComp.vue'
+import preloaderComp from '@/components/preloader/preloaderComp.vue'
 
 // pinia import
 import { useAuthStore } from '@/stores/AuthentificationStore'
