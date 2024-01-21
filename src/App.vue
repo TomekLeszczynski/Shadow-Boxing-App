@@ -1,10 +1,19 @@
 <template>
-  <preloader-comp v-if="usePreloader" />
+  <!-- PRELOADER WITH DYNAMIC ANIMATION CLASS. BUTTON EMITS CLICK EVENT -->
+  <preloader-comp
+    v-if="usePreloader"
+    @skipped="skipPreloader"
+    :class="usePreloaderAnimation ? 'animate-preloader-animation' : ''"
+  />
+  <!-- DISPLAY CONTENT AFTER USER SKIPPED PRELOADER -->
   <div v-if="!usePreloader" class="flex flex-col h-screen relative">
+    <!-- NAVIGATION SECTION -->
     <nav>
       <main-nav />
     </nav>
-    <main class="flex flex-1 container mx-auto ">
+    <!-- MAIN SECTION -->
+    <main class="flex flex-1 container mx-auto">
+      <!-- ROUTES WITH TRANSITION SET -->
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"
@@ -17,6 +26,7 @@
         </transition>
       </router-view>
     </main>
+    <!--  FOOTER -->
     <footer class="flex flex-row justify-between items-center px-5 text-white py-3">
       <author-credits />
       <flaticon-credits />
@@ -29,7 +39,7 @@
 import { onMounted, ref } from 'vue'
 
 // router import
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute, useRouter } from 'vue-router'
 
 // component import
 import MainNav from '@/components/site_structure/navigation/MainNav.vue'
@@ -41,13 +51,36 @@ import preloaderComp from '@/components/site_structure/preloader/preloaderComp.v
 import { useAuthStore } from '@/stores/AuthentificationStore'
 
 // preloader indicator
-const usePreloader = ref(true)
+const usePreloader = ref(false)
 
-onMounted(async () => {
-  // after timeout preloader indicator changes value and allows content to load.
+// unmount preloader animation indicator
+const usePreloaderAnimation = ref<boolean>(false)
+
+// router instances
+const route = useRoute()
+const router = useRouter()
+
+// 'skip' button handler
+const skipPreloader = () => {
+  // add animtion class to preloader component
+  usePreloaderAnimation.value = true
+  // let run animation and turn off preloader component after animation ends
   setTimeout(() => {
     usePreloader.value = false
-  }, 3300)
+  }, 700)
+}
+
+// check the route on onMounted. Display preloader only when user enters website or refresh home view.
+onMounted(async () => {
+  // wait till router ready
+  await router.isReady()
+  // check if current route is 'home'. display preloader if true
+  if (route.name === 'home') {
+    usePreloader.value = true
+    // if current route is not home, keep preloader off.
+  } else {
+    usePreloader.value = false
+  }
 
   // runs authorization stage checkers
   const authStore = useAuthStore()
