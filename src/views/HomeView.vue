@@ -3,6 +3,8 @@
     <div class="grid grid-cols-1 gap-2 md:gap-3 p-2">
       <!-- MAIN HEADER -->
       <header-box />
+      <!-- PATTERN STRIPE -->
+      <div class="w-full h-16 bg-patternA bg-contain animate-[flyInDown_1s_ease-out_both]"></div>
       <!-- DESCRIPTION & SLIDER SECTION -->
       <div class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-3">
         <!-- APP DESCRIPTION -->
@@ -10,6 +12,8 @@
         <!-- HERO IMG SLIDER -->
         <hero-slider />
       </div>
+      <!-- PATTERN STRIPE -->
+      <div class="w-full h-16 bg-patternA bg-contain"></div>
       <!-- INFINITE SCROLL BANNER -->
       <infinite-scroll-banner bannerText="ONLINE STORE AND BLOG SECTIONS COMING SOON!" />
     </div>
