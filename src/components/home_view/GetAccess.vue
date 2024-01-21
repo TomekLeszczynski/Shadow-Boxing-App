@@ -2,7 +2,7 @@
   <div class="grid gap-4 lg:gap-8 grid-cols-1 sm:grid-cols-2 my-5 md:my-10">
     <!-- GET STARTED CONTAINER -->
     <div class="w-full flex flex-col justify-between">
-      <p class="text-black text-xs md:text-sm xl:text-base italic">
+      <p class="text-black text-sm xl:text-base italic">
         * Unlock the full experience by creating an account. Save your training sessions and weight
         measurements for personalized tracking and progress analysis.
       </p>
@@ -20,7 +20,7 @@
     </div>
     <!-- TRY AS GUEST CONTAINER -->
     <div class="w-full flex flex-col justify-between">
-      <p class="text-black text-xs md:text-sm xl:text-base italic">
+      <p class="text-black text-sm xl:text-base italic">
         * Instantly access all features without the need for an account. Explore the app's
         functionality, but keep in mind that data won't be saved without registration.
       </p>
