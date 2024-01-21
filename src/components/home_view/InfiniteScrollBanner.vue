@@ -1,25 +1,18 @@
 <template>
-  <div class="bg-boxingPurple overflow-hidden grid grid-cols-1 animate-headerFlyIn">
+  <div
+    class="bg-boxingPurple overflow-hidden grid grid-cols-1 animate-headerFlyIn"
+    aria-live="polite"
+  >
     <div class="flex">
-      <div
-        class="text-6xl text-white whitespace-nowrap font-semibold py-2 md:py-4 animate-infinite-scroll pl-5"
-      >
-        {{ bannerText }}
-      </div>
-      <div
-        class="text-6xl text-white whitespace-nowrap font-semibold py-2 md:py-4 animate-infinite-scroll pl-5"
-      >
-        {{ bannerText }}
-      </div>
-      <div
-        class="text-6xl text-white whitespace-nowrap font-semibold py-2 md:py-4 animate-infinite-scroll pl-5"
-      >
-        {{ bannerText }}
+      <div v-for="index in 3" :key="index">
+        <infinite-scroll-banner-item :bannerText="bannerText" />
       </div>
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
+// component import
+import InfiniteScrollBannerItem from './InfiniteScrollBannerItem.vue'
+
 defineProps(['bannerText'])
 </script>

@@ -1,11 +1,14 @@
 <template>
-  <div class="bg-boxingGreen p-6 md:p-9 animate-flyInLeft h-auto">
+  <section class="bg-boxingGreen p-6 md:p-9 animate-flyInLeft h-auto">
     <div class="grid grid-cols-full content-end">
       <!-- SMALL HEADER -->
-      <h2 class="text-5xl xl:text-8xl font-bold mb-5 md:mb-9 font-playfair-display">
-        <div class="animate-[flyIn_1.3s_ease_both]">FOR</div>
-        <div class="animate-[flyIn_1.5s_ease_both]">THE LOVE</div>
-        <div class="animate-[flyIn_1.7s_ease_both]">OF BOXING</div>
+      <h2
+        class="text-5xl xl:text-8xl font-bold mb-5 md:mb-9 font-playfair-display"
+        aria-label="For the Love of Boxing"
+      >
+        <p class="animate-[flyIn_1.3s_ease_both]">FOR</p>
+        <p class="animate-[flyIn_1.5s_ease_both]">THE LOVE</p>
+        <p class="animate-[flyIn_1.7s_ease_both]">OF BOXING</p>
       </h2>
       <!-- APP DESCRIPTION -->
       <div
@@ -27,7 +30,7 @@
       <!-- GET-ACCESS COMPONENT -->
       <get-access />
     </div>
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 // component import
