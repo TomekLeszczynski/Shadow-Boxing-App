@@ -1,17 +1,22 @@
 <template>
   <div
-    class="flex justify-center items-center absolute inset-0 origin-bottom bg-boxingYellow min-w-[320px] animate-preloader-animation"
+    class="flex justify-center items-center absolute inset-0 origin-bottom bg-boxingYellow min-w-[320px]"
   >
     <div class="flex flex-col container justify-evenly h-full p-5">
       <div>
-        <p class="text-3xl md:text-5xl lg:text-7xl uppercase font-bold mb-3 font-playfair-display">
+        <p class="text-3xl md:text-5xl lg:text-7xl uppercase font-bold mb-5">
           {{ quote }}
         </p>
         <p class="text-xl md:text-3xl lg:text-4xl text-end italic">{{ author }}</p>
       </div>
-      <p class="text-xl md:text-3xl lg:text-4xl text-black uppercase text-center font-black">
-        Get ready!
-      </p>
+      <div class="flex justify-center">
+        <button
+          @click="$emit('skipped')"
+          class="bg-black text-white text-lg font-semibold mt-3 sm:mt-0 py-4 px-12 group tracking-wide md:w-96 w-full"
+        >
+          <button-label labelText="Skip" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +26,9 @@ import { ref, onMounted } from 'vue'
 
 // helper import
 import preloaderQuotes from '@/components/site_structure/preloader/quotes'
+
+// component import
+import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 // quote and author to display
 const quote = ref<string>("“Hard work beats talent when talent doesn't work hard.”")
