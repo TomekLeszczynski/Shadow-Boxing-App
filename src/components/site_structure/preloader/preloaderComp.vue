@@ -2,12 +2,12 @@
   <div
     class="flex justify-center items-center absolute inset-0 origin-bottom bg-boxingYellow min-w-[320px]"
   >
-    <div class="flex flex-col container justify-evenly h-full p-5">
+    <div class="flex flex-col container justify-between sm:justify-evenly h-full p-5">
       <div>
-        <p class="text-3xl md:text-5xl lg:text-7xl uppercase font-bold mb-5">
+        <p class="text-4xl md:text-6xl lg:text-7xl uppercase font-bold mb-5">
           {{ quote }}
         </p>
-        <p class="text-xl md:text-3xl lg:text-4xl text-end italic">{{ author }}</p>
+        <p class="text-xl md:text-3xl lg:text-4xl text-end">~ {{ author }}</p>
       </div>
       <div class="flex justify-center">
         <button
