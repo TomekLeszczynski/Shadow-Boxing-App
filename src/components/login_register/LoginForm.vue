@@ -43,7 +43,7 @@
           aria-label="log in"
           role="button"
           @click="signingIn"
-          class="bg-black text-white text-lg font-semibold mt-5 py-5 px-12 flex flex-row items-center justify-center group tracking-wide w-full"
+          class="bg-black text-white text-lg font-semibold mt-5 py-5 px-12 flex flex-row items-center justify-center group tracking-wide w-full animate-headerFlyIn"
         >
           <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
           <proceding-label v-if="isLoading" procedingLabel="Sending" />
