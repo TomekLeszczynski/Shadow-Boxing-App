@@ -1,6 +1,8 @@
 <template>
-  <div class="flex flex-row items-center justify-center w-full font-thin">
-    <span>{{ labelText }}</span>
+  <!-- LABEL -->
+  <div class="flex items-center justify-center w-full text-xl">
+    <span class="font-public-sans">{{ labelText }}</span>
+    <!-- HOVERED ICOM -->
     <span class="group-hover:translate-x-3 transition duration-300 ease-in-out">
       <svg
         xmlns="http://www.w3.org/2000/svg"

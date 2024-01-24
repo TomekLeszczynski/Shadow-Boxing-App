@@ -3,7 +3,7 @@
   <preloader-comp
     v-if="usePreloader"
     @skipped="skipPreloader"
-    :class="usePreloaderAnimation ? 'animate-preloader-animation' : ''"
+    :class="usePreloaderAnimation ? 'animate-preloader' : ''"
   />
   <!-- DISPLAY CONTENT AFTER USER SKIPPED PRELOADER -->
   <div v-if="!usePreloader" class="flex flex-col h-screen relative">
@@ -14,6 +14,7 @@
     <!-- MAIN SECTION -->
     <main class="flex flex-1 container mx-auto">
       <!-- ROUTES WITH TRANSITION SET -->
+
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"
@@ -76,6 +77,7 @@ onMounted(async () => {
   await router.isReady()
   // check if current route is 'home'. display preloader if true
   if (route.name === 'home') {
+    // set to false when want to turn off
     usePreloader.value = true
     // if current route is not home, keep preloader off.
   } else {

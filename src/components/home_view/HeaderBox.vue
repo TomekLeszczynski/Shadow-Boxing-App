@@ -1,6 +1,6 @@
 <template>
   <h1
-    class="text-white font-black animate-headerFlyIn text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-left uppercase"
+    class="text-almost-white font-semibold font-public-sans animate-text-show-up text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tighter py-3 mb-12"
   >
     Shadow Boxing Workout
   </h1>

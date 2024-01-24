@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="bg-boxingPurple overflow-hidden grid grid-cols-1 animate-headerFlyIn"
-    aria-live="polite"
-  >
+  <div class="overflow-hidden grid grid-cols-1 animate-text-show-up" aria-live="polite">
     <div class="flex">
-      <div v-for="index in 3" :key="index">
+      <div v-for="index in 4" :key="index">
         <infinite-scroll-banner-item :bannerText="bannerText" />
       </div>
     </div>

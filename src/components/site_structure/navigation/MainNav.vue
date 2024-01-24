@@ -1,25 +1,23 @@
 <template>
-  <div v-if="authStore.authCompleted" class="max-w-full p-5 text-white text-2xl">
+  <div v-if="authStore.authCompleted" class="py-3 px-6 text-almost-white text-2xl border-b">
     <div
       v-if="authStore.authCompleted"
-      class="w-100 flex justify-between items-center font-semibold"
+      class="w-100 flex justify-between items-center font-public-sans"
     >
-      <router-link to="/"><navigation-label label-text="HOME" /></router-link>
+      <router-link to="/">[ Home ]</router-link>
       <router-link
         v-if="authStore.user"
         :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
-        ><navigation-label label-text="SHADOW BOXING"
-      /></router-link>
+        >Shadow Boxing</router-link
+      >
       <router-link
         v-if="authStore.user"
         :to="{ name: 'weight-monitor', params: { userId: authStore.user.uid } }"
-        ><navigation-label label-text="WEIGHT MONITOR"
-      /></router-link>
-      <router-link v-if="!authStore.user" to="/login" class="px-5 py-2"
-        ><navigation-label label-text="LOG IN"
-      /></router-link>
+        >Weight Monitor</router-link
+      >
+      <router-link v-if="!authStore.user" to="/login" class="px-5 text-almost-black bg-almost-white hover:text-almost-white hover:bg-almost-black">Login</router-link>
       <button v-if="authStore.user" @click.prevent="logoutUser" class="border px-5 py-2">
-        <navigation-label label-text="LOG OUT" />
+        Log Out
       </button>
     </div>
     <div v-if="authStore.user" class="text-xl">
