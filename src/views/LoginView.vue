@@ -1,16 +1,11 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col container mx-auto p-4">
     <!--  HEADER -->
     <div class="">
-      <login-header />
+      <login-header-box />
     </div>
-    <div class="grid grid-cols-3 text-almost-white">
-      <div class="col-span-1 animate-button-show-from-left">
-        <div class="flex flex-row justify-between">
-          <p class="text-almost-white font-public-sans w-full border-t text-xl pt-2">Text</p>
-        </div>
-      </div>
-      <div class="col-start-3 col-end-4">
+    <div class="h-full text-almost-white">
+      <div class="">
         <login-form />
       </div>
     </div>
@@ -20,5 +15,5 @@
 <script setup lang="ts">
 // import component
 import LoginForm from '@/components/log_in/LoginForm.vue'
-import LoginHeader from '@/components/log_in/LoginHeader.vue'
+import LoginHeaderBox from '@/components/log_in/LoginHeaderBox.vue'
 </script>

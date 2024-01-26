@@ -6,7 +6,7 @@
     :class="usePreloaderAnimation ? 'animate-preloader' : ''"
   />
   <!-- DISPLAY CONTENT AFTER USER SKIPPED PRELOADER -->
-  <div v-if="!usePreloader" class="flex flex-col h-screen relative">
+  <div v-if="!usePreloader" class="flex flex-col relative h-lvh">
     <!-- NAVIGATION SECTION -->
     <nav>
       <main-nav />

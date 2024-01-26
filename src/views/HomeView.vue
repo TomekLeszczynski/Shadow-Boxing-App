@@ -1,12 +1,12 @@
 <template>
-  <div class="grid grid-cols-1 gap-2 md:gap-3 p-4 border-b">
+  <div class="grid grid-cols-1 gap-2 md:gap-3 p-4">
     <!-- MAIN HEADER -->
     <header-box />
     <!-- DESCRIPTION & HERO IMAGE SECTION-->
     <section class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-8 mb-9">
       <!-- HERO BOX -->
       <hero-box />
-      <div>
+      <div class="h-full flex flex-col justify-between">
         <!-- APP DESCRIPTION -->
         <description-box />
         <!-- BOX WITH ACCESS BUTTONS : SIGNUP & TRY AS GUEST -->
