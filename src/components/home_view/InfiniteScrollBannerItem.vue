@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-3xl font-public-sans text-almost-white whitespace-nowrap animate-infinite-scroll pl-5"
+    class="text-2xl lg:text-3xl font-public-sans text-narvik whitespace-nowrap animate-infinite-scroll pl-5"
   >
     {{ bannerText }}
   </div>
