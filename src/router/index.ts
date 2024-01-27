@@ -60,7 +60,13 @@ const router = createRouter({
       component: () => import('@/views/WeightMonitorView.vue'),
       meta: { requiresAuth: true },
       props: true
-    }
+    },
+    // 404
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('@/components/NotFound.vue')
+    },
   ],
   scrollBehavior() {
     return { top: 0, left: 0, behavior: 'smooth' }
