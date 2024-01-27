@@ -1,7 +1,7 @@
 <template>
   <!-- APP DESCRIPTION -->
   <div
-    class="text-almost-white text-xl md:text-2xl xl:text-3xl font-public-sans mb-12 text-justify animate-text-show-up"
+    class="text-almost-white text-base sm:text-xl md:text-2xl xl:text-3xl font-public-sans lg:mb-12 text-justify animate-text-show-up "
   >
     <p class="mb-3 indent-10">
       This app takes boxing training to a new level. With our app, you can practice 'shadow boxing,'
