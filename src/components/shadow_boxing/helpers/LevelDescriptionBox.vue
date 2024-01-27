@@ -1,13 +1,13 @@
 <template>
-  <button class="group">
+  <div class="group cursor-pointer" role="button">
     <div
-      class="grid xl:grid-cols-2 bg-almost-white animate-button-show-from-left p-9 group-hover:bg-almost-black h-full"
+      class="grid xl:grid-cols-2 bg-almost-white animate-button-show-from-left p-9 group-hover:bg-red-500 h-full"
     >
       <p
-        class="text-almost-black font-bold text-5xl border-almost-black text-left group-hover:text-almost-white relative w-full"
+        class="text-almost-black font-bold text-5xl border-almost-black text-left group-hover:text-almost-white relative"
       >
         {{ level }}
-        <span class="absolute bottom-0 right-0 xl:pr-9"
+        <span class="absolute bottom-0 right-0 xl:pr-9 hidden xl:inline-block"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -25,15 +25,14 @@
         </span>
       </p>
       <div
-        class="text-sm xl:border-l border-almost-black xl:pl-9 group-hover:border-almost-white group-hover:text-almost-white hidden md:block"
+        class="text-sm xl:border-l border-almost-black xl:pl-9 group-hover:border-almost-white group-hover:text-almost-white"
       >
-        <p class="text-justify mb-2">
-          <span class="font-semibold"></span>
-          {{ levelDesciption }}
-        </p>
+        <div class="text-justify mb-2 text-lg">
+          <slot />
+        </div>
       </div>
     </div>
-  </button>
+  </div>
 </template>
 <script setup lang="ts">
 defineProps(['level', 'levelDesciption'])
