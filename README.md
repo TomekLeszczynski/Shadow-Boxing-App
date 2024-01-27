@@ -64,4 +64,7 @@ https://aim.obys.agency/
 # Clip-path animation inspiration
 https://css-tricks.com/animating-with-clip-path/
 
+#
+Breakpoints according to Tailwind Docs.
+
 
