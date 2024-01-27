@@ -30,7 +30,6 @@
     <!--  FOOTER -->
     <footer class="flex flex-row justify-between items-center px-5 text-white py-3">
       <author-credits />
-      <flaticon-credits />
     </footer>
   </div>
 </template>
@@ -44,7 +43,6 @@ import { RouterView, useRoute, useRouter } from 'vue-router'
 
 // component import
 import MainNav from '@/components/site_structure/navigation/MainNav.vue'
-import FlaticonCredits from '@/components/site_structure/footer/FlaticonCredits.vue'
 import AuthorCredits from './components/site_structure/footer/AuthorCredits.vue'
 import preloaderComp from '@/components/preloader/preloaderComp.vue'
 
@@ -78,7 +76,7 @@ onMounted(async () => {
   // check if current route is 'home'. display preloader if true
   if (route.name === 'home') {
     // set to false when want to turn off
-    usePreloader.value = true
+    usePreloader.value = false
     // if current route is not home, keep preloader off.
   } else {
     usePreloader.value = false
