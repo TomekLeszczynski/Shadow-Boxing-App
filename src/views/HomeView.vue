@@ -1,5 +1,12 @@
 <template>
-  <div class="grid grid-cols-1 gap-2 md:gap-3 p-4">
+  <div class="grid grid-cols-1 gap-2 md:gap-3 p-4 relative">
+    <div class="animate-appear-slow-and-delayed lg:hidden">
+      <img
+        src="@/assets/photos/hero-halftone_opt.webp"
+        alt="halftone-image-woman-during-boxing-training"
+        class="absolute inset-0 h-full w-full object-cover opacity-15 -z-10"
+      />
+    </div>
     <!-- MAIN HEADER -->
     <header-box />
     <!-- DESCRIPTION & HERO IMAGE SECTION-->
