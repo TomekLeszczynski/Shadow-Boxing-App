@@ -2,12 +2,23 @@ const config = {
   content: ['./index.html', './src/**/*.{vue,ts,js}'],
   theme: {
     extend: {
+      screens: {
+        xs: '475px'
+      },
       fontFamily: {
         'public-sans': ['Public Sans', 'sans-serif']
       },
       colors: {
         'almost-white': '#E7E4DF',
-        'almost-black': '#141414'
+        'almost-black': '#141414',
+        narvik: '#E7E7D8',
+        'erie-black': '#1E1E1D',
+        eagle: '#AEAC95',
+        'fire-bush': '#F09235',
+        jaffa: '#ed762f',
+        sorbus: '#ec642b',
+        'almost-grey': '#808080',
+        'almost-turquoise': '#44efef'
       },
       keyframes: {
         //
@@ -86,17 +97,11 @@ const config = {
         }
       },
       animation: {
-        flyInSlow: 'flyIn 800ms ease-out 1000ms both',
-        flyInMid: 'flyIn 600ms ease-out 200ms both',
-        flyInFast: 'flyIn 600ms ease-out 100ms both',
-        showInfo: 'showInfo 500ms ease-out 2s both',
-        headerFlyIn: 'flyIn 600ms ease-out both',
-        flyInLeft: 'flyInLeft 1000ms cubic-bezier(0.5, 1, 0.5, 1) both',
-
         //
         'infinite-scroll': 'infinite-scroll 7s linear infinite',
         preloader: 'move-up 700ms ease-in forwards',
         'appear-slow-and-delayed': 'appearance 1s linear 700ms both',
+        'appear-smooth': 'appearance 350ms ease both',
         'text-show-up-delayed': 'show-up 800ms ease-out 350ms both',
         'text-show-up': 'show-up 600ms ease-out both',
         'text-show-up-02': 'show-up 400ms ease-out 150ms both',
