@@ -1,7 +1,7 @@
 <template>
   <!-- SECTION THAT COVERS WHOLE SCREEN -->
   <section
-    class="flex justify-center items-center absolute inset-0 origin-bottom min-w-[320px] border-b"
+    class="flex justify-center items-center absolute inset-0 origin-bottom border-b"
     aria-live="polite"
   >
     <!-- CONTENT CONTAINER -->
@@ -29,7 +29,7 @@
       <div class="flex justify-center animate-appear-slow-and-delayed">
         <button
           @click="$emit('skipped')"
-          class="border mt-3 sm:mt-0 py-4 px-12 group md:w-96 w-full bg-almost-black"
+          class="mt-3 sm:mt-0 py-4 px-12 group md:w-96 w-full bg-almost-black border"
           tabindex="0"
         >
           <button-label labelText="Skip" />
