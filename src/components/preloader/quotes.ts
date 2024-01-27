@@ -1,10 +1,6 @@
 const preloaderQuotes = [
   { quote: '“Float like a butterfly, sting like a bee.”', author: 'Muhammad Ali' },
-  {
-    quote:
-      '"Champions aren’t made in the gyms. Champions are made from something they have deep inside them—a desire, a dream, a vision."',
-    author: 'Joe Frazier'
-  },
+  
   {
     quote:
       '"It’s not about how hard you can hit, it’s about how hard you can get hit and keep moving forward."',
