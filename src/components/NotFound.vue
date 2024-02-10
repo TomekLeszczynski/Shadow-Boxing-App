@@ -8,7 +8,7 @@
     <img
       src="@/assets/photos/404-hero.webp"
       alt="halftone-image-young-boxer-looking-up"
-      class="absolute h-full object-cover opacity-35 -z-10 right-2"
+      class="absolute h-full object-cover opacity-20 -z-10 right-2"
     />
   </div>
 </template>
