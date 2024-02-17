@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row mx-auto justify-center items-center gap-9">
-    <p class="text-md font-public-sans text-eagle">&copy;{{ currentDate }} / Tomasz Leszczyński</p>
+  <div class="flex flex-row mx-auto justify-center items-center gap-5">
+    <p class="text-md font-public-sans text-almost-white">{{ currentDate }} | Tomasz Leszczyński | For all boxing lovers and adepts</p>
     <a
       class="size-8 hover:scale-90 hover:duration-200"
       href="https://github.com/TomekLeszczynski"
