@@ -1,10 +1,10 @@
 <template>
   <!-- MOBILE NAV -->
-  <div class="flex absolute inset-0 h-full w-full z-20 xs:hidden" v-if="authStore.authCompleted">
     <!-- HAMBURGER ICON / CLOSE ICON FOR MOBILE NAV -->
     <div
-      class="text-almost-white inline-block absolute top-0 right-0 p-3"
+      class="text-almost-white inline-block absolute top-0 right-0 p-3 xs:hidden z-30"
       @click="showHamburger = !showHamburger"
+      v-if="authStore.authCompleted"
     >
       <hamburger-icon v-if="!showHamburger" class="w-8 h-8" />
       <close-icon v-if="showHamburger" class="w-8 h-8" />
@@ -20,7 +20,7 @@
       <!-- MOBILE NAVIGATION  -->
       <div
         v-if="showHamburger"
-        class="flex-col flex justify-center text-5xl font-public-sans text-almost-white items-center w-full bg-red-500"
+        class="flex-col flex justify-center absolute h-full text-5xl font-public-sans text-almost-white items-center w-full bg-red-500 z-20"
         @wheel.prevent
         @touchmove.prevent
         @scroll.prevent
@@ -38,7 +38,6 @@
         </div>
       </div>
     </transition>
-  </div>
 
   <!-- DESKTOP NAVIGATION -->
   <div class="py-3 px-6 text-almost-white text-md md:text-lg lg:text-2xl hidden xs:block h-10">
@@ -51,12 +50,13 @@
         v-for="link in navLinks"
         :key="link.name"
         :is="link.component"
-        @click="showHamburger = !showHamburger"
+       
         :text="link.text"
+        class="active:text-red-500"
         :class="
           link.component === LoginLink || link.component === LogoutLink
             ? 'bg-almost-white text-almost-black hover:bg-red-500 hover:text-almost-white px-5 py-2 hover:duration-200'
-            : 'hover:text-almost-grey hover:duration-200'
+            : 'hover:text-jaffa hover:duration-200'
         "
       />
     </div>
