@@ -1,7 +1,7 @@
 <template>
   <button v-if="authStore.user" @click.prevent="logoutUser">Log Out</button>
 </template>
-<script setup>
+<script setup lang="ts">
 // import pinia store
 import { useAuthStore } from '@/stores/AuthentificationStore'
 

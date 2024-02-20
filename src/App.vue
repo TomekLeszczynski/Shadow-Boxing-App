@@ -76,7 +76,7 @@ onMounted(async () => {
   // check if current route is 'home'. display preloader if true
   if (route.name === 'home') {
     // set to false when want to turn off
-    usePreloader.value = false
+    usePreloader.value = true
     // if current route is not home, keep preloader off.
   } else {
     usePreloader.value = false

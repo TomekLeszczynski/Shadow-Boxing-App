@@ -1,6 +1,6 @@
 const preloaderQuotes = [
   { quote: '“Float like a butterfly, sting like a bee.”', author: 'Muhammad Ali' },
-  
+
   {
     quote:
       '"It’s not about how hard you can hit, it’s about how hard you can get hit and keep moving forward."',

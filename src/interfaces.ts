@@ -7,9 +7,9 @@ export interface ValidationUserData {
   }
 }
 
-// hero-images-object interface
-export interface ImageInfo {
-  src: string
-  alt: string
-  author: string
+// punch figure-icons on shadow boxing view
+export interface punchType {
+  number: string
+  picture: string
+  name: string
 }

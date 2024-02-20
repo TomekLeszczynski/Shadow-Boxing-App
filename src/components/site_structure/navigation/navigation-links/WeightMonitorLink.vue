@@ -6,7 +6,7 @@
     Weight Monitor
   </router-link>
 </template>
-<script setup>
+<script setup lang="ts">
 // import pinia store
 import { useAuthStore } from '@/stores/AuthentificationStore'
 
