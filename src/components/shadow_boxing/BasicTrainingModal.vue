@@ -1,3 +1,12 @@
+<!-- 
+  1. DESCRIBE SCRIPT ELEMENTS
+  2. ADD QUIT BUTTON
+  3. CONSIDER PINIA STORE DATA STOAGE FOR TRAINING SESSION SETUP DATA: DATA MAY FLOWS BETWEEN SESSION MODAL, 'WELL DONE' PAGE, AND NEED TO BE SAVED ON USER'S FIREBASE ACCOUNT
+  4. CREATE MODAL BASE COMPONENT WITH ALL THE BUTTONS AND MAIN FUNCTIONALITY. ELEMENTS OF SPECIFIC TRAINING MODALS PLACED IN AS '<SLOT>'S 
+  5. CREATE AND ADD INITIAL COUNTDOWN (10SECS) - SHARED WITH ADVANCED SESSION OR SET AS BASE MODAL ELEMENT.
+  6. FIX AUDIO FILES IMPORTING ISSUES: CREATE AN OBJECT WITH PATHS TO EACH PUNCH NAME AND THEN DYNAMICALLY LOAD AUDIO FILES
+ -->
+
 <template>
   <div class="fixed bg-almost-black inset-0 font-public-sans text-almost-white">
     <div class="flex flex-col mx-auto justify-center items-center h-full p-4">
@@ -73,7 +82,7 @@ const punchesArray: string[] = [
 
 const loadAudioFiles = async () => {
   for (const punch of punchesArray) {
-    const punchSound = await import(/* @vite-ignore */ `@/assets/audio/${punch}-sound.wav`)
+    const { default: punchSound } = await import(`@/assets/audio/${punch}-sound.wav`)
     const audio = new Audio(punchSound)
     audioMap[punch] = audio
   }
