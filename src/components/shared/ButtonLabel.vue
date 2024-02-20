@@ -1,6 +1,6 @@
 <template>
   <!-- LABEL -->
-  <div class="flex items-center justify-center w-full text-xl">
+  <div class="flex items-center justify-center text-xl">
     <span class="font-public-sans">{{ labelText }}</span>
     <!-- HOVERED ICOM -->
     <span class="group-hover:translate-x-3 transition duration-300 ease-in-out">
