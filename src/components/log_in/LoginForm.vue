@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 font-public-sans">
       <!--  EMAIL INPUT -->
       <div class="flex flex-row justify-between w-full border-t py-3 animate-text-show-up">
-        <label for="email" class="">Email</label>
+        <label for="email">Email</label>
         <input
           id="email"
           v-model="email"
@@ -14,7 +14,7 @@
       </div>
       <!--  PASSWORD INPUT -->
       <div class="flex flex-row justify-between w-full border-t py-3 animate-text-show-up">
-        <label for="password" class="">Password</label>
+        <label for="password">Password</label>
         <input
           id="password"
           v-model="password"
@@ -26,12 +26,9 @@
       <!-- ERROR DISPLAY -->
       <div class="flex flex-row w-full justify-end mb-5 h-60">
         <div aria-live="polite" class="text-almost-white w-1/2 font-semibold py-3 text-justify">
-          <span class="text-red-400">
-            {{ authStore.authError }} Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Natus illum quisquam distinctio. Distinctio perferendis, sed voluptates suscipit iusto
-            fugit aspernatur, voluptatibus accusantium accusamus tempore molestias id facilis, nihil
-            perspiciatis dolor?
-          </span>
+          <p class="text-red-400">
+            {{ authStore.authError }}
+          </p>
         </div>
       </div>
 
@@ -42,7 +39,7 @@
             to="/password-reset"
             role="button"
             class="hover:text-gray-400 cursor-pointer font-semibold text-xl"
-            ><button>Forgot your password?</button></RouterLink
+            >Forgot your password?</RouterLink
           >
         </div>
       </div>
@@ -58,7 +55,7 @@
             <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
             <proceding-label v-if="isLoading" procedingLabel="Sending" />
             <!-- LOG IN LABEL FROM 'SHARED' -->
-            <button-label labelText="Log in" v-if="!isLoading" />
+            <button-label labelText="Log in" v-else />
           </button>
         </div>
       </div>
@@ -67,33 +64,21 @@
 </template>
 
 <script setup lang="ts">
-// vue import
 import { ref, onMounted } from 'vue'
-
-// router import
 import { useRouter, RouterLink } from 'vue-router'
-
-// pinia import
 import { useAuthStore } from '@/stores/AuthentificationStore'
 
-// component import
 import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
-// vue-router instance
 const router = useRouter()
-
-// pinia store instance
 const authStore = useAuthStore()
 
-// form input values
+// signin user and redirect him to 'shadow-boxing' route
 const email = ref<string>('')
 const password = ref<string>('')
-
-// loading spinner contoller
 const isLoading = ref<boolean>(false)
 
-// signin user and redirect him to 'shadow-boxing' route
 const signingIn = () => {
   if (!email.value || !password.value) {
     return

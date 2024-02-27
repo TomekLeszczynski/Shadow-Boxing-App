@@ -2,7 +2,9 @@
   <div class="grid gap-4 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:mt-16 md:mt-6">
     <!-- GET STARTED CONTAINER -->
     <div class="flex flex-col justify-between">
-      <p class="text-almost-white animate-text-show-up-02 text-justify mt-5 md:mt-0 text-xs md:text-base">
+      <p
+        class="text-almost-white animate-text-show-up-02 text-justify mt-5 md:mt-0 text-xs md:text-base"
+      >
         Unlock the full experience by creating an account. Save your training sessions and weight
         measurements for personalized tracking and progress analysis.
       </p>
@@ -17,7 +19,9 @@
     </div>
     <!-- TRY AS GUEST CONTAINER -->
     <div class="flex flex-col justify-between">
-      <p class="text-almost-white animate-text-show-up-02 text-justify mt-5 md:mt-0 text-xs md:text-base">
+      <p
+        class="text-almost-white animate-text-show-up-02 text-justify mt-5 md:mt-0 text-xs md:text-base"
+      >
         Instantly access all features without the need for an account. Explore the app's
         functionality, but keep in mind that data won't be saved without registration.
       </p>
@@ -28,10 +32,8 @@
 </template>
 
 <script setup lang="ts">
-// vue-router import
 import { RouterLink } from 'vue-router'
 
-// component import
 import TryAsGuest from '@/components/TryAsGuest.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 </script>

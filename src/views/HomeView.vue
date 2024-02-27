@@ -8,7 +8,11 @@
       />
     </div>
     <!-- MAIN HEADER -->
-    <header-box />
+    <h1
+      class="text-red-500 font-semibold font-public-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] tracking-tighter py-3 lg:mb-12"
+    >
+      Shadow Boxing Workout
+    </h1>
     <!-- DESCRIPTION & HERO IMAGE SECTION-->
     <section class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-8 mb-9">
       <!-- HERO BOX -->
@@ -25,10 +29,8 @@
   </div>
 </template>
 <script setup lang="ts">
-// component import
 import InfiniteScrollBanner from '@/components/home_view/InfiniteScrollBanner.vue'
 import DescriptionBox from '@/components/home_view/DecriptionBox.vue'
-import HeaderBox from '@/components/home_view/HeaderBox.vue'
 import HeroBox from '@/components/home_view/HeroBox.vue'
 import GetAccess from '@/components/home_view/GetAccess.vue'
 </script>
