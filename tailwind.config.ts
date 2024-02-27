@@ -11,14 +11,9 @@ const config = {
       colors: {
         'almost-white': '#E7E4DF',
         'almost-black': '#141414',
-        narvik: '#E7E7D8',
-        'erie-black': '#1E1E1D',
-        eagle: '#AEAC95',
-        'fire-bush': '#F09235',
         jaffa: '#ed762f',
         sorbus: '#ec642b',
-        'almost-grey': '#808080',
-        'almost-turquoise': '#44efef'
+        'almost-grey': '#808080'
       },
       keyframes: {
         //
@@ -65,16 +60,6 @@ const config = {
         'show-from-left': {
           '0%': {
             transform: 'translateX(-100%)',
-            'clip-path': 'inset(0 0 0 100%)'
-          },
-          '100%': {
-            transform: ' translateX(0)',
-            'clip-path': 'inset(0)'
-          }
-        },
-        flyInRight: {
-          '0%': {
-            transform: 'translateX(100%)',
             'clip-path': 'inset(0 0 0 100%)'
           },
           '100%': {
