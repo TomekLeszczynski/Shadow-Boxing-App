@@ -24,7 +24,7 @@
         </p>
 
         <!-- SELECT LEVEL SECTION -->
-        <div>
+        <section>
           <!-- SELECT LEVEL HEADER -->
           <h2
             class="text-xl 2xl:text-3xl pb-3 font-semibold flex items-center border-t py-4 animate-appear-slow-and-delayed"
@@ -44,15 +44,21 @@
               <ul class="list-disc md:block hidden">
                 <!-- BASIC LEVEL DESCRIPTION / SLOT USED -->
                 <li class="pb-2">
-                  Suitable for beginners and those who are looking for a less intense workout;
+                  <p>
+                    Suitable for beginners and those who are looking for a less intense workout;
+                  </p>
                 </li>
                 <li class="pb-2">
-                  Focuses on basic combinations and slower pace to help users grasp fundamental
-                  movements;
+                  <p>
+                    Focuses on basic combinations and slower pace to help users grasp fundamental
+                    movements;
+                  </p>
                 </li>
                 <li class="pb-2">
-                  Audio commands and simplified figure which demonstrates each punch, making it
-                  easier to follow along;
+                  <p>
+                    Audio commands and simplified figure which demonstrates each punch, making it
+                    easier to follow along;
+                  </p>
                 </li>
               </ul>
             </level-selector>
@@ -67,16 +73,18 @@
               <!-- ADVANCED LEVEL DESCRIPTION / SLOT USED -->
               <ul class="list-disc md:block hidden">
                 <li class="pb-2">
-                  Designed for advanced users aiming for a high-intensity workout.
+                  <p>Designed for advanced users aiming for a high-intensity workout.</p>
                 </li>
-                <li class="pb-2">Emphasizes rapid movements and more complex combinations;</li>
                 <li class="pb-2">
-                  Audio commands allows helps users to stay focused on the movements.
+                  <p>Emphasizes rapid movements and more complex combinations;</p>
+                </li>
+                <li class="pb-2">
+                  <p>Audio commands allows helps users to stay focused on the movements.</p>
                 </li>
               </ul>
             </level-selector>
           </div>
-        </div>
+        </section>
       </div>
 
       <!-- 2ND COLUMN - HERO IMAGE & CONFIGURATOR SECTION -->
@@ -85,7 +93,7 @@
         <div class="animate-appear-slow-and-delayed">
           <img
             src="@/assets/photos/hero-halftone-2_opt.webp"
-            alt="halftone-image-woman-during-boxing-training"
+            alt="halftone-image-woman-during-boxing-training-close-view"
             class="absolute inset-0 h-full w-full object-none opacity-35 -z-10"
           />
         </div>
@@ -109,12 +117,10 @@
   </div>
 </template>
 <script setup lang="ts">
-// component import
 import LevelSelector from '@/components/shadow_boxing/LevelSelector.vue'
 import BasicLevelConfigurator from '@/components/shadow_boxing/BasicLevelConfigurator.vue'
 import AdvancedLeveleConfigurator from '@/components/shadow_boxing/AdvancedLevelConfigurator.vue'
 
-// vue import
 import { ref, computed } from 'vue'
 
 // clicked button indicators - helps to handle displayed configurator and dynamic classes (change color on @click)
