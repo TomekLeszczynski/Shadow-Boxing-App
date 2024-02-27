@@ -51,13 +51,8 @@ npm run test:unit
 npm run lint
 ```
 
-## Design Inspirations
-
 https://www.awwwards.com/sites/memphis-milano
-https://www.emergentx.org/
-https://pressplayontape.studio/
 https://www.eclipse.builders/
-https://tinywins.com/
 https://aim.obys.agency/
 
 # Clip-path animation inspiration
@@ -66,7 +61,7 @@ https://css-tricks.com/animating-with-clip-path/
 
 # **Shadow Boxing Workout**
 
-![Shadow Boxing Workout Home View](./Shadow%20Boxing%20Workout%20Home%20View.jpg)
+![Shadow Boxing Workout Home View](./readme_graphics/Shadow%20Boxing%20Workout%20Home%20View.jpg)
 
 ## General Info
 
@@ -103,4 +98,12 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 
 - **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
-- **Try As Guest:**A temporary "try as guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
+- **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
+
+--
+
+## Design Inspirations
+
+- https://www.awwwards.com/sites/memphis-milano
+- https://www.eclipse.builders/
+- https://aim.obys.agency/
