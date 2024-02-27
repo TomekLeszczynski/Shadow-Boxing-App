@@ -91,6 +91,18 @@ XXX
 
 --
 
+### Responsive Design
+
+Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design) with extra prefix added:
+
+```
+screens: {
+        xs: '475px'
+      },
+```
+
+![Responsiveness presended on different device screens](./readme_graphics/responsive_design.png)
+
 ### Users Accessibility Categories:
 
 - **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
