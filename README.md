@@ -122,3 +122,12 @@ screens: {
 ### Web elements
 
 - https://css-tricks.com/animating-with-clip-path/
+
+### Icons & Graphics
+
+- Icons:
+  - https://heroicons.com/
+  - https://www.flaticon.com/
+- Graphics:
+  - https://unsplash.com/
+  - punch-figures used in basic training are presented and processed by the author
