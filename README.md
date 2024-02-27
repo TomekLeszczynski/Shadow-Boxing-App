@@ -65,9 +65,16 @@ https://css-tricks.com/animating-with-clip-path/
 
 ## General Info
 
-The project is dedicated to boxing and fitness fans. Built around most common training part for boxers at any level - shadow boxing. Shadow Boxing Workout helps develop skills, watch progress, share on socials. Other features: weight monitor, e-store with clothes (further stage), blogs (further stage).
+XXX
 
-## Purposes and Development Principles
+### Consisted Functions:
+
+- **The core - Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
+- **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
+- **Blogs:** User blog section (to be implemented in further stages of project development);
+- **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts (to be implemented in further stages of project development).
+
+## Programming Goals And Assumptions
 
 - **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering author's level of knowledge and experience, based on the JavaScript framework - Vue.js, in combination with dedicated libraries and frameworks (Pinia, Vue Router, Vite, Vitest);
 - **Efficient Styling:** Utilizing the Tailwind CSS framework for styling the application;
@@ -94,7 +101,7 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 
 --
 
-## Accessibility Categories:
+### Accessibility Categories:
 
 - **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
@@ -104,7 +111,7 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 
 ## Design Inspirations
 
+_click on image to open link_
 <a href="https://aim.obys.agency/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-aim-obys.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
-
