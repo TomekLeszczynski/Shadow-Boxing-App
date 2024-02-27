@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden grid grid-cols-1 animate-text-show-up" aria-live="polite">
+  <div class="overflow-hidden grid grid-cols-1 animate-text-show-up text-almost-white" aria-live="polite">
     <div class="flex">
       <div v-for="index in 4" :key="index">
         <div
