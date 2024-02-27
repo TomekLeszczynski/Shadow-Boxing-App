@@ -74,7 +74,7 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 
 ## Purposes and Development Principles
 
-- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering the level of knowledge and experience, based on the JavaScript framework - Vue.js, in combination with dedicated libraries and frameworks (Pinia, Vue Router, Vite, Vitest);
+- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering author's level of knowledge and experience, based on the JavaScript framework - Vue.js, in combination with dedicated libraries and frameworks (Pinia, Vue Router, Vite, Vitest);
 - **Efficient Styling:** Utilizing the Tailwind CSS framework for styling the application;
 - **Integration with Firebase:** Utilizing the cloud platform for handling authentication and user data storage;
 - **TypeScript**: Leveraging the TypeScript superset to improve code quality and maintain better control over data types in the created code;
@@ -101,6 +101,6 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 
 ## Accessibility Categories:
 
-- **Full Access:** For registered users, the ability to download and save current measurements and workouts, make purchases, save favorite blogs, posts, or create content.
-- **Limited Access:** For users without registration, no access to shadow fighting features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
-  **Note:**A temporary "guest" access has been created to allow interested users to shorten the authentication path and provide access to all functionalities. Measurements, workouts, etc. will not be stored in the database but only in local memory.
+- **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
+- **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
+- **Try As Guest:**A temporary "try as guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
