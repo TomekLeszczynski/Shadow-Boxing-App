@@ -1,5 +1,3 @@
-# Shadow-Boxing-App
-
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -51,14 +49,6 @@ npm run test:unit
 npm run lint
 ```
 
-https://www.awwwards.com/sites/memphis-milano
-https://www.eclipse.builders/
-https://aim.obys.agency/
-
-# Clip-path animation inspiration
-
-https://css-tricks.com/animating-with-clip-path/
-
 # **Shadow Boxing Workout**
 
 ![Shadow Boxing Workout Home View](./readme_graphics/Shadow%20Boxing%20Workout%20Home%20View.jpg)
@@ -71,8 +61,8 @@ XXX
 
 - **The core - Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
 - **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
-- **Blogs:** User blog section (to be implemented in further stages of project development);
-- **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts (to be implemented in further stages of project development).
+- **Blogs:** User blog section (_to be implemented in further stages of project development_);
+- **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts (_to be implemented in further stages of project development_).
 
 ## Programming Goals And Assumptions
 
@@ -101,7 +91,7 @@ XXX
 
 --
 
-### Accessibility Categories:
+### Users Accessibility Categories:
 
 - **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
@@ -111,7 +101,12 @@ XXX
 
 ## Design Inspirations
 
-_click on image to open link_
+### Webpages
+
 <a href="https://aim.obys.agency/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-aim-obys.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
+
+### Web elements
+
+- https://css-tricks.com/animating-with-clip-path/
