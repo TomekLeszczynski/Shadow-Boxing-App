@@ -9,15 +9,13 @@
         Log in
       </h1>
     </div>
-    <div class="h-full text-almost-white">
-      <div class="">
-        <login-form />
-      </div>
-    </div>
+
     <!-- LOGIN FORM -->
+    <div class="h-full text-almost-white">
+      <login-form />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-// import component
 import LoginForm from '@/components/log_in/LoginForm.vue'
 </script>

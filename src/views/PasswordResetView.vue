@@ -7,16 +7,16 @@
         <!-- HEADING CONTAINER -->
         <div class="mb-8 text-center">
           <!-- HEADING -->
-          <h2
+          <h1
             aria-label="password-reset-heading"
             class="text-black md:text-6xl text-5xl font-bold mb-3"
           >
             Reset your password
-          </h2>
-          <p>Enter your email address below and we'll send you a link with instructions.</p>
+          </h1>
+          <h2>Enter your email address below and we'll send you a link with instructions.</h2>
         </div>
 
-        <!-- FORM -->
+        <!-- FORM CONTAINER-->
         <div class="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
           <div class="lg:col-span-5 pb-8">
             <form
@@ -39,7 +39,6 @@
               <!-- SUBMIT BUTTON -->
               <button
                 aria-label="submit"
-                role="button"
                 @click="sendPasswordResetRequest"
                 class="bg-black text-white text-lg font-semibold mt-5 py-5 px-12 flex flex-row items-center justify-center group tracking-wide w-full"
               >
@@ -54,26 +53,15 @@
   </div>
 </template>
 <script setup lang="ts">
-// vue import
 import { ref } from 'vue'
-
-// firebase import
-import { firebaseAuth } from '@/main'
-import { sendPasswordResetEmail } from 'firebase/auth'
-
-// router import
-import { useRouter } from 'vue-router'
-
-// component import
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
-// vue-router instance
-const router = useRouter()
-
-// form input values
-const email = ref<string>('')
-
 // send password-reset-link and redirect to 'log in' route
+import { firebaseAuth } from '@/main'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const email = ref<string>('')
 const sendPasswordResetRequest = () => {
   // check if input has value
   if (!email.value) {
