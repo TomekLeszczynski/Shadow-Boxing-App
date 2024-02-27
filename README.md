@@ -104,6 +104,7 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 
 ## Design Inspirations
 
+- <a><img src="./readme_graphics/inspiration-aim-obys.jpg"></a>
 - https://www.awwwards.com/sites/memphis-milano
 - https://www.eclipse.builders/
 - https://aim.obys.agency/
