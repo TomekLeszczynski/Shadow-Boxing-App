@@ -57,7 +57,7 @@ npm run lint
 
 XXX
 
-### Consisted Functions:
+### Features included:
 
 - **The core - Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
 - **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
@@ -66,12 +66,12 @@ XXX
 
 ## Programming Goals And Assumptions
 
-- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering author's level of knowledge and experience, based on the JavaScript framework - Vue.js, in combination with dedicated libraries and frameworks (Pinia, Vue Router, Vite, Vitest);
-- **Efficient Styling:** Utilizing the Tailwind CSS framework for styling the application;
+- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering author's level of knowledge and experience, based on one of the JavaScript frameworks;
+- **Efficient Styling**
 - **Integration with Firebase:** Utilizing the cloud platform for handling authentication and user data storage;
 - **TypeScript**: Leveraging the TypeScript superset to improve code quality and maintain better control over data types in the created code;
 - **Git Control:** Utilizing the Git system for version control and tracking changes in the project;
-- **Unit Tests:** Performing unit tests to verify code correctness;
+- **Unit Testing:** Performing unit tests to verify code correctness;
 - **Responsive Design**: Adapting the appearance to various devices and screens;
 - **Accessibility:** Considering accessibility for people with disabilities;
 - **Clean Code:** Striving to ensure that the code is optimally written, clean, and readable for both oneself and other users.
@@ -90,6 +90,12 @@ XXX
 - Chart.js.
 
 --
+
+# Solutions
+
+### Efficient Styling
+
+The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope or global). In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code
 
 ### Responsive Design
 
@@ -113,21 +119,21 @@ screens: {
 
 ## Design Inspirations
 
-### Webpages
+#### Webpages
 
 <a href="https://aim.obys.agency/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-aim-obys.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 
-### Web elements
+#### Web elements
 
 - https://css-tricks.com/animating-with-clip-path/
 
-### Icons & Graphics
+#### Icons, Graphics & Photos
 
 - Icons:
   - https://heroicons.com/
   - https://www.flaticon.com/
-- Graphics:
+- Graphics & Photos:
   - https://unsplash.com/
   - punch-figures used in basic training are presented and processed by the author
