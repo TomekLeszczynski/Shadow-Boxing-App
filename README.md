@@ -96,3 +96,11 @@ The project is dedicated to boxing and fitness fans. Built around most common tr
 - Typescript,
 - Vuelidate,
 - Chart.js.
+
+--
+
+## Accessibility Categories:
+
+- **Full Access:** For registered users, the ability to download and save current measurements and workouts, make purchases, save favorite blogs, posts, or create content.
+- **Limited Access:** For users without registration, no access to shadow fighting features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
+  **Note:**A temporary "guest" access has been created to allow interested users to shorten the authentication path and provide access to all functionalities. Measurements, workouts, etc. will not be stored in the database but only in local memory.
