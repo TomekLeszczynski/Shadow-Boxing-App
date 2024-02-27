@@ -35,33 +35,18 @@
 </template>
 
 <script setup lang="ts">
-// vue import
 import { onMounted, ref } from 'vue'
 
-// router import
-import { RouterView, useRoute, useRouter } from 'vue-router'
-
-// component import
 import MainNav from '@/components/site_structure/navigation/MainNav.vue'
 import AuthorCredits from './components/site_structure/footer/AuthorCredits.vue'
 import preloaderComp from '@/components/preloader/preloaderComp.vue'
 
-// pinia import
-import { useAuthStore } from '@/stores/AuthentificationStore'
-
-// preloader indicator
-const usePreloader = ref(false)
-
-// unmount preloader animation indicator
+const usePreloader = ref<boolean>(false)
 const usePreloaderAnimation = ref<boolean>(false)
-
-// router instances
-const route = useRoute()
-const router = useRouter()
 
 // 'skip' button handler
 const skipPreloader = () => {
-  // add animtion class to preloader component
+  // add animation class to preloader component
   usePreloaderAnimation.value = true
   // let run animation and turn off preloader component after animation ends
   setTimeout(() => {
@@ -70,12 +55,16 @@ const skipPreloader = () => {
 }
 
 // check the route on onMounted. Display preloader only when user enters website or refresh home view.
+import { useAuthStore } from '@/stores/AuthentificationStore'
+import { RouterView, useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
 onMounted(async () => {
   // wait till router ready
   await router.isReady()
   // check if current route is 'home'. display preloader if true
   if (route.name === 'home') {
-    // set to false when want to turn off
+    // note: set to false when want to turn off the preloader
     usePreloader.value = true
     // if current route is not home, keep preloader off.
   } else {
