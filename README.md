@@ -1,4 +1,4 @@
-This template should help get you started developing with Vue 3 in Vite.
+<!-- This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 
@@ -47,17 +47,21 @@ npm run test:unit
 
 ```sh
 npm run lint
-```
+``` -->
 
-# **Shadow Boxing Workout**
+# Shadow Boxing Workout
+
+_As a boxing enthusiast and adept, I wanted to create a training app based on the most common boxing training - shadow boxing. It was intended to allow users at any level to work on punch combinations, footwork or reflexes even more effectively. The original idea has been developed with additional features to cater to a wider range of users._
 
 ![Shadow Boxing Workout Home View](./readme_graphics/Shadow%20Boxing%20Workout%20Home%20View.jpg)
 
-## General Info
+# General Info
 
-XXX
+## Project
 
-### Features included:
+A simple platform for those training in boxing or other combat sports aimed at supporting users' training and sports development; building a community and as a source of knowledge and information about the world of boxing. Develop your skills, watch progress, share on socials!
+
+## Features included:
 
 - **The core - Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
 - **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
@@ -66,17 +70,19 @@ XXX
 
 ## Programming Goals And Assumptions
 
-- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering author's level of knowledge and experience, based on one of the JavaScript frameworks;
-- **Efficient Styling**
-- **Integration with Firebase:** Utilizing the cloud platform for handling authentication and user data storage;
-- **TypeScript**: Leveraging the TypeScript superset to improve code quality and maintain better control over data types in the created code;
-- **Git Control:** Utilizing the Git system for version control and tracking changes in the project;
-- **Unit Testing:** Performing unit tests to verify code correctness;
-- **Responsive Design**: Adapting the appearance to various devices and screens;
-- **Accessibility:** Considering accessibility for people with disabilities;
-- **Clean Code:** Striving to ensure that the code is optimally written, clean, and readable for both oneself and other users.
+- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
+- **Efficient Styling**;
+- **Utilizing the cloud platform for handling authentication and user data storage**;
+- **Utilizing TypeScript**;
+- **Version control and tracking changes in the project**;
+- **Responsive Design**;
+- **Accessibility**;
+- **Unit Testing**;
+- **Clean Code**;
 
-## Build with:
+## Tech Stack
+
+Built with:
 
 - Vue.js,
 - Pinia,
@@ -89,15 +95,136 @@ XXX
 - Vuelidate,
 - Chart.js.
 
---
+# Result
 
-# Solutions
+### From Scratch to Deployment:
 
-### Efficient Styling
+The project was created using Vue.js and related libraries and tools such as:
 
-The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope or global). In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code
+- Pinia,
+- Vue Router,
+- Vite, etc.
+  It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
 
-### Responsive Design
+### Efficient Styling:
+
+After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global). In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code.
+Examples of my extensions:
+
+```
+      colors: {
+        'almost-white': '#E7E4DF',
+        'almost-black': '#141414',
+        'almost-grey': '#808080',
+        (...)
+      },
+      keyframes:{
+        (...),
+        'show-down': {
+          '0%': {
+            transform: 'translateY(-100%)',
+            'clip-path': 'inset(100% 0 0 0)'
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            'clip-path': 'inset(0)'
+          },
+        (...)
+        },
+      },
+      animation:{
+        (...)
+        'appear-slow-and-delayed': 'appearance 1s linear 700ms both',
+        (...)
+      }
+```
+
+### Utilizing the cloud platform for handling authentication and user data storage:
+
+High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification** and **Cloud Firestore** products. The built-in Authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+
+```
+actions: {
+    // sign up anonymously with firebase
+    async getAccessAsAnAnonymous(): Promise<void> {
+      try {
+        await signInAnonymously(firebaseAuth)
+      } catch (error: unknown) {
+        this.errorsHandling(error)
+      }
+    },
+
+    // sign up user via form
+    async createUser(email: string, password: string, displayName: string): Promise<void> {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password)
+        await updateProfile(userCredential.user, { displayName: displayName })
+        await sendEmailVerification(userCredential.user)
+      } catch (error: unknown) {
+        this.errorsHandling(error)
+      }
+    },
+
+    // sign in user via form
+    async signInUser(email: string, password: string): Promise<void> {
+      if (!this.user) {
+        try {
+          const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
+          const authenticatedUser = userCredential.user
+          if (authenticatedUser && authenticatedUser.emailVerified) {
+            this.user = authenticatedUser
+          } else {
+            throw new Error('User not authenticated or email not verified.')
+          }
+        } catch (error: unknown) {
+          this.errorsHandling(error)
+        }
+      }
+    },
+
+    // log out current user with firebase
+    async logoutUser(
+      routerPush: (location: string | RouteLocationNamedRaw) => void
+    ): Promise<void> {
+      try {
+        await signOut(firebaseAuth)
+        routerPush({ name: 'home' })
+      } catch (error: unknown | FirebaseError) {
+        this.errorsHandling(error)
+      }
+    },
+}
+```
+
+Firebase helps differentiate the availability of functionality for logged in and anonymous users.
+Example:
+
+```
+  <router-link
+    v-if="authStore.user"
+    :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
+  >
+    Shadow Boxing
+  </router-link>
+```
+
+Users Accessibility Categories:
+
+- **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
+- **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
+- **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
+
+<!-- ADD MORE!!1 -->
+
+### Utilizing TypeScript:
+
+<!-- TO UPDATE -->
+
+### Version control and tracking changes in the project:
+
+<!-- TO UPDATE -->
+
+### Responsive Design:
 
 Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design) with extra prefix added:
 
@@ -109,15 +236,19 @@ screens: {
 
 ![Responsiveness presended on different device screens](./readme_graphics/responsive_design.png)
 
-### Users Accessibility Categories:
+### Accessibility:
 
-- **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
-- **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
-- **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
+<!-- TO UPDATE -->
 
---
+### Unit Testing:
 
-## Design Inspirations
+<!-- TO UPDATE -->
+
+### Clean Code:
+
+<!-- TO UPDATE -->
+
+# Design Inspirations
 
 #### Webpages
 
@@ -137,3 +268,9 @@ screens: {
 - Graphics & Photos:
   - https://unsplash.com/
   - punch-figures used in basic training are presented and processed by the author
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    **FOR THE LOVE OF BOXING**

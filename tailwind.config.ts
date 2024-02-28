@@ -11,9 +11,9 @@ const config = {
       colors: {
         'almost-white': '#E7E4DF',
         'almost-black': '#141414',
+        'almost-grey': '#808080',
         jaffa: '#ed762f',
-        sorbus: '#ec642b',
-        'almost-grey': '#808080'
+        sorbus: '#ec642b'
       },
       keyframes: {
         //
