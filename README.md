@@ -199,8 +199,7 @@ actions: {
 }
 ```
 
-Firebase helps differentiate the availability of functionality for logged in and anonymous users.
-Example:
+Firebase helps differentiate the availability of functionality for logged in and anonymous users, for example rendering/not rendering nav items depending on user status.
 
 ```
   <router-link
@@ -211,10 +210,10 @@ Example:
   </router-link>
 ```
 
-Users Accessibility Categories:
+Created Users accessibility categories:
 
-- **Full Access:** For registered users, the ability to get and post weight measurements and training results, make purchases, save favorite blogs, posts, or create content.
-- **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content.
+- **Full Access:** For registered users, the ability to get and post weight measurements and training results, _make purchases, save favorite blogs, posts, or create content_(_to be implemented in further stages of project development_).
+- **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
 - **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
 
 <!-- ADD MORE!!1 -->
@@ -270,7 +269,7 @@ screens: {
   - https://www.flaticon.com/
 - Graphics & Photos:
   - https://unsplash.com/
-  - punch-figures used in basic training are presented and processed by the author
+  - punch-figures used in basic training are presented and processed by myself.
     <br>
     <br>
     <br>
