@@ -59,16 +59,16 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
 
 ## Project
 
-A simple platform for those training in boxing or other combat sports aimed at supporting users' training and sports development; building a community and as a source of knowledge and information about the world of boxing. Develop your skills, watch progress, share on socials!
+A simple platform for those training in boxing or other combat sports aimed at supporting users' training and sports development; building a community and as a source of knowledge and information about the world of boxing.
 
-## Features included:
+## Main Elements And Features Included:
 
-- **The core - Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
+- The Core - **Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
 - **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
 - **Blogs:** User blog section (_to be implemented in further stages of project development_);
 - **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts (_to be implemented in further stages of project development_).
 
-## Programming Goals And Assumptions
+## Programming Goals And Assumptions:
 
 - **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
 - **Efficient Styling**;
@@ -84,34 +84,37 @@ A simple platform for those training in boxing or other combat sports aimed at s
 
 Built with:
 
-- Vue.js,
-- Pinia,
-- Vue Router,
-- Vite,
-- Vitest,
-- Firebase,
-- Tailwind,
-- Typescript,
-- Vuelidate,
-- Chart.js.
+- **Vue.js**,
+- **Pinia**,
+- **Vue Router**,
+- **Vite**,
+- **Vitest**,
+- **Firebase**,
+- **Tailwind CSS**,
+- **Typescript**,
+- **Vuelidate**,
+- **Chart.js**.
 
 # Result
 
-### From Scratch to Deployment:
+### 'From Scratch to Deployment':
 
-The project was created using Vue.js and related libraries and tools such as:
+The project was created using **Vue.js** and related libraries and tools such as:
 
-- Pinia,
-- Vue Router,
-- Vite, etc.
-  It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
+- **Pinia**,
+- **Vue Router**,
+- **Vite**, etc.
 
-### Efficient Styling:
+It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
 
-After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global). In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code.
+### 'Efficient Styling':
+
+After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
+
+In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code.
 Examples of my extensions:
 
-```
+```tailwind.config.ts
       colors: {
         'almost-white': '#E7E4DF',
         'almost-black': '#141414',
@@ -139,9 +142,9 @@ Examples of my extensions:
       }
 ```
 
-### Utilizing the cloud platform for handling authentication and user data storage:
+### 'Utilizing the cloud platform for handling authentication and user data storage':
 
-High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification** and **Cloud Firestore** products. The built-in Authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification** and **Cloud Firestore** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
 
 ```
 actions: {
@@ -216,15 +219,15 @@ Users Accessibility Categories:
 
 <!-- ADD MORE!!1 -->
 
-### Utilizing TypeScript:
+### 'Utilizing TypeScript':
 
 <!-- TO UPDATE -->
 
-### Version control and tracking changes in the project:
+### 'Version control and tracking changes in the project':
 
 <!-- TO UPDATE -->
 
-### Responsive Design:
+### 'Responsive Design':
 
 Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design) with extra prefix added:
 
@@ -236,15 +239,15 @@ screens: {
 
 ![Responsiveness presended on different device screens](./readme_graphics/responsive_design.png)
 
-### Accessibility:
+### 'Accessibility':
 
 <!-- TO UPDATE -->
 
-### Unit Testing:
+### 'Unit Testing':
 
 <!-- TO UPDATE -->
 
-### Clean Code:
+### 'Clean Code':
 
 <!-- TO UPDATE -->
 
