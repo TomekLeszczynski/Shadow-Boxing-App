@@ -220,7 +220,7 @@ Created Users accessibility categories:
 
 ### 'Utilizing TypeScript':
 
-TypeScript to obecnie 'must have' kazdego programisty piszącego w JavaScript. Praca nad tym projektem była okazją do zapoznania się i użycia w prawdziwym projekcie. Użyłem podstawowych elementów takich jak:
+TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
 
 - Type Annotation. Exmple (BasicTrainingModal.vue):
 

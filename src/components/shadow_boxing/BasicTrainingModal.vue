@@ -11,7 +11,9 @@
   <div class="fixed bg-almost-black inset-0 font-public-sans text-almost-white">
     <div class="flex flex-col mx-auto justify-center items-center h-full p-4">
       <!-- CURRENT PUNCH NAME DISPLAY / PUNCH NAME COMES FROM NA ARRAY OF PUNCHES -->
-      <p class="uppercase text-4xl md:text-5xl">{{ currentPunch }}</p>
+      <p class="uppercase text-4xl md:text-5xl">
+        {{ currentPunch }}
+      </p>
 
       <!-- CURRENT PUNCH NUMBER OR FIGURE ICON DISPLAY = RELATED TO FACTOR (displayMode) SELECTED BY USER IN CONFIGURATOR DURING SESSION SETTING -->
       <div class="flex flex-col my-3" :class="{ 'h-3/5': displayMode === 'figures' }">
@@ -33,7 +35,9 @@
       </div>
 
       <!-- PUNCHES CLOCK = PUNCHES THROWN / TOTAL PUNCHES SET IN CONFIGURATOR -->
-      <p class="text-2xl text-center md:text-4xl">
+      <p
+        class="text-2xl text-center md:text-4xl"
+      >
         <span class="text-almost-grey">Punches:</span>
         {{ sessionPunchesArray.length }}
         / {{ punches }}
@@ -51,11 +55,10 @@
 </template>
 
 <script setup lang="ts">
-// vue import
 import { ref, onMounted } from 'vue'
-
-// component import
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
+
+// set training
 
 // props that transfers data from training configurator
 const props = defineProps<{
@@ -64,12 +67,9 @@ const props = defineProps<{
   displayMode: string
 }>()
 
-const audioMap: Record<string, HTMLAudioElement> = {}
 const randomPunchIndex = ref<number>(0)
 const currentPunch = ref<string>('jab')
 const intervalId = ref<number | null>(null)
-
-const isPaused = ref<boolean>(false)
 const sessionPunchesArray = ref<string[]>(['jab'])
 const punchesArray: string[] = [
   'jab',
@@ -80,39 +80,20 @@ const punchesArray: string[] = [
   'rear uppercut'
 ]
 
-const loadAudioFiles = async () => {
-  for (const punch of punchesArray) {
-    const { default: punchSound } = await import(`@/assets/audio/${punch}-sound.wav`)
-    const audio = new Audio(punchSound)
-    audioMap[punch] = audio
-  }
+const handleSession = (): void => {
+  const punchesDelay = Math.floor(Math.random() * Number(props.intensity)) + 1
+
+  randomPunchIndex.value = Math.floor(Math.random() * punchesArray.length)
+  currentPunch.value = punchesArray[randomPunchIndex.value]
+  sessionPunchesArray.value.push(currentPunch.value)
+  playCurrentPunchSound()
+  intervalId.value ? clearInterval(intervalId.value) : ''
+  intervalId.value = setInterval(handleSession, punchesDelay * 1000)
 }
 
-const playCurrentPunchSound = () => {
-  if (currentPunch.value) {
-    const audio = audioMap[currentPunch.value]
-    if (audio) {
-      audio.play()
-    }
-  }
-}
+// handle timer
 
-const imageMap: Record<string, string> = {
-  jab: '/1.1.webp',
-  cross: '/2.1.webp',
-  'lead hook': '/3.1.webp',
-  'rear hook': '/4.1.webp',
-  'lead uppercut': '/5.1.webp',
-  'rear uppercut': '/6.1.webp'
-}
-
-const getPunchImageSrc = (punch: string) => {
-  if (!punch || !(punch in imageMap)) {
-    return ''
-  } else {
-    return imageMap[punch]
-  }
-}
+const isPaused = ref<boolean>(false)
 
 const toggleTimer = () => {
   isPaused.value = !isPaused.value
@@ -123,15 +104,42 @@ const toggleTimer = () => {
   }
 }
 
-const handleSession = (): void => {
-  const punchesDelay = Math.floor(Math.random() * Number(props.intensity)) + 1
+// handle audio
 
-  randomPunchIndex.value = Math.floor(Math.random() * punchesArray.length)
-  currentPunch.value = punchesArray[randomPunchIndex.value]
-  sessionPunchesArray.value.push(currentPunch.value)
-  playCurrentPunchSound()
-  intervalId.value ? clearInterval(intervalId.value) : ''
-  intervalId.value = setInterval(handleSession, punchesDelay * 1000)
+const audioMap: Record<string, HTMLAudioElement> = {}
+
+const loadAudioFiles = async () => {
+  for (const punch of punchesArray) {
+    const { default: punchSound } = await import(`@/assets/audio/${punch}-sound.wav`)
+    const audio = new Audio(punchSound)
+    audioMap[punch] = audio
+  }
+}
+const playCurrentPunchSound = () => {
+  if (currentPunch.value) {
+    const audio = audioMap[currentPunch.value]
+    if (audio) {
+      audio.play()
+    }
+  }
+}
+
+// hadle display
+
+const imageMap: Record<string, string> = {
+  jab: '/1.1.webp',
+  cross: '/2.1.webp',
+  'lead hook': '/3.1.webp',
+  'rear hook': '/4.1.webp',
+  'lead uppercut': '/5.1.webp',
+  'rear uppercut': '/6.1.webp'
+}
+const getPunchImageSrc = (punch: string) => {
+  if (!punch || !(punch in imageMap)) {
+    return ''
+  } else {
+    return imageMap[punch]
+  }
 }
 
 onMounted(async () => {
