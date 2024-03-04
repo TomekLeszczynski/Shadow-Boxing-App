@@ -1,4 +1,8 @@
-const preloaderQuotes = [
+interface Quote {
+  quote: string
+  author: string
+}
+const preloaderQuotes: Quote[] = [
   { quote: '“Float like a butterfly, sting like a bee.”', author: 'Muhammad Ali' },
 
   {
@@ -48,5 +52,4 @@ const preloaderQuotes = [
     author: 'Shifu Yan Lei '
   }
 ]
-
-export default preloaderQuotes
+ export default preloaderQuotes
