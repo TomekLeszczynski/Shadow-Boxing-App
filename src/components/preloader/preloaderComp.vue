@@ -39,29 +39,22 @@
   </section>
 </template>
 <script setup lang="ts">
-// vue import
 import { ref, onMounted } from 'vue'
-
-// helper import
-import preloaderQuotes from '@/components/preloader/quotes'
-
-// component import
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
-// quote and author to display
+// picks random quote & author from quotes' array
+import preloaderQuotes from '@/components/preloader/quotes'
 const quote = ref<string>("“Hard work beats talent when talent doesn't work hard.”")
 const author = ref<string>('Tim Notke')
 
-// picks random quote & author from quotes' array
 const pickQuoteToDisplay = () => {
-  const quoteIndex = Math.floor(Math.random() * preloaderQuotes.length)
+  const quoteIndex: number = Math.floor(Math.random() * preloaderQuotes.length)
   const randomQuote = preloaderQuotes[quoteIndex]
   quote.value = randomQuote.quote
   author.value = randomQuote.author
 }
 
 onMounted(() => {
-  //  set quote to display when page runs
   pickQuoteToDisplay()
 })
 </script>
