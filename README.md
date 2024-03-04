@@ -222,7 +222,9 @@ Created Users accessibility categories:
 
 TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
 
-- Type Annotation. Exmple (BasicTrainingModal.vue):
+- Type Annotation.
+  Type annotations are crucial in the project as they provide greater typing certainty and help avoid errors related to data types. In the case of this project, type annotations are used to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
+  For example, in the BasicTrainingModal.vue file, type annotation is used to declare the data type for the punchesArray array:
 
 ```
 const punchesArray: string[] = [
@@ -235,7 +237,8 @@ const punchesArray: string[] = [
 ]
 ```
 
-- Interfaces. Example(quotes.ts):
+- Interfaces are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, you can clearly specify which properties should be present in objects implementing these interfaces.
+  For example, in the quotes.ts file, the Quote interface defines the data structure for a quote, containing the quote and author fields:
 
 ```
 interface Quote {
@@ -244,26 +247,35 @@ interface Quote {
 }
 ```
 
-- Type Guards. Example(AuthentificationStore.ts):
+- Type guards are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, you can safely handle different data cases and prevent errors caused by type inconsistencies.
+  For example, in the AuthentificationStore.ts file, the errorsHandling function uses a type guard to check if the error is an instance of FirebaseError::
 
 ```
-errorsHandling(error: unknown | FirebaseError) {
+    errorsHandling(error: unknown | FirebaseError) {
       if (error instanceof FirebaseError) {
         console.error('Firebase Error:', error.code, error.message)
-        (...)
+        switch (error.code) {...}
+      } else {
+        console.error('Unexpected Error:', error)
+        switch (error) {...}
+        throw new Error('Unexpected Error')
       }
-}
+    }
 ```
 
-- Union Types. Example(BasicTrainingModal.vue):
+- Union types are used in the project to handle different use cases and conditions that may arise. They allow you to specify a variable or function parameter that can have multiple possible types.
+  For example, in the BasicTrainingModal.vue file, the intervalId variable is of type union number | null, meaning it can hold either a numeric value or null:
 
 ```
 const intervalId = ref<number | null>(null)
 ```
 
-- Generics. Example():
+- Generics are used in the project to create more generic and reusable components, functions, or classes. They allow you to write code that can operate on different data types, contributing to code flexibility and reusability:
 
 ```
+interface WeightGraphProps {
+  measurements: WeightData[]
+}
 const props = defineProps<WeightGraphProps>()
 ```
 
