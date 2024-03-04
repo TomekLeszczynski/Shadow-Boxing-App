@@ -150,17 +150,15 @@
 </template>
 
 <script setup lang="ts">
-// component import
+import { ref } from 'vue'
+
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 import BasicConfigLabel from './helpers/BasicConfigLabel.vue'
 import BasicTrainingModal from './BasicTrainingModal.vue'
 
-// vue import
-import { ref } from 'vue'
 
 const punchesAmount = ref<number>(50)
 const intensity = ref<number>(6)
 const displayMode = ref<string>('figures')
-
 const startSession = ref<boolean>(false)
 </script>
