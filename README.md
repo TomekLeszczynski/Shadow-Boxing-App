@@ -220,7 +220,52 @@ Created Users accessibility categories:
 
 ### 'Utilizing TypeScript':
 
-<!-- TO UPDATE -->
+TypeScript to obecnie 'must have' kazdego programisty piszącego w JavaScript. Praca nad tym projektem była okazją do zapoznania się i użycia w prawdziwym projekcie. Użyłem podstawowych elementów takich jak:
+
+- Type Annotation. Exmple (BasicTrainingModal.vue):
+
+```
+const punchesArray: string[] = [
+  'jab',
+  'cross',
+  'lead hook',
+  'rear hook',
+  'lead uppercut',
+  'rear uppercut'
+]
+```
+
+- Interfaces. Example(quotes.ts):
+
+```
+interface Quote {
+  quote: string
+  author: string
+}
+```
+
+- Type Guards. Example(AuthentificationStore.ts):
+
+```
+errorsHandling(error: unknown | FirebaseError) {
+      if (error instanceof FirebaseError) {
+        console.error('Firebase Error:', error.code, error.message)
+        (...)
+      }
+}
+```
+
+- Union Types. Example(BasicTrainingModal.vue):
+
+```
+const intervalId = ref<number | null>(null)
+```
+
+- Generics. Example():
+
+```
+const props = defineProps<WeightGraphProps>()
+```
 
 ### 'Version control and tracking changes in the project':
 
