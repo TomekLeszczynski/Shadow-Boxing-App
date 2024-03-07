@@ -65,8 +65,8 @@ const router = createRouter({
     {
       path: '/404',
       name: '404',
-      component: () => import('@/components/NotFound.vue')
-    },
+      component: () => import('@/views/PageNotFound.vue')
+    }
   ],
   scrollBehavior() {
     return { top: 0, left: 0, behavior: 'smooth' }
