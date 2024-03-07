@@ -216,14 +216,14 @@ Created Users accessibility categories:
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
 - **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
 
-<!-- ADD MORE!!1 -->
+<!-- ADD MORE!!! -->
 
 ### 'Utilizing TypeScript':
 
 TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
 
 - Type Annotation.
-  Type annotations are crucial in the project as they provide greater typing certainty and help avoid errors related to data types. In the case of this project, type annotations are used to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
+  Type annotations are crucial as they provide greater typing certainty and helped me avoid errors related to data types. In this project, I used type annotations to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
   For example, in the BasicTrainingModal.vue file, type annotation is used to declare the data type for the punchesArray array:
 
 ```
@@ -237,7 +237,7 @@ const punchesArray: string[] = [
 ]
 ```
 
-- Interfaces are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, you can clearly specify which properties should be present in objects implementing these interfaces.
+- Interfaces are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, I was able to clearly specify which properties should be present in objects implementing these interfaces.
   For example, in the quotes.ts file, the Quote interface defines the data structure for a quote, containing the quote and author fields:
 
 ```
@@ -247,8 +247,8 @@ interface Quote {
 }
 ```
 
-- Type guards are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, you can safely handle different data cases and prevent errors caused by type inconsistencies.
-  For example, in the AuthentificationStore.ts file, the errorsHandling function uses a type guard to check if the error is an instance of FirebaseError::
+- Type guards are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, I was able to safely handle different data cases and prevent errors caused by type inconsistencies.
+  For example, in the AuthentificationStore.ts file, the errorsHandling function uses a type guard to check if the error is an instance of FirebaseError:
 
 ```
     errorsHandling(error: unknown | FirebaseError) {
@@ -263,14 +263,14 @@ interface Quote {
     }
 ```
 
-- Union types are used in the project to handle different use cases and conditions that may arise. They allow you to specify a variable or function parameter that can have multiple possible types.
+- Union types are used in the project to handle different use cases and conditions that may arise. They allow to specify a variable or function parameter that can have multiple possible types.
   For example, in the BasicTrainingModal.vue file, the intervalId variable is of type union number | null, meaning it can hold either a numeric value or null:
 
 ```
 const intervalId = ref<number | null>(null)
 ```
 
-- Generics are used in the project to create more generic and reusable components, functions, or classes. They allow you to write code that can operate on different data types, contributing to code flexibility and reusability:
+- Generics are used in the project to create more generic and reusable components, functions, or classes. Thanks to Generics I was able to write code that can operate on different data types, contributing to code flexibility and reusability:
 
 ```
 interface WeightGraphProps {
@@ -285,7 +285,10 @@ const props = defineProps<WeightGraphProps>()
 
 ### 'Responsive Design':
 
-Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design) with extra prefix added:
+Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design):
+![Tailwind Css breakpoints table](./readme_graphics/tailwind_breakpoints.jpg)
+
+I've also added an extra prefix since I found it helpfull to set fonts size on the smallest screens:
 
 ```
 screens: {
@@ -293,7 +296,14 @@ screens: {
       },
 ```
 
-![Responsiveness presended on different device screens](./readme_graphics/responsive_design.png)
+Responsiveness tested on following browsers:
+
+- Google Chrome ver: (to add)
+- Firefox ver: (to add)
+- Microsoft Edge ver: (to add)
+- Brave ver: (to add)
+
+![Responsiveness presented on different device screens](./readme_graphics/responsive_design.png)
 
 ### 'Accessibility':
 
@@ -315,7 +325,7 @@ screens: {
 <a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 
-#### Web elements
+#### Elements
 
 - https://css-tricks.com/animating-with-clip-path/
 
