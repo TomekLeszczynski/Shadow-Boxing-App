@@ -50,7 +50,7 @@ const router = createRouter({
     {
       path: '/done',
       name: 'done',
-      component: () => import('@/views/ItsDoneView.vue')
+      component: () => import('@/views/RegisterConfirmationView.vue')
     },
 
     // weight measurements charts
