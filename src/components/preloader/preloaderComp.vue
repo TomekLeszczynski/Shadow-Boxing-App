@@ -3,6 +3,14 @@
   <div class="flex justify-center items-center absolute inset-0 origin-bottom" aria-live="polite">
     <!-- CONTENT CONTAINER -->
     <div class="flex flex-col container justify-between sm:justify-evenly h-full p-5">
+      <video
+        class="absolute inset-0 h-full w-full opacity-30 -z-20 overflow-hidden object-cover"
+        src="@/assets/video/video05.mp4"
+        autoplay
+        muted
+        loop
+        tabindex="0"
+      />
       <!-- LOGO / HEADING -->
       <div class="flex flex-col text-xl leading-none" aria-label="logo">
         <span>Shadow</span>
@@ -13,7 +21,7 @@
       <div>
         <!-- QUOTE -->
         <p
-          class="text-4xl md:text-6xl lg:text-7xl font-semibold uppercase mb-5 animate-text-show-up-delayed"
+          class="text-2xl xs:text-4xl md:text-6xl lg:text-7xl font-bold uppercase mb-5 animate-text-show-up-delayed"
           aria-label="quote"
         >
           {{ quote }}
