@@ -1,19 +1,14 @@
 <template>
-  <div class="flex flex-col container mx-auto p-4">
+  <div class="flex flex-col p-4 items-center w-full">
     <!--  HEADER -->
-    <div class="">
-      <h1
-        class="animate-text-show-up text-7xl lg:text-[9rem] font-public-sans text-almost-white font-semibold tracking-tighter py-3 mb-12"
-        aria-label="log in heading"
-      >
-        Log in
-      </h1>
-    </div>
-
+    <h1
+      class="animate-text-show-up text-8xl lg:text-[9rem] text-red-500 font-semibold tracking-tighter py-3 lg:mb-12"
+      aria-label="Log in heading"
+    >
+      Log in
+    </h1>
     <!-- LOGIN FORM -->
-    <div class="h-full text-almost-white">
-      <login-form />
-    </div>
+    <login-form />
   </div>
 </template>
 <script setup lang="ts">

@@ -1,15 +1,10 @@
 <template>
   <!-- SECTION THAT COVERS WHOLE SCREEN -->
-  <section
-    class="flex justify-center items-center absolute inset-0 origin-bottom border-b"
-    aria-live="polite"
-  >
+  <div class="flex justify-center items-center absolute inset-0 origin-bottom" aria-live="polite">
     <!-- CONTENT CONTAINER -->
-    <div
-      class="flex flex-col container justify-between sm:justify-evenly h-full p-5 text-almost-white font-public-sans"
-    >
+    <div class="flex flex-col container justify-between sm:justify-evenly h-full p-5">
       <!-- LOGO / HEADING -->
-      <div class="flex flex-col text-xl leading-none">
+      <div class="flex flex-col text-xl leading-none" aria-label="logo">
         <span>Shadow</span>
         <span>Boxing</span>
         <span>Workout</span>
@@ -17,11 +12,17 @@
       <!-- QUOTES BOX -->
       <div>
         <!-- QUOTE -->
-        <p class="text-4xl md:text-6xl lg:text-7xl uppercase mb-5 animate-text-show-up-delayed">
+        <p
+          class="text-4xl md:text-6xl lg:text-7xl font-semibold uppercase mb-5 animate-text-show-up-delayed"
+          aria-label="quote"
+        >
           {{ quote }}
         </p>
         <!-- AUTHOR -->
-        <p class="text-xl md:text-3xl lg:text-4xl text-end animate-text-show-up-delayed pt-9">
+        <p
+          class="text-xl md:text-3xl lg:text-4xl text-end animate-text-show-up-delayed pt-9"
+          aria-label="quote's author"
+        >
           ~ {{ author }}
         </p>
       </div>
@@ -29,14 +30,15 @@
       <div class="flex justify-center animate-appear-slow-and-delayed">
         <button
           @click="$emit('skipped')"
-          class="mt-3 sm:mt-0 py-4 px-12 group md:w-96 w-full bg-almost-black border"
+          class="mt-3 sm:mt-0 py-4 px-12 group md:w-96 w-full border"
           tabindex="0"
+          aria-label="skip button"
         >
           <button-label labelText="Skip" />
         </button>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -58,3 +60,5 @@ onMounted(() => {
   pickQuoteToDisplay()
 })
 </script>
+
+<!-- ACCESSIBILITY SET -->

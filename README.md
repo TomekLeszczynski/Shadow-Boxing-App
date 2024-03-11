@@ -53,7 +53,7 @@ npm run lint
 
 _As a boxing enthusiast and adept, I wanted to create a training app based on the most common boxing training - shadow boxing. It was intended to allow users at any level to work on punch combinations, footwork or reflexes even more effectively. The original idea has been developed with additional features to cater to a wider range of users._
 
-![Shadow Boxing Workout Home View](./readme_graphics/Shadow%20Boxing%20Workout%20Home%20View.jpg)
+![Shadow Boxing Workout Home View](./readme_graphics/app_home_view.jpg)
 
 # General Info
 
@@ -95,7 +95,7 @@ Built with:
 - **Vuelidate**,
 - **Chart.js**.
 
-# Result
+# Results linked to set objectives.
 
 ### 'From Scratch to Deployment':
 
@@ -114,12 +114,13 @@ After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS
 In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code.
 Examples of my extensions:
 
-```tailwind.config.ts
+```[tailwind.config.ts]
       colors: {
-        'almost-white': '#E7E4DF',
-        'almost-black': '#141414',
-        'almost-grey': '#808080',
-        (...)
+        'custom-white': '#E7E4DF',
+        'custom-black': '#141414',
+        'custom-grey': '#808080',
+        'custom-orange-light': '#ed762f',
+        'custom-orange-dark': '#ec642b'
       },
       keyframes:{
         (...),
@@ -216,7 +217,7 @@ Created Users accessibility categories:
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
 - **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
 
-<!-- ADD MORE!!! -->
+<!-- ADD ABOUT VUEALIDATE -->
 
 ### 'Utilizing TypeScript':
 
@@ -288,15 +289,15 @@ const props = defineProps<WeightGraphProps>()
 Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design):
 ![Tailwind Css breakpoints table](./readme_graphics/tailwind_breakpoints.jpg)
 
-I've also added an extra prefix since I found it helpfull to set fonts size on the smallest screens:
+I've also added an extra prefix since I found it helpfull to control fonts size on the smallest screens:
 
-```
+```[tailwind.config.ts]
 screens: {
         xs: '475px'
       },
 ```
 
-Responsiveness tested on following browsers:
+Responsiveness tested on web browsers as follows:
 
 - Google Chrome ver: (to add)
 - Firefox ver: (to add)
@@ -309,6 +310,8 @@ Responsiveness tested on following browsers:
 
 <!-- TO UPDATE -->
 
+<!-- Opisać aria-hidden="true" czyli obrazek jako dekoracja -->
+
 ### 'Unit Testing':
 
 <!-- TO UPDATE -->
@@ -316,6 +319,38 @@ Responsiveness tested on following browsers:
 ### 'Clean Code':
 
 <!-- TO UPDATE -->
+
+# Issues & Conclusions
+
+#### V-model & V-for
+
+I found it quite difficult to solve the problem of using a v-model inside a v-for loop. I tried to reduce the code for the input data in LoginForm or SignUpForm. Finally I decided to leave it as is even though I am repeating the code.
+
+````[LoginForm.vue]
+    <!-- EMAIL & INPUTS -->
+    <div class="flex flex-col animate-text-show-up">
+      <label for="email" class="my-3 text-xl">Email</label>
+      <input
+        id="email"
+        type="email"
+        v-model.lazy="email"
+        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
+        placeholder="rocky.balboa@mail.com"
+      />
+    </div>
+
+    <!--  PASSWORD INPUT -->
+    <div class="flex flex-col animate-text-show-up">
+      <label for="password" class="my-3 text-xl">Password</label>
+      <input
+        id="password"
+        type="password"
+        v-model.lazy="password"
+        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
+        placeholder="********"
+      />
+    </div>
+    ```
 
 # Design Inspirations
 
@@ -343,3 +378,4 @@ Responsiveness tested on following browsers:
     <br>
     <br>
     **FOR THE LOVE OF BOXING**
+````

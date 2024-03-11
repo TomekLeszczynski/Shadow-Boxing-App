@@ -1,65 +1,64 @@
 <template>
-  <form @submit.prevent autocomplete="on">
-    <div class="grid grid-cols-1 font-public-sans">
-      <!--  EMAIL INPUT -->
-      <div class="flex flex-row justify-between w-full border-t py-3 animate-text-show-up">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          v-model="email"
-          type="email"
-          class="h-10 w-1/2 px-5 bg-almost-white border-none placeholder:text-almost-black text-almost-black"
-          placeholder="example@mail.com"
-        />
-      </div>
-      <!--  PASSWORD INPUT -->
-      <div class="flex flex-row justify-between w-full border-t py-3 animate-text-show-up">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          v-model="password"
-          type="password"
-          class="h-10 w-1/2 px-5 bg-almost-white border-none placeholder:text-almost-black text-almost-black"
-          placeholder="********"
-        />
-      </div>
-      <!-- ERROR DISPLAY -->
-      <div class="flex flex-row w-full justify-end mb-5 h-60">
-        <div aria-live="polite" class="text-almost-white w-1/2 font-semibold py-3 text-justify">
-          <p class="text-red-400">
-            {{ authStore.authError }}
-          </p>
-        </div>
-      </div>
-
-      <!-- FORGOT PASSWORD LINK -->
-      <div class="flex flex-row w-full justify-end animate-text-show-up">
-        <div class="text-almost-white w-1/2 py-3">
-          <RouterLink
-            to="/password-reset"
-            role="button"
-            class="hover:text-gray-400 cursor-pointer font-semibold text-xl"
-            >Forgot your password?</RouterLink
-          >
-        </div>
-      </div>
-
-      <!-- LOG IN BUTTON -->
-      <div class="flex flex-row w-full justify-end">
-        <div class="w-1/2 py-3 animate-button-show-from-left">
-          <button
-            aria-label="log in"
-            @click="signingIn"
-            class="bg-almost-white text-almost-black py-5 px-12 group tracking-wide w-full"
-          >
-            <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
-            <proceding-label v-if="isLoading" procedingLabel="Sending" />
-            <!-- LOG IN LABEL FROM 'SHARED' -->
-            <button-label labelText="Log in" v-else />
-          </button>
-        </div>
-      </div>
+  <form @submit.prevent autocomplete="on" class="items-center grid grid-cols-full md:w-1/4">
+    <!-- EMAIL & INPUTS -->
+    <div class="flex flex-col animate-text-show-up">
+      <label for="email" class="my-3 text-xl">Email</label>
+      <input
+        id="email"
+        type="email"
+        v-model.lazy="email"
+        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
+        placeholder="rocky.balboa@mail.com"
+        aria-label="email input"
+      />
     </div>
+
+    <!--  PASSWORD INPUT -->
+    <div class="flex flex-col animate-text-show-up">
+      <label for="password" class="my-3 text-xl">Password</label>
+      <input
+        id="password"
+        type="password"
+        v-model.lazy="password"
+        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
+        placeholder="********"
+        aria-label="Password input"
+      />
+    </div>
+
+    <!-- ERROR DISPLAY -->
+    <p
+      class="text-red-500 py-3 text-justify llg:mb-5 h-36"
+      aria-label="error-message"
+      aria-live="assertive"
+      role="alert"
+    >
+      {{ authStore.authError }}
+    </p>
+
+    <!-- FORGOT PASSWORD LINK -->
+    <div class="text-xl animate-text-show-up py-3 lg:py-6">
+      <span>Trouble Logging In?</span>
+      <RouterLink
+        to="/password-reset"
+        class="cursor-pointer hover:underline font-semibold"
+        aria-label="Reset password link"
+      >
+        Reset password
+      </RouterLink>
+    </div>
+
+    <!-- LOG IN BUTTON -->
+    <button
+      aria-label="Log in"
+      @click="signingIn"
+      class="bg-custom-orange-dark py-5 px-12 group tracking-wide animate-button-show-from-left"
+    >
+      <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
+      <proceding-label v-if="isLoading" procedingLabel="Sending" />
+      <!-- LOG IN LABEL FROM 'SHARED' -->
+      <button-label v-else labelText="Log in" />
+    </button>
   </form>
 </template>
 

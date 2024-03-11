@@ -38,50 +38,44 @@
             <level-selector
               level="Basic"
               @click="(basicSelected = true) && (advancedSelected = false)"
-              class="hover:bg-red-500 active:bg-almost-white active:text-almost-black duration-200"
+              class="hover:bg-red-500 active:bg-custom-white active:text-custom-black duration-200"
               :class="{ 'bg-red-500': basicSelected, 'bg-none': advancedSelected }"
             >
-              <ul class="list-disc md:block hidden">
-                <!-- BASIC LEVEL DESCRIPTION / SLOT USED -->
-                <li class="pb-2">
-                  <p>
-                    Suitable for beginners and those who are looking for a less intense workout;
-                  </p>
-                </li>
-                <li class="pb-2">
-                  <p>
-                    Focuses on basic combinations and slower pace to help users grasp fundamental
-                    movements;
-                  </p>
-                </li>
-                <li class="pb-2">
-                  <p>
-                    Audio commands and simplified figure which demonstrates each punch, making it
-                    easier to follow along;
-                  </p>
-                </li>
-              </ul>
+              <!-- BASIC LEVEL DESCRIPTION / SLOT USED -->
+              <li class="pb-2">
+                <p>Suitable for beginners and those who are looking for a less intense workout;</p>
+              </li>
+              <li class="pb-2">
+                <p>
+                  Focuses on basic combinations and slower pace to help users grasp fundamental
+                  movements;
+                </p>
+              </li>
+              <li class="pb-2">
+                <p>
+                  Audio commands and simplified figure which demonstrates each punch, making it
+                  easier to follow along;
+                </p>
+              </li>
             </level-selector>
 
             <!-- ADVANCED LEVEL BUTTON -->
             <level-selector
               level="Advanced"
               @click="(advancedSelected = true) && (basicSelected = false)"
-              class="hover:bg-jaffa active:bg-almost-white active:text-almost-black duration-200"
-              :class="{ 'bg-jaffa': advancedSelected, 'bg-none': basicSelected }"
+              class="hover:bg-custom-orange-light active:bg-custom-white active:text-custom-black duration-200"
+              :class="{ 'bg-custom-orange-light': advancedSelected, 'bg-none': basicSelected }"
             >
               <!-- ADVANCED LEVEL DESCRIPTION / SLOT USED -->
-              <ul class="list-disc md:block hidden">
-                <li class="pb-2">
-                  <p>Designed for advanced users aiming for a high-intensity workout.</p>
-                </li>
-                <li class="pb-2">
-                  <p>Emphasizes rapid movements and more complex combinations;</p>
-                </li>
-                <li class="pb-2">
-                  <p>Audio commands allows helps users to stay focused on the movements.</p>
-                </li>
-              </ul>
+              <li class="pb-2">
+                <p>Designed for advanced users aiming for a high-intensity workout.</p>
+              </li>
+              <li class="pb-2">
+                <p>Emphasizes rapid movements and more complex combinations;</p>
+              </li>
+              <li class="pb-2">
+                <p>Audio commands allows helps users to stay focused on the movements.</p>
+              </li>
             </level-selector>
           </div>
         </section>

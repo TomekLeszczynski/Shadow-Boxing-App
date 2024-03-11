@@ -28,7 +28,7 @@
       </router-view>
     </main>
     <!--  FOOTER -->
-    <footer class="flex flex-row justify-between items-center px-5 text-white py-3">
+    <footer class="flex flex-row justify-between items-center px-5 text-custom-white py-3">
       <author-credits />
     </footer>
   </div>

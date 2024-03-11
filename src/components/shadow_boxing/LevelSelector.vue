@@ -6,7 +6,9 @@
       </p>
       <div class="text-sm">
         <div class="text-justify md:px-6 md:py-4">
-          <slot />
+          <ul class="list-disc md:block hidden">
+            <slot></slot>
+          </ul>
         </div>
       </div>
     </div>

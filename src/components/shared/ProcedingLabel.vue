@@ -5,7 +5,7 @@
       >
       <!-- dynamic spinner icon -->
       <svg
-        class="text-gray-300 animate-spin ml-2"
+        class="text-custom-white animate-spin ml-2"
         viewBox="0 0 64 64"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

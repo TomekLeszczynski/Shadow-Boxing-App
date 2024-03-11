@@ -1,14 +1,14 @@
 <!-- 
   1. DESCRIBE SCRIPT ELEMENTS
   2. ADD QUIT BUTTON
-  3. CONSIDER PINIA STORE DATA STOAGE FOR TRAINING SESSION SETUP DATA: DATA MAY FLOWS BETWEEN SESSION MODAL, 'WELL DONE' PAGE, AND NEED TO BE SAVED ON USER'S FIREBASE ACCOUNT
+  3. CONSIDER PINIA STORE DATA STORAGE FOR TRAINING SESSION SETUP DATA: DATA MAY FLOWS BETWEEN SESSION MODAL, 'WELL DONE' PAGE, AND NEED TO BE SAVED ON USER'S FIREBASE ACCOUNT
   4. CREATE MODAL BASE COMPONENT WITH ALL THE BUTTONS AND MAIN FUNCTIONALITY. ELEMENTS OF SPECIFIC TRAINING MODALS PLACED IN AS '<SLOT>'S 
   5. CREATE AND ADD INITIAL COUNTDOWN (10SECS) - SHARED WITH ADVANCED SESSION OR SET AS BASE MODAL ELEMENT.
   6. FIX AUDIO FILES IMPORTING ISSUES: CREATE AN OBJECT WITH PATHS TO EACH PUNCH NAME AND THEN DYNAMICALLY LOAD AUDIO FILES
  -->
 
 <template>
-  <div class="fixed bg-almost-black inset-0 font-public-sans text-almost-white">
+  <div class="fixed bg-custom-black inset-0 text-custom-white">
     <div class="flex flex-col mx-auto justify-center items-center h-full p-4">
       <!-- CURRENT PUNCH NAME DISPLAY / PUNCH NAME COMES FROM NA ARRAY OF PUNCHES -->
       <p class="uppercase text-4xl md:text-5xl">
@@ -17,7 +17,7 @@
 
       <!-- CURRENT PUNCH NUMBER OR FIGURE ICON DISPLAY = RELATED TO FACTOR (displayMode) SELECTED BY USER IN CONFIGURATOR DURING SESSION SETTING -->
       <div class="flex flex-col my-3" :class="{ 'h-3/5': displayMode === 'figures' }">
-        <!-- FIGURE IMG FILE DISPLAYED / RELATED TO CURRENT PUNCH NAME/NUMER  -->
+        <!-- FIGURE IMG FILE DISPLAY / RELATED TO CURRENT PUNCH NAME/NUMER  -->
         <img
           v-if="displayMode === 'figures'"
           :src="getPunchImageSrc(currentPunch)"
@@ -35,10 +35,7 @@
       </div>
 
       <!-- PUNCHES CLOCK = PUNCHES THROWN / TOTAL PUNCHES SET IN CONFIGURATOR -->
-      <p
-        class="text-2xl text-center md:text-4xl"
-      >
-        <span class="text-almost-grey">Punches:</span>
+      <p class="text-2xl text-center md:text-4xl">
         {{ sessionPunchesArray.length }}
         / {{ punches }}
       </p>
@@ -48,7 +45,7 @@
         @click="toggleTimer()"
       >
         <!-- BUTTON LABEL WITH DYNAMIC LABEL DEPENDING ON 'isPaused' STATUS -->
-        <button-label :labelText="isPaused ? 'Pause' : 'Resume'" class="text-almost-white" />
+        <button-label :labelText="isPaused === false ? 'Pause' : 'Resume'" />
       </button>
     </div>
   </div>
@@ -68,9 +65,9 @@ const props = defineProps<{
 }>()
 
 const randomPunchIndex = ref<number>(0)
-const currentPunch = ref<string>('jab')
+const currentPunch = ref<string>('')
 const intervalId = ref<number | null>(null)
-const sessionPunchesArray = ref<string[]>(['jab'])
+const sessionPunchesArray = ref<string[]>([])
 const punchesArray: string[] = [
   'jab',
   'cross',
@@ -143,6 +140,7 @@ const getPunchImageSrc = (punch: string) => {
 }
 
 onMounted(async () => {
-  await loadAudioFiles()
+  handleSession()
+  // await loadAudioFiles()
 })
 </script>

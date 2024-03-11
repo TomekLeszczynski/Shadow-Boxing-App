@@ -1,36 +1,46 @@
 <template>
-  <div class="grid grid-cols-1 gap-2 md:gap-3 p-4 relative">
-    <div class="animate-appear-slow-and-delayed lg:hidden">
-      <img
-        src="@/assets/photos/hero-halftone_opt.webp"
-        alt="halftone-image-woman-during-boxing-training"
-        class="absolute inset-0 h-full w-full object-cover opacity-15 -z-10"
-      />
-    </div>
+  <div class="grid grid-cols-1 gap-2 md:gap-3 p-4 relative" aria-live="polite">
+    <img
+      src="@/assets/photos/hero-halftone_opt.webp"
+      alt="halftone-image-woman-during-boxing-training"
+      class="absolute inset-0 h-full w-full object-cover opacity-15 -z-10 animate-appear-slow-and-delayed lg:hidden"
+      aria-hidden="true"
+    />
     <!-- MAIN HEADER -->
     <h1
-      class="text-red-500 font-semibold font-public-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] tracking-tighter py-3 lg:mb-12"
+      class="text-red-500 font-semibold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] tracking-tighter py-3 lg:mb-12"
     >
       Shadow Boxing Workout
     </h1>
     <!-- DESCRIPTION & HERO IMAGE SECTION-->
-    <section class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-8 mb-9">
+    <div class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-8 mb-9">
       <!-- HERO BOX -->
       <hero-box />
       <div class="h-full flex flex-col justify-between">
         <!-- APP DESCRIPTION -->
-        <description-box />
+        <div
+          class="text-base sm:text-xl md:text-2xl xl:text-3xl lg:mb-12 text-justify animate-text-show-up"
+        >
+          <p class="mb-3 indent-10">
+            This app takes boxing training to a new level. With our app, you can practice 'shadow
+            boxing,' refining your combinations, footwork, and head movement.
+          </p>
+          <p class="mb-3">
+            Whether you're an experienced boxer or just starting your journey in the sport, our app
+            adapts to your skill level. Additionally, track your progress by saving your workouts
+            and weight measurements, allowing you to monitor your achievements.
+          </p>
+        </div>
         <!-- BOX WITH ACCESS BUTTONS : SIGNUP & TRY AS GUEST -->
         <get-access />
       </div>
-    </section>
+    </div>
     <!-- INFINITE SCROLL BANNER -->
     <infinite-scroll-banner bannerText="Online store and Blog section coming soon!" />
   </div>
 </template>
 <script setup lang="ts">
 import InfiniteScrollBanner from '@/components/home_view/InfiniteScrollBanner.vue'
-import DescriptionBox from '@/components/home_view/DecriptionBox.vue'
 import HeroBox from '@/components/home_view/HeroBox.vue'
 import GetAccess from '@/components/home_view/GetAccess.vue'
 </script>

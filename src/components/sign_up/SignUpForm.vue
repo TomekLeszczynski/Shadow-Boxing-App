@@ -9,7 +9,7 @@
         id="displayName"
         v-model="userData.displayName"
         type="text"
-        class="h-10 my-1 px-4 w-full bg-almost-white border-none"
+        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
         placeholder="Rocky Balboa"
         :aria-invalid="v$.displayName.$error"
       />
@@ -29,27 +29,25 @@
         id="email"
         v-model="userData.email"
         type="email"
-        class="h-10 my-1 px-4 w-full bg-almost-white border-none"
+        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
         placeholder="example@mail.com"
         :aria-invalid="v$.email.$error"
       />
       <!-- VALIDATION ERROR DISPLAY -->
       <div class="h-5" aria-live="assertive">
-        <span v-if="v$.email.$error" class="text-red-500">{{
-          v$.email.$errors[0].$message
-        }}</span>
+        <span v-if="v$.email.$error" class="text-red-500">{{ v$.email.$errors[0].$message }}</span>
       </div>
     </div>
 
     <!-- PASSWORD INPUT  -->
     <div class="md:col-span-5">
-      <label for="password" class="text-lg text-almost-black">Password</label>
+      <label for="password" class="text-lg text-custom-black">Password</label>
       <input
         @blur="v$.password.password.$touch"
         id="password"
         v-model="userData.password.password"
         type="password"
-        class="h-10 my-1 px-4 w-full bg-almost-white border-none"
+        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
         placeholder="********"
         :aria-invalid="v$.password.password.$error"
       />
@@ -69,7 +67,7 @@
         id="confirmPassword"
         v-model="userData.password.confirm"
         type="password"
-        class="h-10 my-1 px-4 w-full bg-almost-white border-none"
+        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
         placeholder="********"
         :aria-invalid="v$.password.confirm.$error"
       />
@@ -85,7 +83,7 @@
       {{ authStore.authError }}
     </p>
 
-    <div class="sm:flex justify-between items-center pt-6 text-almost-black">
+    <div class="sm:flex justify-between items-center pt-6 text-custom-black">
       <!-- ALREADY-A-MEMBER LINK -->
       <div class="text-lg">
         <span>Already a Member?</span>
@@ -99,7 +97,7 @@
         @click="registerUser"
         :disabled="v$.$invalid"
         :class="!v$.$invalid ? 'opacity-100' : 'opacity-50'"
-        class="bg-almost-black text-almost-white text-lg font-semibold mt-3 sm:mt-0 py-4 px-12 group tracking-wide w-full sm:w-auto"
+        class="bg-custom-black text-lg font-semibold mt-3 sm:mt-0 py-4 px-12 group tracking-wide w-full sm:w-auto"
         :aria-disabled="v$.$invalid ? 'true' : 'false'"
       >
         <!-- IS LOADING BUTTON LABEL -->

@@ -6,14 +6,14 @@ const config = {
         xs: '475px'
       },
       fontFamily: {
-        'public-sans': ['Public Sans', 'sans-serif']
+        sans: ['Public Sans', 'sans-serif']
       },
       colors: {
-        'almost-white': '#E7E4DF',
-        'almost-black': '#141414',
-        'almost-grey': '#808080',
-        jaffa: '#ed762f',
-        sorbus: '#ec642b'
+        'custom-white': '#E7E4DF',
+        'custom-black': '#141414',
+        'custom-grey': '#808080',
+        'custom-orange-light': '#ed762f',
+        'custom-orange-dark': '#ec642b'
       },
       keyframes: {
         //

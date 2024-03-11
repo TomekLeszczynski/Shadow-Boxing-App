@@ -6,7 +6,7 @@
   >
     <h1
       id="error-heading"
-      class="text-red-500 font-semibold font-public-sans leading-none text-center text-5xl sm:text-7xl md:text-8xl xl:text-9xl"
+      class="text-red-500 font-semibold leading-none text-center text-5xl sm:text-7xl md:text-8xl xl:text-9xl"
     >
       <span class="block">We're sorry, Champ!</span>
       <span class="block">Page was not found!</span>

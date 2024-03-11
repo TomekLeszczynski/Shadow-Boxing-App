@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col h-full bg-almost-white p-9">
+  <div class="flex flex-col h-full bg-custom-white text-custom-black p-9">
     <!-- FORM SECTION -->
     <form @submit.prevent class="flex flex-col h-full justify-between">
       <div class="h-full">
         <!-- SET PUNCHES AMOUNT SECTION -->
-        <div class="border-b border-almost-black pb-4">
+        <div class="border-b border-custom-black pb-4">
           <p class="mt-3">Set punches amount</p>
           <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
             <!-- 50 PUNCHES-->
@@ -49,7 +49,7 @@
         </div>
 
         <!-- SET INTENSITY SECTION -->
-        <div class="border-b border-almost-black pb-4">
+        <div class="border-b border-custom-black pb-4">
           <p class="mt-3">Set intensity</p>
           <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
             <!-- LOW INTENSITY -->
@@ -94,7 +94,7 @@
         </div>
 
         <!-- DISPLAY MODE SECTION -->
-        <div class="border-b border-almost-black pb-4">
+        <div class="border-b border-custom-black pb-4">
           <p class="mt-3">Set display mode</p>
           <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
             <!-- DIGITS OPTION -->
@@ -134,9 +134,10 @@
         <!-- START BUTTON -->
         <button
           @click="startSession = true"
-          class="bg-red-500 py-4 2xl:w-1/2 w-full group tracking-wide"
+          class="bg-red-500 text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
+          aria-label="Start session"
         >
-          <button-label labelText="Start" class="text-almost-white" />
+          <button-label labelText="Start" />
         </button>
       </div>
     </form>
@@ -155,7 +156,6 @@ import { ref } from 'vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 import BasicConfigLabel from './helpers/BasicConfigLabel.vue'
 import BasicTrainingModal from './BasicTrainingModal.vue'
-
 
 const punchesAmount = ref<number>(50)
 const intensity = ref<number>(6)
