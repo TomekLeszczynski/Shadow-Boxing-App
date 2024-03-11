@@ -2,14 +2,14 @@
   <!-- FORM -->
   <form autocomplete="on" @submit.prevent class="gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
     <!-- USERNAME INPUT -->
-    <div class="md:col-span-5">
-      <label for="displayName" class="text-lg" pattern="^[^0-9]+$">Username</label>
+    <div class="md:col-span-5 animate-text-show-up">
+      <label for="displayName" class="text-xl" pattern="^[^0-9]+$">Username</label>
       <input
         @blur="v$.displayName.$touch"
         id="displayName"
         v-model="userData.displayName"
         type="text"
-        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
+        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
         placeholder="Rocky Balboa"
         :aria-invalid="v$.displayName.$error"
       />
@@ -22,15 +22,15 @@
     </div>
 
     <!--  EMAIL INPUT -->
-    <div class="md:col-span-5">
-      <label for="email" class="text-lg">Email</label>
+    <div class="md:col-span-5 animate-text-show-up">
+      <label for="email" class="text-xl">Email</label>
       <input
         @blur="v$.email.$touch"
         id="email"
         v-model="userData.email"
         type="email"
-        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
-        placeholder="example@mail.com"
+        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
+        placeholder="rocky.balboa@mail.com"
         :aria-invalid="v$.email.$error"
       />
       <!-- VALIDATION ERROR DISPLAY -->
@@ -40,14 +40,14 @@
     </div>
 
     <!-- PASSWORD INPUT  -->
-    <div class="md:col-span-5">
-      <label for="password" class="text-lg text-custom-black">Password</label>
+    <div class="md:col-span-5 animate-text-show-up">
+      <label for="password" class="text-xl">Password</label>
       <input
         @blur="v$.password.password.$touch"
         id="password"
         v-model="userData.password.password"
         type="password"
-        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
+        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
         placeholder="********"
         :aria-invalid="v$.password.password.$error"
       />
@@ -60,14 +60,14 @@
     </div>
 
     <!-- PASSWORD CONFIMRATION INPUT -->
-    <div class="md:col-span-5">
-      <label for="confirmPassword" class="text-lg">Repeat Password</label>
+    <div class="md:col-span-5 animate-text-show-up">
+      <label for="confirmPassword" class="text-xl">Repeat Password</label>
       <input
         @blur="v$.password.confirm.$touch"
         id="confirmPassword"
         v-model="userData.password.confirm"
         type="password"
-        class="h-10 my-1 px-4 w-full bg-custom-white border-none"
+        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
         placeholder="********"
         :aria-invalid="v$.password.confirm.$error"
       />
@@ -79,15 +79,19 @@
       </div>
     </div>
     <!-- ERROR DISPLAY -->
-    <p class="h-5 mt-5 font-semibold text-base text-red-500" aria-label="error message">
+    <p class="h-5 mt-5 text-lg text-red-500" aria-label="error message">
       {{ authStore.authError }}
     </p>
 
-    <div class="sm:flex justify-between items-center pt-6 text-custom-black">
+    <div class="grid grid-cols-1 text-xl animate-text-show-up py-3 lg:py-6">
       <!-- ALREADY-A-MEMBER LINK -->
-      <div class="text-lg">
-        <span>Already a Member?</span>
-        <router-link to="/login" class="hover:underline font-bold" role="button">
+      <div class="text-xl animate-text-show-up py-3 lg:py-6">
+        <span>Already a Member? </span>
+        <router-link
+          to="/login"
+          class="hover:underline font-semibold cursor-pointer"
+          aria-label="Log in link"
+        >
           Log in</router-link
         >
       </div>
@@ -95,33 +99,12 @@
       <!-- SUBMIT BUTTON -->
       <button
         @click="registerUser"
-        :disabled="v$.$invalid"
-        :class="!v$.$invalid ? 'opacity-100' : 'opacity-50'"
-        class="bg-custom-black text-lg font-semibold mt-3 sm:mt-0 py-4 px-12 group tracking-wide w-full sm:w-auto"
-        :aria-disabled="v$.$invalid ? 'true' : 'false'"
+        class="bg-custom-orange-dark py-5 px-12 group tracking-wide animate-button-show-from-left"
       >
         <!-- IS LOADING BUTTON LABEL -->
         <proceding-label v-if="inProgress" procedingLabel="Sending" />
         <!-- DEFAULT BUTTON LABEL -->
-        <div v-else class="flex flex-row items-center justify-center">
-          <span>Sign up</span>
-          <span
-            :class="{
-              'group-hover:translate-x-3 transition duration-300 ease-in-out': !v$.$invalid
-            }"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-            </svg>
-          </span>
-        </div>
+        <button-label v-else labelText="Sign in" />
       </button>
     </div>
   </form>
@@ -131,6 +114,8 @@
 import { computed, reactive, ref } from 'vue'
 import { useRouter, RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/AuthentificationStore'
+import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
+import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 // vuelidate import
 import useValidate from '@vuelidate/core'
@@ -180,23 +165,26 @@ const authStore = useAuthStore()
 const inProgress = ref<boolean>(false)
 
 const registerUser = (): void => {
-  // run inProgress button setup
-  inProgress.value = true
-  // create user on firebase
-  authStore
-    .createUser(userData.email, userData.password.password, userData.displayName)
+  if (v$.value.$error || v$.value.$invalid) return
+  else {
+    // run inProgress button setup
+    inProgress.value = true
+    // create user on firebase
+    authStore
+      .createUser(userData.email, userData.password.password, userData.displayName)
 
-    .then(() => {
-      router.push({
-        name: 'done'
+      .then(() => {
+        router.push({
+          name: 'done'
+        })
       })
-    })
-    .catch((error: Error) => {
-      console.error('Unexpected error during registering new user:', error.message)
-    })
-    .finally(() => {
-      // set button label to default
-      inProgress.value = false
-    })
+      .catch((error: Error) => {
+        console.error('Unexpected error during registering new user:', error.message)
+      })
+      .finally(() => {
+        // set button label to default
+        inProgress.value = false
+      })
+  }
 }
 </script>
