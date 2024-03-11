@@ -3,7 +3,7 @@
     <img
       src="@/assets/photos/hero-halftone_opt.webp"
       alt="halftone-image-woman-during-boxing-training"
-      class="absolute inset-0 h-full w-full object-cover opacity-15 -z-10 animate-appear-slow-and-delayed lg:hidden"
+      class="absolute inset-0 h-full w-full object-contain opacity-30 -z-20 lg:hidden"
       aria-hidden="true"
     />
     <!-- MAIN HEADER -->
