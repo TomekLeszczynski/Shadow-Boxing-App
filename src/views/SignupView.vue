@@ -1,25 +1,22 @@
 <template>
-  <div class="max-w-100-lg mx-auto max-h-100 flex-grow flex justify-center items-center">
-    <div class="bg-boxingGrey p-5 md:p-8">
-      <!-- HEADER -->
-      <h1
-        aria-label="create-account-heading"
-        class="text-black md:text-9xl text-6xl font-bold py-4 uppercase"
-      >
-        Create Account
-      </h1>
-      <!-- SIGN UP FORM -->
-      <sign-up-form />
-    </div>
+  <div class="flex flex-col p-4 items-center w-full">
+    <!-- HEADER -->
+    <h1
+      class="animate-text-show-up text-7xl lg:text-[9rem] text-red-500 font-semibold tracking-tighter py-3 lg:mb-12"
+      aria-label="Create account heading"
+    >
+      Create an Account
+    </h1>
+    <!-- SIGN UP FORM -->
+    <sign-up-form />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onBeforeUnmount } from 'vue'
-
 import SignUpForm from '@/components/sign_up/SignUpForm.vue'
-
 import { useAuthStore } from '@/stores/AuthentificationStore'
+
 const authStore = useAuthStore()
 
 onBeforeUnmount(() => {
