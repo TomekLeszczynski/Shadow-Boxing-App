@@ -7,7 +7,7 @@
         id="email"
         type="email"
         v-model.lazy="email"
-        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
+        class="h-10 text-lg bg-custom-white border-none px-5 placeholder:text-custom-grey text-custom-black"
         placeholder="rocky.balboa@mail.com"
         aria-label="email input"
       />
@@ -20,7 +20,7 @@
         id="password"
         type="password"
         v-model.lazy="password"
-        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
+        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-grey text-custom-black"
         placeholder="********"
         aria-label="Password input"
       />
