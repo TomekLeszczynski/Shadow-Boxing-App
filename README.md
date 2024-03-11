@@ -326,7 +326,7 @@ Responsiveness tested on web browsers as follows:
 
 I found it quite difficult to solve the problem of using a v-model inside a v-for loop. I tried to reduce the code for the input data in LoginForm or SignUpForm. Finally I decided to leave it as is even though I am repeating the code.
 
-````[LoginForm.vue]
+```[LoginForm.vue]
     <!-- EMAIL & INPUTS -->
     <div class="flex flex-col animate-text-show-up">
       <label for="email" class="my-3 text-xl">Email</label>
@@ -350,7 +350,7 @@ I found it quite difficult to solve the problem of using a v-model inside a v-fo
         placeholder="********"
       />
     </div>
-    ```
+```
 
 # Design Inspirations
 
@@ -378,4 +378,7 @@ I found it quite difficult to solve the problem of using a v-model inside a v-fo
     <br>
     <br>
     **FOR THE LOVE OF BOXING**
-````
+
+```
+
+```
