@@ -5,7 +5,7 @@
     <div class="flex flex-col container justify-between sm:justify-evenly h-full p-5">
       <video
         class="absolute inset-0 h-full w-full opacity-30 -z-20 overflow-hidden object-cover"
-        src="@/assets/video/video05.mp4"
+        src="@/assets/video/video06.mp4"
         autoplay
         muted
         loop
