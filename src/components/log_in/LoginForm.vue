@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent autocomplete="on" class="items-center grid grid-cols-full md:w-1/4">
+  <form @submit.prevent autocomplete="on" class="items-center grid grid-cols-full">
     <!-- EMAIL & INPUTS -->
     <div class="flex flex-col animate-text-show-up">
       <label for="email" class="my-3 text-xl">Email</label>
@@ -37,7 +37,7 @@
     </p>
 
     <!-- FORGOT PASSWORD LINK -->
-    <div class="text-xl animate-text-show-up py-3 lg:py-6">
+    <div class="text-xl animate-text-show-up py-3 lg:py-6 whitespace-nowrap">
       <span>Trouble Logging In?</span>
       <RouterLink
         to="/password-reset"
