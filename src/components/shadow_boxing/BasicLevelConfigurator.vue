@@ -3,124 +3,31 @@
     <!-- FORM SECTION -->
     <form @submit.prevent class="flex flex-col h-full justify-between">
       <div class="h-full">
-        <!-- SET PUNCHES AMOUNT SECTION -->
-        <div class="border-b border-custom-black pb-4">
-          <p class="mt-3">Set punches amount</p>
+        <div
+          v-for="(section, index) in formSections"
+          :key="index"
+          class="border-b border-custom-black pb-4"
+        >
+          <span class="mt-3">{{ section.title }}</span>
           <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
-            <!-- 50 PUNCHES-->
-            <div class="md:w-1/4 text-center flex-1">
+            <div
+              v-for="(option, index) in section.options"
+              :key="index"
+              class="md:w-1/4 text-center flex-1"
+            >
               <input
-                type="radio"
-                name="punches"
-                id="50"
-                value="50"
+                :type="section.inputType"
+                :name="section.name"
+                :id="option.value"
+                :value="option.value"
+                v-model="section.selectedOption"
                 class="peer hidden"
-                v-model="punchesAmount"
               />
-              <basic-config-label for="50" buttonLabel="50" />
-            </div>
-
-            <!-- 100 PUNCHES-->
-            <div class="md:w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="punches"
-                id="100"
-                value="100"
-                class="peer hidden"
-                v-model="punchesAmount"
-              />
-              <basic-config-label for="100" buttonLabel="100" />
-            </div>
-
-            <!-- 250 PUNCHES -->
-            <div class="md:w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="punches"
-                id="250"
-                value="250"
-                class="peer hidden"
-                v-model="punchesAmount"
-              />
-              <basic-config-label for="250" buttonLabel="250" />
-            </div>
-          </div>
-        </div>
-
-        <!-- SET INTENSITY SECTION -->
-        <div class="border-b border-custom-black pb-4">
-          <p class="mt-3">Set intensity</p>
-          <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
-            <!-- LOW INTENSITY -->
-            <div class="md:w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="intensity"
-                id="LowInt"
-                value="6"
-                class="peer hidden"
-                v-model="intensity"
-              />
-              <basic-config-label for="LowInt" buttonLabel="Low" />
-            </div>
-
-            <!-- MID INTENSITY -->
-            <div class="w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="intensity"
-                id="MidInt"
-                value="4"
-                class="peer hidden"
-                v-model="intensity"
-              />
-              <basic-config-label for="MidInt" buttonLabel="Mid" />
-            </div>
-
-            <!--  HI INTENSITY -->
-            <div class="w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="intensity"
-                id="HiInt"
-                value="3"
-                class="peer hidden"
-                v-model="intensity"
-              />
-              <basic-config-label for="HiInt" buttonLabel="High" />
-            </div>
-          </div>
-        </div>
-
-        <!-- DISPLAY MODE SECTION -->
-        <div class="border-b border-custom-black pb-4">
-          <p class="mt-3">Set display mode</p>
-          <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
-            <!-- DIGITS OPTION -->
-            <div class="w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="display_mode"
-                id="Digits"
-                value="digits"
-                class="peer hidden"
-                v-model="displayMode"
-              />
-              <basic-config-label for="Digits" buttonLabel="Digits" />
-            </div>
-
-            <!-- FIGURES OPTION -->
-            <div class="w-1/4 text-center flex-1">
-              <input
-                type="radio"
-                name="display_mode"
-                id="Figures"
-                value="figures"
-                class="peer hidden"
-                v-model="displayMode"
-              />
-              <basic-config-label for="Figures" buttonLabel="Figures" />
+              <label
+                class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-custom-white hover:bg-custom-grey hover:bg-opacity-20"
+                :for="option.value"
+                >{{ option.label }}</label
+              >
             </div>
           </div>
         </div>
@@ -133,7 +40,7 @@
         </p>
         <!-- START BUTTON -->
         <button
-          @click="startSession = true"
+          @click="isClockRunning = true"
           class="bg-red-500 text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
           aria-label="Start session"
         >
@@ -141,24 +48,80 @@
         </button>
       </div>
     </form>
-    <basic-training-modal
-      v-if="startSession"
-      :punches="punchesAmount"
-      :intensity="intensity"
-      :display-mode="displayMode"
+
+    <countdown-clock v-if="isClockRunning" @countdown-finished="switchViews" />
+    <basic-training-display
+      v-if="isTrainingRunning"
+      :punches="Number(grabSelectedOptions('punches'))"
+      :intensity="Number(grabSelectedOptions('intensity'))"
+      :display-mode="grabSelectedOptions('display_mode')"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
-import BasicConfigLabel from './helpers/BasicConfigLabel.vue'
-import BasicTrainingModal from './BasicTrainingModal.vue'
+import BasicTrainingDisplay from './BasicTrainingDisplay.vue'
+import CountdownClock from './CountdownClock.vue'
 
-const punchesAmount = ref<number>(50)
-const intensity = ref<number>(6)
-const displayMode = ref<string>('figures')
-const startSession = ref<boolean>(false)
+interface BasicFormSection {
+  title: string
+  inputType: string
+  name: string
+  selectedOption: string
+  options: { value: string; label: string }[]
+}
+
+const formSections = ref<BasicFormSection[]>([
+  {
+    title: 'Set punches amount',
+    inputType: 'radio',
+    name: 'punches',
+    selectedOption: '50',
+    options: [
+      { value: '50', label: '50' },
+      { value: '100', label: '100' },
+      { value: '250', label: '250' }
+    ]
+  },
+  {
+    title: 'Set intensity',
+    inputType: 'radio',
+    name: 'intensity',
+    selectedOption: '6',
+    options: [
+      { value: '6', label: 'Low' },
+      { value: '4', label: 'Mid' },
+      { value: '3', label: 'High' }
+    ]
+  },
+  {
+    title: 'Set display mode',
+    inputType: 'radio',
+    name: 'display_mode',
+    selectedOption: 'figures',
+    options: [
+      { value: 'digits', label: 'Digits' },
+      { value: 'figures', label: 'Figures' }
+    ]
+  }
+])
+
+const isClockRunning = ref<boolean>(false)
+const isTrainingRunning = ref<boolean>(false)
+const switchViews = () => {
+  isClockRunning.value = false
+  isTrainingRunning.value = true
+}
+
+const grabSelectedOptions = (name: string): string => {
+  if (name) {
+    const section = formSections.value.find((section) => section.name === name)
+    if (section) {
+      return section.selectedOption
+    }
+  }
+  return ''
+}
 </script>

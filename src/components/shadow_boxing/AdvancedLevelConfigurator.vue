@@ -3,50 +3,45 @@
     <!-- FORM SECTION -->
     <form @submit.prevent class="flex flex-col h-full justify-between">
       <div class="h-full">
-        <!-- SET ROUNDS AMOUNT SECTION -->
-        <div class="border-b border-custom-black pb-4">
-          <p class="mt-3">Set rounds amount [maximum 12]</p>
+        <div
+          v-for="(section, index) in formSection"
+          :key="index"
+          class="border-b border-custom-black pb-4"
+        >
+          <span class="mt-3">{{ section.title }}</span>
           <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
-            <plus-minus-button @click="roundsAmount <= 11 ? roundsAmount++ : ''"
-              >&#43;</plus-minus-button
-            >
-            <div class="md:w-1/4 justify-center items-center font-bold flex-1 flex">
-              <p class="text-lg py-1">{{ roundsAmount }}</p>
-            </div>
-            <plus-minus-button @click="roundsAmount > 1 ? roundsAmount-- : ''"
-              >&#45;</plus-minus-button
-            >
-          </div>
-        </div>
-
-        <!-- SET INTENSITY SECTION -->
-        <div class="border-b border-custom-black pb-4">
-          <p class="mt-3">Set intensity</p>
-          <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
-            <div class="md:w-1/4 text-center flex-1">
-              <input type="radio" name="intensity" id="LowInt" value="6" class="peer hidden" />
-              <advanced-config-label buttonLabel="Low" for="LowInt" />
-            </div>
-
-            <div class="w-1/4 text-center flex-1">
-              <input type="radio" name="intensity" id="HiInt" value="3" class="peer hidden" />
-              <advanced-config-label buttonLabel="High" for="HiInt" />
-            </div>
-          </div>
-        </div>
-
-        <!-- SET COMPLEXITY SECTION -->
-        <div class="border-b border-custom-black pb-4">
-          <p class="mt-3">Set combinations complexity</p>
-          <div class="flex flex-row mt-3 xl:flex-col xl:items-end">
-            <div class="md:w-1/4 text-center flex-1">
-              <input type="radio" name="complexity" id="LowComplex" value="6" class="peer hidden" />
-              <advanced-config-label buttonLabel="Low" for="LowComplex" />
-            </div>
-            <div class="w-1/4 text-center flex-1">
-              <input type="radio" name="complexity" id="HiComplex" value="3" class="peer hidden" />
-              <advanced-config-label buttonLabel="High" for="HiComplex" />
-            </div>
+            <template v-if="!section.plusMinus">
+              <div
+                v-for="(option, index) in section.options"
+                :key="index"
+                class="md:w-1/4 text-center flex-1"
+              >
+                <input
+                  :type="section.inputType"
+                  :name="section.name"
+                  :id="option.id"
+                  :value="option.value"
+                  v-model="section.selectedOption"
+                  class="peer hidden"
+                />
+                <label
+                  :for="option.id"
+                  class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-custom-orange-light peer-checked:font-bold peer-checked:text-custom-white hover:bg-custom-grey hover:bg-opacity-20"
+                  >{{ option.label }}</label
+                >
+              </div>
+            </template>
+            <template v-else>
+              <plus-minus-button @click="updateRoundsAmount(index, true)">&#43;</plus-minus-button>
+              <div
+                class="md:w-1/4 justify-center items-center font-bold flex-1 flex"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <span class="text-lg py-1">{{ section.roundsAmountValue }}</span>
+              </div>
+              <plus-minus-button @click="updateRoundsAmount(index, false)">&#45;</plus-minus-button>
+            </template>
           </div>
         </div>
       </div>
@@ -69,14 +64,62 @@
 </template>
 
 <script setup lang="ts">
-// vue import
 import { ref } from 'vue'
 
-// component import
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
-import AdvancedConfigLabel from './helpers/AdvancedConfigLabel.vue'
 import PlusMinusButton from './helpers/PlusMinusButton.vue'
 
-// rounds amount marker for increase/decrease configurator buttons
-const roundsAmount = ref<number>(1)
+interface AdvancedFormSection {
+  title: string
+  inputType?: string
+  name?: string
+  plusMinus: boolean // relate to rounds amount form section - v-for renders proper template
+  roundsAmountValue?: number
+  selectedOption?: string
+  options?: { value: string; label: string; id: string }[]
+}
+
+const formSection = ref<AdvancedFormSection[]>([
+  {
+    title: 'Set rounds amount [maximum 12]',
+    plusMinus: true,
+    roundsAmountValue: 1
+  },
+  {
+    title: 'Set intensity',
+    inputType: 'radio',
+    name: 'intensity',
+    plusMinus: false,
+    selectedOption: '3',
+    options: [
+      { value: '3', label: 'Low', id: 'LowInt' },
+      { value: '6', label: 'Hi', id: 'HiInt' }
+    ]
+  },
+  {
+    title: 'Set combinations complexity',
+    inputType: 'radio',
+    name: 'complexity',
+    plusMinus: false,
+    selectedOption: '0',
+    options: [
+      { value: '0', label: 'Low', id: 'LowComplexity' },
+      { value: '1', label: 'Hi', id: 'HiComplexity' }
+    ]
+  }
+])
+
+// rounds amount handler = controls value 1 < x < 12
+const updateRoundsAmount = (index: number, increment: boolean): void => {
+  const section = formSection.value[index]
+  if (increment) {
+    if (section.roundsAmountValue && section.roundsAmountValue < 12) {
+      section.roundsAmountValue++
+    }
+  } else {
+    if (section.roundsAmountValue && section.roundsAmountValue > 1) {
+      section.roundsAmountValue--
+    }
+  }
+}
 </script>
