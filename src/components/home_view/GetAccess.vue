@@ -30,6 +30,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-import TryAsGuest from '@/components/home_view/TryAsGuest.vue'
+import TryAsGuest from '@/components/authorization/TryAsGuest.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 </script>

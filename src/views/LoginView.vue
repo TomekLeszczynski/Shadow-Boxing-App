@@ -12,5 +12,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import LoginForm from '@/components/log_in/LoginForm.vue'
+import LoginForm from '@/components/authorization/LoginForm.vue'
 </script>
