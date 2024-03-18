@@ -1,28 +1,19 @@
 <template>
   <form @submit.prevent autocomplete="on" class="items-center grid grid-cols-full">
-    <!-- EMAIL & INPUTS -->
-    <div class="flex flex-col animate-text-show-up">
-      <label for="email" class="my-3 text-xl">Email</label>
+    <!-- EMAIL & PASSWORD INPUTS -->
+    <div
+      v-for="(section, index) in formSection"
+      :key="index"
+      class="flex flex-col animate-text-show-up"
+    >
+      <label class="capitalize my-3 text-xl" :for="section.title">{{ section.title }}</label>
       <input
-        id="email"
-        type="email"
-        v-model.lazy="email"
+        :id="section.title"
+        :type="section.title"
+        v-model="section.value"
+        :placeholder="section.placeholder"
+        :aria-label="section.ariaLabel"
         class="h-10 text-lg bg-custom-white border-none px-5 placeholder:text-custom-grey text-custom-black"
-        placeholder="rocky.balboa@mail.com"
-        aria-label="email input"
-      />
-    </div>
-
-    <!--  PASSWORD INPUT -->
-    <div class="flex flex-col animate-text-show-up">
-      <label for="password" class="my-3 text-xl">Password</label>
-      <input
-        id="password"
-        type="password"
-        v-model.lazy="password"
-        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-grey text-custom-black"
-        placeholder="********"
-        aria-label="Password input"
       />
     </div>
 
@@ -51,7 +42,7 @@
     <!-- LOG IN BUTTON -->
     <button
       aria-label="Log in"
-      @click="signingIn"
+      @click="signingIn()"
       class="bg-custom-orange-dark py-5 px-12 group tracking-wide animate-button-show-from-left"
     >
       <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
@@ -73,20 +64,43 @@ import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 const router = useRouter()
 const authStore = useAuthStore()
 
+interface loginFormSection {
+  title: string
+  placeholder: string
+  value: string | null
+  ariaLabel: string
+}
+
+const formSection = ref<loginFormSection[]>([
+  {
+    title: 'email',
+    placeholder: 'rocky.balboa@mail.com',
+    value: null,
+    ariaLabel: 'Email input'
+  },
+  {
+    title: 'password',
+    placeholder: '********',
+    value: null,
+    ariaLabel: 'Password input'
+  }
+])
+
 // signin user and redirect him to 'shadow-boxing' route
-const email = ref<string>('')
-const password = ref<string>('')
 const isLoading = ref<boolean>(false)
 
 const signingIn = () => {
-  if (!email.value || !password.value) {
+  const userEmail = formSection.value.find((section) => section.title === 'email')?.value
+  const userPassword = formSection.value.find((section) => section.title === 'password')?.value
+
+  if (!userEmail || !userPassword) {
     return
   } else {
     // runs loading spinner
     isLoading.value = true
     // sign in via pinia store / firebase
     authStore
-      .signInUser(email.value, password.value)
+      .signInUser(userEmail, userPassword)
       .then(() => {
         // if is success move to shadow boxing route
         if (authStore.user) {
@@ -102,8 +116,7 @@ const signingIn = () => {
       .finally(() => {
         // clear inputs, button set to default
         isLoading.value = false
-        email.value = ''
-        password.value = ''
+        formSection.value.forEach((section) => (section.value = null))
       })
   }
 }
