@@ -1,87 +1,27 @@
 <template>
   <!-- FORM -->
   <form autocomplete="on" @submit.prevent class="gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-    <!-- USERNAME INPUT -->
-    <div class="md:col-span-5 animate-text-show-up">
-      <label for="displayName" class="text-xl" pattern="^[^0-9]+$">Username</label>
+    <!-- FORM INPUTS -->
+    <div
+      v-for="(section, index) in formSection"
+      :key="index"
+      class="md:col-span-5 animate-text-show-up"
+    >
+      <!-- DISPLAYNAME, EMAIL, PASSWORD, PASSWORD CONFIRMATION INPUTS -->
+      <label class="text-xl capitalize" :for="section.id">{{ section.title }}</label>
       <input
-        @blur="v$.displayName.$touch"
-        id="displayName"
-        v-model="userData.displayName"
-        type="text"
+        @blur="section.blur"
+        :id="section.id"
+        v-model="section.value"
+        :type="section.type"
+        :placeholder="section.placeholder"
         class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
-        placeholder="Rocky Balboa"
-        :aria-invalid="v$.displayName.$error"
       />
-      <!-- VALIDATION ERROR DISPLAY -->
+      <!-- VALIDATION ERRORS SECTION -->
       <div class="h-5" aria-live="assertive">
-        <span v-if="v$.displayName.$error" class="text-red-500"
-          >{{ v$.displayName.$errors[0]?.$message }}
-        </span>
+        <span v-if="section.error()" class="text-red-500">{{ section.errorMessage() }}</span>
       </div>
     </div>
-
-    <!--  EMAIL INPUT -->
-    <div class="md:col-span-5 animate-text-show-up">
-      <label for="email" class="text-xl">Email</label>
-      <input
-        @blur="v$.email.$touch"
-        id="email"
-        v-model="userData.email"
-        type="email"
-        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
-        placeholder="rocky.balboa@mail.com"
-        :aria-invalid="v$.email.$error"
-      />
-      <!-- VALIDATION ERROR DISPLAY -->
-      <div class="h-5" aria-live="assertive">
-        <span v-if="v$.email.$error" class="text-red-500">{{ v$.email.$errors[0].$message }}</span>
-      </div>
-    </div>
-
-    <!-- PASSWORD INPUT  -->
-    <div class="md:col-span-5 animate-text-show-up">
-      <label for="password" class="text-xl">Password</label>
-      <input
-        @blur="v$.password.password.$touch"
-        id="password"
-        v-model="userData.password.password"
-        type="password"
-        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
-        placeholder="********"
-        :aria-invalid="v$.password.password.$error"
-      />
-      <!-- VALIDATION ERROR DISPLAY -->
-      <div class="h-5" aria-live="assertive">
-        <span v-if="v$.password.password.$error" class="text-red-500"
-          >{{ v$.password.password.$errors[0].$message }}
-        </span>
-      </div>
-    </div>
-
-    <!-- PASSWORD CONFIMRATION INPUT -->
-    <div class="md:col-span-5 animate-text-show-up">
-      <label for="confirmPassword" class="text-xl">Repeat Password</label>
-      <input
-        @blur="v$.password.confirm.$touch"
-        id="confirmPassword"
-        v-model="userData.password.confirm"
-        type="password"
-        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
-        placeholder="********"
-        :aria-invalid="v$.password.confirm.$error"
-      />
-      <!-- VALIDATION ERROR DISPLAY -->
-      <div class="h-5" aria-live="assertive">
-        <span v-if="v$.password.confirm.$error" class="text-red-500">{{
-          v$.password.confirm.$errors[0].$message
-        }}</span>
-      </div>
-    </div>
-    <!-- ERROR DISPLAY -->
-    <p class="h-5 mt-5 text-lg text-red-500" aria-label="error message">
-      {{ authStore.authError }}
-    </p>
 
     <div class="grid grid-cols-1 text-xl animate-text-show-up py-3 lg:py-6">
       <!-- ALREADY-A-MEMBER LINK -->
@@ -111,9 +51,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 import { useRouter, RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/AuthentificationStore'
+
 import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
@@ -123,21 +64,21 @@ import { required, email, minLength, alphaNum, sameAs } from '@vuelidate/validat
 
 // user data (due to Vuelidate docs)
 interface ValidationUserData {
-  displayName: string
-  email: string
+  displayName: Ref<string>
+  email: Ref<string>
   password: {
-    password: string
-    confirm: string
+    password: Ref<string>
+    confirm: Ref<string>
   }
 }
-const userData = reactive<ValidationUserData>({
-  displayName: '',
-  email: '',
+const userData: ValidationUserData = {
+  displayName: ref(''),
+  email: ref(''),
   password: {
-    password: '',
-    confirm: ''
+    password: ref(''),
+    confirm: ref('')
   }
-})
+}
 
 // validation rules (due to Vuelidate docs)
 const validationRules = computed(() => {
@@ -157,34 +98,102 @@ const validationRules = computed(() => {
 // vuelidate instance
 const v$ = useValidate(validationRules, userData)
 
-// registering new user
+// FORM SECTIONS V-FOR LOOP SETUP
 
-// 'Submit' button enabled only when Vuelidate validation is possitive
+// interface created for form section used in v-for loop
+interface signUpFormSection {
+  title: string
+  blur?: () => void
+  id: string
+  value: string | Ref<string> | null
+  type: string
+  placeholder: string
+  error: () => boolean // check if vuelidate error
+  errorMessage: () => string | Ref<string> // vuelidate error message to display
+}
+
+// form sections including vuelidate userData values
+const formSection = ref<signUpFormSection[]>([
+  // for displayName / with validation
+  {
+    title: 'username',
+    blur: () => v$.value.displayName.$touch(),
+    id: 'displayName',
+    value: userData.displayName,
+    type: 'text',
+    placeholder: 'Rocky Balboa',
+    error: () => v$.value.displayName.$error,
+    errorMessage: () => v$.value.displayName.$errors[0].$message
+  },
+
+  // for email / with validation
+  {
+    title: 'email',
+    blur: () => v$.value.email.$touch(),
+    id: 'email',
+    value: userData.email,
+    type: 'email',
+    placeholder: 'rocky.balboa@mail.com',
+    error: () => v$.value.email.$error,
+    errorMessage: () => v$.value.email.$errors[0].$message
+  },
+
+  // for password / with validation - min 8 characters
+  {
+    title: 'password',
+    blur: () => v$.value.password.password.$touch(),
+    id: 'password',
+    value: userData.password.password,
+    type: 'password',
+    placeholder: '********',
+    error: () => v$.value.password.password.$error,
+    errorMessage: () => v$.value.password.password.$errors[0].$message
+  },
+
+  // password confirmation / related to password input value
+  {
+    title: 'repeat password',
+    blur: () => v$.value.password.confirm.$touch(),
+    id: 'confirmPassword',
+    value: userData.password.confirm,
+    type: 'password',
+    placeholder: '********',
+    error: () => v$.value.password.confirm.$error,
+    errorMessage: () => v$.value.password.confirm.$errors[0].$message
+  }
+])
+
+// CREATE NEW USER
+
 const router = useRouter()
 const authStore = useAuthStore()
 const inProgress = ref<boolean>(false)
 
-const registerUser = (): void => {
-  if (v$.value.$error || v$.value.$invalid) return
-  else {
-    // run inProgress button setup
-    inProgress.value = true
-    // create user on firebase
-    authStore
-      .createUser(userData.email, userData.password.password, userData.displayName)
+// check if no vuelidate errors of input values
+const validateInputs = (): boolean => {
+  const inputsValid = !v$.value.$error || !v$.value.$invalid
+  return inputsValid
+}
+const registerUser = async (): Promise<void> => {
+  if (!validateInputs()) return
 
-      .then(() => {
-        router.push({
-          name: 'done'
-        })
-      })
-      .catch((error: Error) => {
-        console.error('Unexpected error during registering new user:', error.message)
-      })
-      .finally(() => {
-        // set button label to default
-        inProgress.value = false
-      })
+  // run inProgress button lable
+  inProgress.value = true
+  // create user on firebase
+  try {
+    await authStore.createUser(
+      userData.email.value,
+      userData.password.password.value,
+      userData.displayName.value
+    )
+    router.push({
+      name: 'done'
+    })
+  } catch (error: unknown) {
+    console.error('Unexpected error during registering new user:', error)
+  } finally {
+    // set button label to default
+    inProgress.value = false
   }
 }
 </script>
