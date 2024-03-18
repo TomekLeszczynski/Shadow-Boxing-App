@@ -13,18 +13,17 @@ import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 // get access as an anonymous user, redirect user to Home page with Nav items accessible only for auth users
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/AuthentificationStore'
-const router = useRouter()
-const authStore = useAuthStore()
-const getAccessAsGuest = () => {
-  authStore
+const getAccessAsGuest = async (): Promise<void> => {
+  const router = useRouter()
+  const authStore = useAuthStore()
+  try {
     // run firebase function
-    .getAccessAsAnAnonymous()
+    await authStore.getAccessAsAnAnonymous()
     // change route - Shadow Boxing View with userId data or "Guest"
-    .then(() => {
-      router.push({ name: 'shadow-boxing', params: { userId: authStore.user?.uid || 'Guest' } })
-    })
-    .catch((error: Error) => {
-      console.error('Unexpected error during getting access as an anonymous user:', error.message)
-    })
+    router.push({ name: 'shadow-boxing', params: { userId: authStore.user?.uid || 'Guest' } })
+  } catch (error: unknown) {
+    console.error('Unexpected error during getting access as an anonymous user:', error)
+    return
+  }
 }
 </script>
