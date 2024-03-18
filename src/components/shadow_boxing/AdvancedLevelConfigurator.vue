@@ -32,7 +32,12 @@
               </div>
             </template>
             <template v-else>
-              <plus-minus-button @click="updateRoundsAmount(index, true)">&#43;</plus-minus-button>
+              <button
+                @click="updateRoundsAmount(index, true)"
+                class="md:w-1/4 flex-1 text-2xl text-custom-black py-1 hover:bg-custom-grey hover:bg-opacity-20 active:text-custom-white active:bg-custom-orange duration-100 flex justify-center items-center"
+              >
+                &#43;
+              </button>
               <div
                 class="md:w-1/4 justify-center items-center font-bold flex-1 flex"
                 aria-live="polite"
@@ -40,7 +45,12 @@
               >
                 <span class="text-lg py-1">{{ section.roundsAmountValue }}</span>
               </div>
-              <plus-minus-button @click="updateRoundsAmount(index, false)">&#45;</plus-minus-button>
+              <button
+                @click="updateRoundsAmount(index, false)"
+                class="md:w-1/4 flex-1 text-2xl text-custom-black py-1 hover:bg-custom-grey hover:bg-opacity-20 active:text-custom-white active:bg-custom-orange duration-100 flex justify-center items-center"
+              >
+                &#45;
+              </button>
             </template>
           </div>
         </div>
@@ -67,7 +77,6 @@
 import { ref } from 'vue'
 
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
-import PlusMinusButton from './helpers/PlusMinusButton.vue'
 
 interface AdvancedFormSection {
   title: string
