@@ -89,35 +89,27 @@ const formSection = ref<loginFormSection[]>([
 // signin user and redirect him to 'shadow-boxing' route
 const isLoading = ref<boolean>(false)
 
-const signingIn = () => {
+const signingIn = async (): Promise<void> => {
   const userEmail = formSection.value.find((section) => section.title === 'email')?.value
   const userPassword = formSection.value.find((section) => section.title === 'password')?.value
 
-  if (!userEmail || !userPassword) {
-    return
-  } else {
+  if (userEmail && userPassword) {
     // runs loading spinner
     isLoading.value = true
     // sign in via pinia store / firebase
-    authStore
-      .signInUser(userEmail, userPassword)
-      .then(() => {
-        // if is success move to shadow boxing route
-        if (authStore.user) {
-          router.push({ name: 'shadow-boxing', params: { userId: authStore.user?.uid } })
-        } else {
-          // possible error managed by pinia store
-          return
-        }
-      })
-      .catch((error) => {
-        console.error('login error:', error.message)
-      })
-      .finally(() => {
-        // clear inputs, button set to default
-        isLoading.value = false
-        formSection.value.forEach((section) => (section.value = null))
-      })
+    try {
+      await authStore.signInUser(userEmail, userPassword)
+      // if is success move to shadow boxing route
+      if (authStore.user) {
+        router.push({ name: 'shadow-boxing', params: { userId: authStore.user?.uid } })
+      }
+    } catch (error: unknown) {
+      console.error('login error:', error)
+    } finally {
+      // clear inputs, button set to default
+      isLoading.value = false
+      formSection.value.forEach((section) => (section.value = null))
+    }
   }
 }
 
