@@ -24,6 +24,14 @@ const router = createRouter({
       meta: { requiresAuth: true },
       props: true
     },
+    // basic training display
+    {
+      path: '/profile/:userId/shadow-boxing/basic',
+      name: 'basic',
+      component: () => import('@/views/BasicTrainingDisplay.vue'),
+      meta: { requiresAuth: true },
+      props: true
+    },
 
     // sign up
     {
@@ -87,8 +95,12 @@ function getCurrentUser() {
 }
 
 // protects routes from non-users
-router.beforeEach(async (to) => {
-  if (to.meta.requiresAuth && !(await getCurrentUser())) return 'login'
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth && !(await getCurrentUser())) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
 })
 
 export default router
