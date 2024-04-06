@@ -114,7 +114,7 @@ const sessionIsRunning = ref<boolean>(false)
 const sessionIsFinished = ref<boolean>(false)
 const randomPunchIndex = ref<number | null>(null)
 const currentPunch = ref<string>('')
-const intervalId = ref<any>(null)
+let intervalId: number | undefined
 const sessionPunchesArray = ref<string[]>([])
 
 import { useBasicTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
@@ -155,7 +155,7 @@ const handlePunches = () => {
 }
 
 const resetSessionDisplay = () => {
-  clearInterval(intervalId.value)
+  clearInterval(intervalId)
   sessionIsRunning.value = false
   randomPunchIndex.value = null
   currentPunch.value = ''
@@ -172,8 +172,8 @@ const handleSession = (): void => {
     return
   } else {
     handlePunches()
-    clearInterval(intervalId.value)
-    intervalId.value = setInterval(handleSession, punchesDelay.value * 1000)
+    clearInterval(intervalId)
+    intervalId = setInterval(handleSession, punchesDelay.value * 1000)
   }
 }
 
@@ -199,8 +199,8 @@ const toggleTimer = (): void => {
   if (isPaused.value === false) {
     handleSession()
   } else {
-    clearInterval(intervalId.value)
-    intervalId.value = null
+    clearInterval(intervalId)
+    intervalId = undefined
   }
 }
 
