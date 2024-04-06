@@ -115,7 +115,7 @@ import LevelSelector from '@/components/shadow_boxing/LevelSelector.vue'
 import BasicLevelConfigurator from '@/components/shadow_boxing/BasicLevelConfigurator.vue'
 import AdvancedLeveleConfigurator from '@/components/shadow_boxing/AdvancedLevelConfigurator.vue'
 
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 // clicked button indicators - helps to handle displayed configurator and dynamic classes (change color on @click)
 const basicSelected = ref<boolean>(false)
@@ -124,5 +124,11 @@ const advancedSelected = ref<boolean>(false)
 // displayed configurator handler
 const switchingConfigurator = computed(() => {
   return basicSelected.value === true ? BasicLevelConfigurator : AdvancedLeveleConfigurator
+})
+
+import { useTrainingStateStore } from '@/stores/TrainingStore'
+const trainingState = useTrainingStateStore()
+onMounted(() => {
+  trainingState.countdownFinished = false
 })
 </script>
