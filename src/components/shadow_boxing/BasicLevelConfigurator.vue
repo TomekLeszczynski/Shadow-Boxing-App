@@ -40,7 +40,7 @@
         </p>
         <!-- START BUTTON -->
         <button
-          @click="sendDataToStore"
+          @click="sendBasicSessionSetupToStore"
           class="bg-red-500 text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
           aria-label="Start session"
         >
@@ -68,9 +68,9 @@ const formSections = ref<BasicFormSection[]>([
     title: 'Set punches amount',
     inputType: 'radio',
     name: 'punches',
-    selectedOption: '5',
+    selectedOption: '50',
     options: [
-      { value: '5', label: '5' },
+      { value: '50', label: '50' },
       { value: '100', label: '100' },
       { value: '250', label: '250' }
     ]
@@ -115,7 +115,7 @@ import { useRouter } from 'vue-router'
 const basicTrainingStore = useBasicTrainingStore()
 const router = useRouter()
 
-const sendDataToStore = () => {
+const sendBasicSessionSetupToStore = () => {
   const data = {
     punches: Number(grabSelectedOptions('punches')),
     intensity: Number(grabSelectedOptions('intensity')),
