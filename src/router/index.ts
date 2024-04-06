@@ -32,6 +32,14 @@ const router = createRouter({
       meta: { requiresAuth: true },
       props: true
     },
+    // advanced training display
+    {
+      path: '/profile/:userId/shadow-boxing/advanced',
+      name: 'advanced',
+      component: () => import('@/views/AdvancedTrainingDisplay.vue'),
+      meta: { requiresAuth: true },
+      props: true
+    },
 
     // sign up
     {
