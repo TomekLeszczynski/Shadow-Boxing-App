@@ -59,7 +59,8 @@
       <!-- START BUTTON & ADDITIONAL INFO SECTION -->
       <div class="flex flex-col lg:items-end items-center">
         <p class="mb-3 text-sm md:text-base">
-          After pressing Start, you'll have 10 seconds to prepare before the workout begins.
+          Each round lasts for 3 minutes followed by a 1-minute rest period. After pressing Start,
+          you'll have 10 seconds to prepare before the workout begins.
         </p>
         <!-- START BUTTON -->
         <button
@@ -91,7 +92,7 @@ interface AdvancedFormSection {
 
 const formSection = ref<AdvancedFormSection[]>([
   {
-    title: 'Set rounds amount [maximum 12]',
+    title: 'Set rounds amount',
     name: 'rounds',
     plusMinus: true,
     roundsAmountValue: 1
