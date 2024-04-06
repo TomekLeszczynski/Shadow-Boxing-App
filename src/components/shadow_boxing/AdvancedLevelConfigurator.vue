@@ -63,6 +63,7 @@
         </p>
         <!-- START BUTTON -->
         <button
+          @click="sendAdvSessionSetupToStore"
           class="bg-custom-orange-light text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
           aria-label="Start session"
         >
@@ -81,7 +82,7 @@ import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 interface AdvancedFormSection {
   title: string
   inputType?: string
-  name?: string
+  name: string
   plusMinus: boolean // relate to rounds amount form section - v-for renders proper template
   roundsAmountValue?: number
   selectedOption?: string
@@ -91,6 +92,7 @@ interface AdvancedFormSection {
 const formSection = ref<AdvancedFormSection[]>([
   {
     title: 'Set rounds amount [maximum 12]',
+    name: 'rounds',
     plusMinus: true,
     roundsAmountValue: 1
   },
@@ -99,10 +101,10 @@ const formSection = ref<AdvancedFormSection[]>([
     inputType: 'radio',
     name: 'intensity',
     plusMinus: false,
-    selectedOption: '3',
+    selectedOption: '6',
     options: [
-      { value: '3', label: 'Low', id: 'LowInt' },
-      { value: '6', label: 'Hi', id: 'HiInt' }
+      { value: '6', label: 'Low', id: 'LowIntensity' },
+      { value: '3', label: 'Hi', id: 'HiIntensity' }
     ]
   },
   {
@@ -130,5 +132,35 @@ const updateRoundsAmount = (index: number, increment: boolean): void => {
       section.roundsAmountValue--
     }
   }
+}
+
+const grabSelectedAdvancedOptions = (name: string) => {
+  if (name) {
+    const section = formSection.value.find((section) => section.name === name)
+    if (section) {
+      if (section.name === 'rounds') {
+        return section.roundsAmountValue
+      } else {
+        return section.selectedOption
+      }
+    }
+  }
+  return ''
+}
+
+// send data to pinia store and change route
+import { useAdvTrainigStore } from '@/stores/TrainingStore'
+import { useRouter } from 'vue-router'
+const advTrainigStore = useAdvTrainigStore()
+const router = useRouter()
+const sendAdvSessionSetupToStore = () => {
+  const data = {
+    rounds: Number(grabSelectedAdvancedOptions('rounds')),
+    complexity: Number(grabSelectedAdvancedOptions('complexity')),
+    intensity: Number(grabSelectedAdvancedOptions('intensity'))
+  }
+  console.log(data)
+  advTrainigStore.setTrainingData(data)
+  router.push({ name: 'advanced' })
 }
 </script>
