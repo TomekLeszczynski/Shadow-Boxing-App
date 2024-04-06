@@ -40,7 +40,7 @@
         </p>
         <!-- START BUTTON -->
         <button
-          @click="isClockRunning = true"
+          @click="sendDataToStore"
           class="bg-red-500 text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
           aria-label="Start session"
         >
@@ -48,22 +48,12 @@
         </button>
       </div>
     </form>
-
-    <countdown-clock v-if="isClockRunning" @countdown-finished="switchViews" />
-    <basic-training-display
-      v-if="isTrainingRunning"
-      :punches="Number(grabSelectedOptions('punches'))"
-      :intensity="Number(grabSelectedOptions('intensity'))"
-      :display-mode="grabSelectedOptions('display_mode')"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
-import BasicTrainingDisplay from './BasicTrainingDisplay.vue'
-import CountdownClock from './CountdownClock.vue'
 
 interface BasicFormSection {
   title: string
@@ -78,9 +68,9 @@ const formSections = ref<BasicFormSection[]>([
     title: 'Set punches amount',
     inputType: 'radio',
     name: 'punches',
-    selectedOption: '50',
+    selectedOption: '5',
     options: [
-      { value: '50', label: '50' },
+      { value: '5', label: '5' },
       { value: '100', label: '100' },
       { value: '250', label: '250' }
     ]
@@ -108,13 +98,7 @@ const formSections = ref<BasicFormSection[]>([
   }
 ])
 
-const isClockRunning = ref<boolean>(false)
-const isTrainingRunning = ref<boolean>(false)
-const switchViews = () => {
-  isClockRunning.value = false
-  isTrainingRunning.value = true
-}
-
+// get data from configurator
 const grabSelectedOptions = (name: string): string => {
   if (name) {
     const section = formSections.value.find((section) => section.name === name)
@@ -123,5 +107,21 @@ const grabSelectedOptions = (name: string): string => {
     }
   }
   return ''
+}
+
+// send data to pinia store and change route
+import { useBasicTrainingStore } from '@/stores/TrainingStore'
+import { useRouter } from 'vue-router'
+const basicTrainingStore = useBasicTrainingStore()
+const router = useRouter()
+
+const sendDataToStore = () => {
+  const data = {
+    punches: Number(grabSelectedOptions('punches')),
+    intensity: Number(grabSelectedOptions('intensity')),
+    displayMode: grabSelectedOptions('display_mode')
+  }
+  basicTrainingStore.setTrainingData(data)
+  router.push({ name: 'basic' })
 }
 </script>
