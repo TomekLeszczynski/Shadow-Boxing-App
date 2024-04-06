@@ -61,9 +61,6 @@ import { useAuthStore } from '@/stores/AuthentificationStore'
 import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
-const router = useRouter()
-const authStore = useAuthStore()
-
 interface loginFormSection {
   title: string
   placeholder: string
@@ -88,10 +85,11 @@ const formSection = ref<loginFormSection[]>([
 
 // signin user and redirect him to 'shadow-boxing' route
 const isLoading = ref<boolean>(false)
-
+const authStore = useAuthStore()
 const signingIn = async (): Promise<void> => {
   const userEmail = formSection.value.find((section) => section.title === 'email')?.value
   const userPassword = formSection.value.find((section) => section.title === 'password')?.value
+  const router = useRouter()
 
   if (userEmail && userPassword) {
     // runs loading spinner
