@@ -21,8 +21,11 @@ import { ref, watch, onUnmounted } from 'vue'
 import CountdownClock from '@/components/shadow_boxing/CountdownClock.vue'
 import { useAdvTrainigStore, useTrainingStateStore } from '@/stores/TrainingStore'
 const advTrainigStore = useAdvTrainigStore()
-const minutes = ref<number>(3)
-const seconds = ref<number>(0)
+
+import { playFinishSound } from '@/components/shadow_boxing/helpers/playFinishSound'
+import finishSound from '@/assets/audio/boxing-bell-signal-finish.mp3'
+const minutes = ref<number>(0)
+const seconds = ref<number>(15)
 const rounds = ref<number>(1)
 const rests = ref<number>(rounds.value - 1)
 let roundIntervalId: number | undefined
@@ -36,6 +39,7 @@ const resetTimerValues = (min: number, sec: number) => {
 }
 
 const startRoundInterval = () => {
+  playFinishSound(finishSound)
   roundIntervalId = setInterval(() => {
     if (seconds.value > 0) {
       seconds.value--
@@ -47,6 +51,7 @@ const startRoundInterval = () => {
       seconds.value--
       return
     }
+    playFinishSound(finishSound)
     clearInterval(roundIntervalId)
     if (rests.value > 0) {
       trainingStatus.value = 'rest'
@@ -56,17 +61,18 @@ const startRoundInterval = () => {
   }, 1000)
 }
 const startRestInterval = () => {
-  resetTimerValues(1, 0)
+  resetTimerValues(0, 5)
   restIntervalId = setInterval(() => {
     if (seconds.value > 0) {
       seconds.value--
       return
     }
+
     clearInterval(restIntervalId)
     rounds.value--
     rests.value--
     trainingStatus.value = 'work'
-    resetTimerValues(3, 0)
+    resetTimerValues(0, 15)
   }, 1000)
 }
 
