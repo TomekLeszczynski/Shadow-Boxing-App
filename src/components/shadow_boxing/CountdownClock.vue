@@ -5,35 +5,35 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import clockSound from '@/assets/audio/clock_sound.wav'
 import { useTrainingStateStore } from '@/stores/TrainingStore'
+import { playClockSound } from './helpers/playSounds'
 
 const clockTimeSpan = ref<number>(10)
-const clockIntervalId = ref<any>(null)
-const audio = new Audio(clockSound)
+let clockIntervalId: NodeJS.Timeout | undefined = undefined
 
 const trainingState = useTrainingStateStore()
 const handleClock = (): void => {
   if (clockTimeSpan.value > 0) {
-    audio.play()
+    playClockSound()
     clockTimeSpan.value--
+    return
   }
-  if (clockTimeSpan.value === 0 && clockIntervalId.value) {
-    clearInterval(clockIntervalId.value)
-    audio.pause()
+  if (clockTimeSpan.value === 0 && clockIntervalId) {
+    clearInterval(clockIntervalId)
     trainingState.countdownFinished = true
+    return
   }
 }
 
 const startCountingDown = (): void => {
-  audio.play()
-  clockIntervalId.value = setInterval(handleClock, 1000)
+  playClockSound()
+  clockIntervalId = setInterval(handleClock, 1000)
 }
 
 onMounted(() => {
   startCountingDown()
 })
 onBeforeUnmount(() => {
-  clearInterval(clockIntervalId.value)
+  clearInterval(clockIntervalId)
 })
 </script>
