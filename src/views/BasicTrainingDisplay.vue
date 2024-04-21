@@ -1,56 +1,39 @@
 <template>
-  <div class="absolute bg-custom-black inset-0 text-custom-white overflow-hidden">
-    <!-- COUNTING DOWN -->
-    <div v-if="!trainingState.countdownFinished" class="h-full grid grid-rows-12 relative">
-      <div
-        class="row-start-3 row-span-6 flex justify-center items-center font-semibold leading-none"
-        aria-live="assertive"
+  <training-display-layout>
+    <template #additional-info>
+      <span
+        v-if="sessionIsInProgress"
+        class="text-4xl capitalize md:text-5xl"
+        aria-label="Current punch name"
+        >{{ currentPunch }}</span
       >
-        <countdown-clock />
-      </div>
-    </div>
-    <!-- TRAINING SESSION -->
-    <div v-else class="h-full grid grid-rows-12 relative">
-      <!-- CURRENT PUNCH NAME -->
-      <div class="row-start-2 row-span-1 text-center">
-        <span
-          v-if="sessionIsRunning && !isPaused"
-          class="text-4xl capitalize md:text-5xl"
-          aria-label="Current punch name"
-          >{{ currentPunch }}</span
-        >
-      </div>
-      <!-- PUNCH NUMER / ICON DISPLAY -->
-      <div
-        class="row-start-3 row-span-6 flex justify-center items-center font-semibold leading-none"
-        aria-live="assertive"
+    </template>
+    <template #main-info>
+      <span
+        v-if="basicTrainingStore.displayMode === 'digits' && sessionIsInProgress"
+        class="text-[36rem]"
+        aria-label="Punch number"
+        >{{ randomPunchIndex !== null ? randomPunchIndex + 1 : '' }}</span
       >
-        <!-- PUNCH NUMBER -->
-        <span
-          v-if="basicTrainingStore.displayMode === 'digits' && !isPaused"
-          class="text-[36rem]"
-          aria-label="Punch number"
-          >{{ randomPunchIndex !== null ? randomPunchIndex + 1 : '' }}</span
-        >
-        <!-- PUNCH ICON -->
-        <img
-          v-if="basicTrainingStore.displayMode === 'figures' && !isPaused && !sessionIsFinished"
-          :src="getCurrentPunchImage(currentPunch)"
-          alt="Current punch icon"
-          class="object-contain h-full"
-          aria-label="Currentunch icon"
-        />
-        <!-- SESSION STATUS INFO DISPLAY -->
-        <span v-if="isPaused" class="text-[12rem] text-custom-orange-dark">Paused</span>
-
-        <div v-if="sessionIsFinished" class="text-[12rem]">
-          <p>Well</p>
-          <p>done!</p>
-        </div>
+      <!-- PUNCH ICON -->
+      <img
+        v-if="basicTrainingStore.displayMode === 'figures' && sessionIsInProgress"
+        :src="getCurrentPunchImage(currentPunch)"
+        alt="Current punch icon"
+        class="object-contain h-full"
+        aria-label="Currentunch icon"
+      />
+    </template>
+    <template #training-status-info>
+      <span v-if="sessionIsPaused" class="text-[12rem] text-custom-white">Paused</span>
+      <div v-if="sessionIsFinished" class="text-[12rem]">
+        <p>Well</p>
+        <p>done!</p>
       </div>
-      <!-- SESSION DATA DISPLAY -->
+    </template>
+    <template #session-data>
       <div
-        v-if="sessionIsRunning && !isPaused"
+        v-if="sessionIsInProgress"
         class="row-start-9 row-span-1 text-center py-5 text-4xl"
         aria-live="polite"
       >
@@ -61,84 +44,33 @@
           <span>{{ basicTrainingStore.punches }}</span>
         </div>
       </div>
-      <!-- BUTTONS SECTION -->
-      <div class="row-start-10 z-30 row-span-2 grid-cols-3 grid">
-        <div class="col-start-2 col-span-1">
-          <div class="grid grid-rows-2 h-full gap-6" v-if="trainingState.countdownFinished">
-            <button
-              v-if="!sessionIsFinished"
-              class="row-start-1 row-span-1 py-4 w-full group tracking-wide"
-              :class="isPaused ? 'bg-custom-orange-dark' : 'bg-red-500'"
-              @click="toggleTimer()"
-              aria-live="assertive"
-            >
-              <button-label
-                :labelText="isPaused === false ? 'Pause Training' : 'Resume Training'"
-              />
-            </button>
-            <button
-              v-if="isPaused"
-              @click="quitSession"
-              class="bg-red-500 row-start-2 row-span-1 py-4 w-full group tracking-wide"
-              aria-live="assertive"
-            >
-              <button-label labelText="Quit Training" />
-            </button>
-            <button
-              @click="saveAndCloseSession"
-              v-if="sessionIsFinished"
-              class="row-start-1 row-span-1 py-4 w-full group tracking-wide bg-custom-orange-dark"
-            >
-              <button-label labelText="Save & Close" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </template>
+    <template #buttons-section>
+      <pause-resume-button :on-click-handler="toggleTimer" :status="basicTrainingStore.status" />
+      <quit-training-button :status="basicTrainingStore.status" />
+      <save-close-button :save-session="saveAndCloseSession" />
+    </template>
+  </training-display-layout>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onBeforeUnmount } from 'vue'
-
-import ButtonLabel from '@/components/shared/ButtonLabel.vue'
-import CountdownClock from '@/components/shadow_boxing/CountdownClock.vue'
-
-// audio handling
+import { ref, watch, computed, onUnmounted } from 'vue'
+import TrainingDisplayLayout from '@/components/shadow_boxing/TrainingDisplayLayout.vue'
+import PauseResumeButton from '@/components/shadow_boxing/PauseResumeButton.vue'
+import QuitTrainingButton from '@/components/shadow_boxing/QuitTrainingButton.vue'
+import SaveCloseButton from '@/components/shadow_boxing/Save&CloseButton.vue'
 import { playCurrentPunchSound } from '@/components/shadow_boxing/helpers/basicAudioPunchesHandler'
-
-// punch icons handling
 import { getCurrentPunchImage } from '@/components/shadow_boxing/helpers/punchIconsHandler'
+import { useBasicTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
+import { playFinishSound, playStartSound } from '@/components/shadow_boxing/helpers/playSounds'
+import { nextCommandDelay } from '@/components/shadow_boxing/helpers/nextCommandDelay'
 
-const sessionIsRunning = ref<boolean>(false)
-const sessionIsFinished = ref<boolean>(false)
 const randomPunchIndex = ref<number | null>(null)
 const currentPunch = ref<string>('')
-let intervalId: number | undefined
+let punchesIntervalId: NodeJS.Timeout | undefined
 const sessionPunchesArray = ref<string[]>([])
-
-import { useBasicTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
 const basicTrainingStore = useBasicTrainingStore()
 const trainingState = useTrainingStateStore()
-
-watch(
-  () => trainingState.countdownFinished,
-  (newValue) => {
-    if (newValue) {
-      handleSession()
-    }
-  }
-)
-
-const punchesDelay = computed(() => {
-  const intensity = basicTrainingStore.intensity
-  return Math.floor(Math.random() * Number(intensity)) + 1
-})
-
-const sessionArrayFilled = computed(() => {
-  return sessionPunchesArray.value.length === basicTrainingStore.punches
-})
-
 const punchesArray: string[] = [
   'jab',
   'cross',
@@ -147,64 +79,79 @@ const punchesArray: string[] = [
   'lead uppercut',
   'rear uppercut'
 ]
+
+const sessionArrayFilled = computed(() => {
+  return sessionPunchesArray.value.length === basicTrainingStore.punches
+})
+const sessionIsInProgress = computed(() => {
+  return basicTrainingStore.status == 'work'
+})
+const sessionIsPaused = computed(() => {
+  return basicTrainingStore.status == 'paused'
+})
+const sessionIsFinished = computed(() => {
+  return basicTrainingStore.status == 'done'
+})
+
+const toggleTimer = (): void => {
+  basicTrainingStore.toggleStatus()
+  if (sessionIsInProgress.value) {
+    handleSession()
+  } else {
+    clearInterval(punchesIntervalId)
+  }
+}
+
+watch(
+  () => trainingState.countdownFinished,
+  (newValue) => {
+    if (newValue) {
+      playStartSound()
+      handleSession()
+    }
+  }
+)
+
 const handlePunches = () => {
   randomPunchIndex.value = Math.floor(Math.random() * punchesArray.length)
   currentPunch.value = punchesArray[randomPunchIndex.value]
   sessionPunchesArray.value.push(currentPunch.value)
   playCurrentPunchSound(currentPunch.value)
 }
-
-const resetSessionDisplay = () => {
-  clearInterval(intervalId)
-  sessionIsRunning.value = false
-  randomPunchIndex.value = null
-  currentPunch.value = ''
-}
-
-import finishSound from '@/assets/audio/boxing-bell-signal-finish.mp3'
-import { playFinishSound } from '@/components/shadow_boxing/helpers/playFinishSound'
 const handleSession = (): void => {
-  sessionIsRunning.value = true
+  const minDelay: number = 1
   if (sessionArrayFilled.value) {
-    sessionIsFinished.value = true
-    playFinishSound(finishSound)
+    basicTrainingStore.status = 'done'
+    playFinishSound()
     resetSessionDisplay()
     return
-  } else {
+  }
+  if (sessionIsInProgress.value) {
     handlePunches()
-    clearInterval(intervalId)
-    intervalId = setInterval(handleSession, punchesDelay.value * 1000)
-  }
-}
-
-import { useRouter } from 'vue-router'
-const router = useRouter()
-const changeRouteToConfigurator = () => {
-  router.push({ name: 'shadow-boxing' })
-}
-const saveAndCloseSession = () => {
-  // here save session to firebase
-  console.log('session end, saving')
-  changeRouteToConfigurator()
-}
-const quitSession = () => {
-  resetSessionDisplay()
-  changeRouteToConfigurator()
-}
-
-// pause / resume timer toggler
-const isPaused = ref<boolean>(false)
-const toggleTimer = (): void => {
-  isPaused.value = !isPaused.value
-  if (isPaused.value === false) {
-    handleSession()
+    clearInterval(punchesIntervalId)
+    punchesIntervalId = setInterval(
+      handleSession,
+      nextCommandDelay(minDelay, basicTrainingStore.intensity) * 1000
+    )
   } else {
-    clearInterval(intervalId)
-    intervalId = undefined
+    basicTrainingStore.status = 'work'
+    handleSession()
   }
 }
+const resetSessionDisplay = () => {
+  clearInterval(punchesIntervalId)
+  randomPunchIndex.value = null
+  currentPunch.value = ''
+  basicTrainingStore.status = null
+}
 
-onBeforeUnmount(() => {
+const saveAndCloseSession = () => {
+  // SAVE TO FIREBASE FUNCTION
+  console.log('Session end! Saving')
+}
+
+onUnmounted(() => {
   resetSessionDisplay()
+  trainingState.$reset()
 })
 </script>
