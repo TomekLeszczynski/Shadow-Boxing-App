@@ -1,9 +1,9 @@
-import jabAudio from '@/assets/audio/jab.wav'
-import crossAudio from '@/assets/audio/cross.wav'
-import leadHookAudio from '@/assets/audio/lead hook.wav'
-import rearHookAudio from '@/assets/audio/rear hook.wav'
-import leadUppercutAudio from '@/assets/audio/lead uppercut.wav'
-import rearUppercutAudio from '@/assets/audio/rear uppercut.wav'
+import jabAudio from '@/assets/audio/jab.mp3'
+import crossAudio from '@/assets/audio/cross.mp3'
+import leadHookAudio from '@/assets/audio/lead hook.mp3'
+import rearHookAudio from '@/assets/audio/rear hook.mp3'
+import leadUppercutAudio from '@/assets/audio/lead uppercut.mp3'
+import rearUppercutAudio from '@/assets/audio/rear uppercut.mp3'
 
 const audioMap: Record<string, string> = {
   jab: jabAudio,
