@@ -1,7 +1,4 @@
-// global settings for training sessions
-
 import { defineStore } from 'pinia'
-
 interface TrainingStateInt {
   countdownFinished: boolean
 }
@@ -16,16 +13,18 @@ export const useTrainingStateStore = defineStore('TrainingState', {
 //  basic level training
 
 interface BasicStateInt {
-  punches: number | null
-  intensity: number | null
-  displayMode: string | null
+  punches: number
+  intensity: number
+  displayMode: string
+  status: string | null
 }
 export const useBasicTrainingStore = defineStore('BasicTrainingStore', {
   state: (): BasicStateInt => {
     return {
-      punches: null,
-      intensity: null,
-      displayMode: null
+      punches: 0,
+      intensity: 0,
+      displayMode: 'figures',
+      status: null
     }
   },
   actions: {
@@ -33,6 +32,9 @@ export const useBasicTrainingStore = defineStore('BasicTrainingStore', {
       this.punches = data.punches
       this.intensity = data.intensity
       this.displayMode = data.displayMode
+    },
+    toggleStatus(): void {
+      this.status == 'work' ? (this.status = 'paused') : (this.status = 'work')
     }
   }
 })
@@ -43,6 +45,7 @@ interface AdvStateInt {
   rounds: number
   complexity: number
   intensity: number
+  status: string | null
 }
 
 export const useAdvTrainigStore = defineStore('AdvTrainingStore', {
@@ -50,7 +53,8 @@ export const useAdvTrainigStore = defineStore('AdvTrainingStore', {
     return {
       rounds: 1,
       complexity: 0,
-      intensity: 6
+      intensity: 6,
+      status: null
     }
   },
   actions: {
@@ -58,6 +62,9 @@ export const useAdvTrainigStore = defineStore('AdvTrainingStore', {
       this.rounds = data.rounds
       this.complexity = data.complexity
       this.intensity = data.intensity
+    },
+    toggleStatus(): void {
+      this.status == 'work' ? (this.status = 'paused') : (this.status = 'work')
     }
   }
 })
