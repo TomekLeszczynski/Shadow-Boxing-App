@@ -1,7 +1,11 @@
 <template>
-  <div class="border">
-    <Line v-if="chartData" :data="chartData" :options="chartOptions" />
-  </div>
+  <Line
+    v-if="chartData"
+    :data="chartData"
+    :options="chartOptions"
+    class="absolute inset-0 bg-custom-white p-4"
+    aria-label="Measurements Displayed In Chart Form"
+  />
 </template>
 <script setup lang="ts">
 // vue import
@@ -42,7 +46,7 @@ function setWeightlabel() {
 function setDatasets() {
   return [
     {
-      backgroundColor: '#ed762f',
+      backgroundColor: '#ec642b',
       fill: true,
       tension: 0.1,
       showLine: false,
@@ -71,13 +75,13 @@ const chartOptions = computed(() => {
         type: 'category',
         ticks: {
           autoskip: true,
-          color: '#E7E4DF',
+          color: '#141414',
           font: { size: 15 }
         },
         display: true
       },
       y: {
-        ticks: { color: '#E7E4DF' },
+        ticks: { color: '#141414' },
         display: true,
         beginAtZero: false,
         min: 0,
