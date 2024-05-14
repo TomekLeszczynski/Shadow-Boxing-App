@@ -16,7 +16,7 @@ interface BasicStateInt {
   punches: number
   intensity: number
   displayMode: string
-  status: string | null
+  status?: string | null
 }
 export const useBasicTrainingStore = defineStore('BasicTrainingStore', {
   state: (): BasicStateInt => {
