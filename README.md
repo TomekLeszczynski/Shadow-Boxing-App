@@ -145,9 +145,9 @@ Examples of my extensions:
 
 ### 'Utilizing the cloud platform for handling authentication and user data storage':
 
-High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification** and **Cloud Firestore** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification**. **Firebase Storage** and **Cloud Firestore** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
 
-```
+```AuthentificationStore.ts:
 actions: {
     // sign up anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
@@ -200,7 +200,7 @@ actions: {
 }
 ```
 
-Firebase helps differentiate the availability of functionality for logged in and anonymous users, for example rendering/not rendering nav items depending on user status.
+Firebase helps differentiate the availability of functionality for logged-in and anonymous users, for example rendering/not rendering nav items depending on user status.
 
 ```AuthentificationStore.ts:
     async checkUserAuthState() {
@@ -231,7 +231,55 @@ Created Users accessibility categories:
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
 - **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
 
-<!-- ADD ABOUT VUEALIDATE -->
+For "Create an account" form I used Vuelidate (https://vuelidate-next.netlify.app/) - lightweight model-based validation dedicated for Vue.js.
+Vuelidate comes with a set of validators which I set up in the code.
+Validators I used are responsible for matching values of password and password-confirmation property, email input control, required min. length:
+
+```SignUpForm.vue:
+
+// validation rules (due to Vuelidate docs)
+const validationRules = computed(() => {
+  return {
+    displayName: { required, alphaNum, minLength: minLength(2) },
+    email: { required, email },
+    password: {
+      password: {
+        required,
+        minLength: minLength(8)
+      },
+      confirm: { required, sameAs: sameAs(userData.password.password) }
+    }
+  }
+})
+
+```
+
+This validator also helps to generate error messages displayed to the user.$touch method and @blur event causing that error only shows up after user entered and left the input.
+
+```SignUpForm.vue:
+
+  // for email / with validation
+  {
+    title: 'email',
+    blur: () => v$.value.email.$touch(),
+    id: 'email',
+    value: userData.email,
+    type: 'email',
+    placeholder: 'rocky.balboa@mail.com',
+    error: () => v$.value.email.$error,
+    errorMessage: () => v$.value.email.$errors[0].$message
+  },
+
+```
+
+It also helps to avoid sending incorrect or empty form to Firebase:
+
+```SignUpForm.vue:
+
+  // check if no vuelidate errors or empty fields before sending request to firebase
+  if (!v$.value.$error || !v$.value.$invalid) return
+
+```
 
 ### 'Utilizing TypeScript':
 
@@ -297,8 +345,8 @@ const props = defineProps<WeightGraphProps>()
 ### 'Version control and tracking changes in the project':
 
 - I used Git for version control to organize the source code.
-- Repository link: ![Repository link](https://github.com/TomekLeszczynski/Shadow-Boxing-App). 
-- Since it's my personal project and there were no other persons involded, I decided to create only one branch. I didn't use any pull requests, but I reviewed changes locally using Source Control.
+- Repository link: https://github.com/TomekLeszczynski/Shadow-Boxing-App.
+- Since it's my personal project and there were no other persons involved, I decided to create only one branch. I didn't use any pull requests, but I reviewed changes locally using Source Control.
 - The repository was regularly updated with clear and descriptive commits.
 - Git Lens and built-in Source Control were used for the respository management.
 - The project includes a .gitignore file to ignore Firebase configuration data. Additionally, an .env.example file was included to indicate the configuration structure to other developers.
