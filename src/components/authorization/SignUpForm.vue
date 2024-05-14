@@ -44,7 +44,7 @@
         <!-- IS LOADING BUTTON LABEL -->
         <proceding-label v-if="inProgress" procedingLabel="Sending" />
         <!-- DEFAULT BUTTON LABEL -->
-        <button-label v-else labelText="Sign in" />
+        <button-label v-else labelText="Sign in" class="text-custom-black"/>
       </button>
     </div>
   </form>
@@ -169,13 +169,9 @@ const router = useRouter()
 const authStore = useAuthStore()
 const inProgress = ref<boolean>(false)
 
-// check if no vuelidate errors of input values
-const validateInputs = (): boolean => {
-  const inputsValid = !v$.value.$error || !v$.value.$invalid
-  return inputsValid
-}
 const registerUser = async (): Promise<void> => {
-  if (!validateInputs()) return
+  // check if no vuelidate errors or empty fields before sending request to firebase
+  if (!v$.value.$error || !v$.value.$invalid) return
 
   // run inProgress button lable
   inProgress.value = true
