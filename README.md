@@ -202,7 +202,21 @@ actions: {
 
 Firebase helps differentiate the availability of functionality for logged in and anonymous users, for example rendering/not rendering nav items depending on user status.
 
+```AuthentificationStore.ts:
+    async checkUserAuthState() {
+      onAuthStateChanged(firebaseAuth, (user) => {
+        if (user !== null && (user.emailVerified || user.isAnonymous)) {
+          this.user = user
+        } else {
+          this.user = null
+        }
+        this.authCompleted = true
+      })
+    },
+
 ```
+
+```ShadowBoxingLink.vue:
   <router-link
     v-if="authStore.user"
     :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
@@ -282,7 +296,12 @@ const props = defineProps<WeightGraphProps>()
 
 ### 'Version control and tracking changes in the project':
 
-<!-- TO UPDATE -->
+- I used Git for version control to organize the source code.
+- Repository link: ![Repository link](https://github.com/TomekLeszczynski/Shadow-Boxing-App). 
+- Since it's my personal project and there were no other persons involded, I decided to create only one branch. I didn't use any pull requests, but I reviewed changes locally using Source Control.
+- The repository was regularly updated with clear and descriptive commits.
+- Git Lens and built-in Source Control were used for the respository management.
+- The project includes a .gitignore file to ignore Firebase configuration data. Additionally, an .env.example file was included to indicate the configuration structure to other developers.
 
 ### 'Responsive Design':
 
