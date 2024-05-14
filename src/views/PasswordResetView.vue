@@ -40,7 +40,7 @@
         <button
           aria-label="Submit"
           @click="sendPasswordResetRequest"
-          class="bg-custom-orange-dark py-5 px-12 group tracking-wide animate-button-show-from-left w-full mt-12"
+          class="bg-custom-orange-dark py-5 px-12 group text-custom-black tracking-wide animate-button-show-from-left w-full mt-12"
         >
           <button-label labelText="Submit" />
         </button>
