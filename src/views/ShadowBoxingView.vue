@@ -1,9 +1,9 @@
 <template>
   <div class="grid grid-cols-1 gap-2 md:gap-3 p-4 relative overflow-hidden">
     <!-- MAIN COLUMN -->
-    <div class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-8 2xl:pt-28 pt-7">
+    <div class="grid grid-cols-full lg:grid-cols-2 gap-2 md:gap-8 2xl:pt-8 pt-7">
       <div
-        class="flex flex-col justify-between text-almost-white font-public-sans text-justify relative"
+        class="flex flex-col justify-between text-almost-white font-public-sans relative"
       >
         <!-- HEADING -->
         <h1
@@ -38,7 +38,7 @@
             <level-selector
               level="Basic"
               @click="(basicSelected = true) && (advancedSelected = false)"
-              class="hover:bg-red-500 active:bg-custom-white active:text-custom-black duration-200"
+              class="hover:bg-red-500 active:bg-custom-white active:text-custom-black duration-200 text-left"
               :class="{ 'bg-red-500': basicSelected, 'bg-none': advancedSelected }"
             >
               <!-- BASIC LEVEL DESCRIPTION / SLOT USED -->
@@ -63,7 +63,7 @@
             <level-selector
               level="Advanced"
               @click="(advancedSelected = true) && (basicSelected = false)"
-              class="hover:bg-custom-orange-light active:bg-custom-white active:text-custom-black duration-200"
+              class="hover:bg-custom-orange-light active:bg-custom-white active:text-custom-black duration-200 text-left"
               :class="{ 'bg-custom-orange-light': advancedSelected, 'bg-none': basicSelected }"
             >
               <!-- ADVANCED LEVEL DESCRIPTION / SLOT USED -->

@@ -26,7 +26,7 @@
                 />
                 <label
                   :for="option.id"
-                  class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-custom-orange-light peer-checked:font-bold peer-checked:text-custom-white hover:bg-custom-grey hover:bg-opacity-20"
+                  class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-custom-orange-light peer-checked:font-semibold peer-checked:text-custom-black hover:bg-custom-grey hover:bg-opacity-20"
                   >{{ option.label }}</label
                 >
               </div>
@@ -65,7 +65,7 @@
         <!-- START BUTTON -->
         <button
           @click="sendAdvSessionSetupToStore"
-          class="bg-custom-orange-light text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
+          class="bg-custom-orange-light text-custom-black py-4 2xl:w-1/2 w-full group tracking-wide"
           aria-label="Start session"
         >
           <button-label labelText="Start" />
@@ -160,7 +160,6 @@ const sendAdvSessionSetupToStore = () => {
     complexity: Number(grabSelectedAdvancedOptions('complexity')),
     intensity: Number(grabSelectedAdvancedOptions('intensity'))
   }
-  console.log(data)
   advTrainigStore.setTrainingData(data)
   router.push({ name: 'advanced' })
 }

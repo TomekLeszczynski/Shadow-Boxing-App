@@ -19,7 +19,7 @@
 
     <!-- ERROR DISPLAY -->
     <p
-      class="text-red-500 py-3 text-justify llg:mb-5 h-36"
+      class="text-red-500 py-3 text-left llg:mb-5 h-36"
       aria-label="error-message"
       aria-live="assertive"
       role="alert"
@@ -48,7 +48,7 @@
       <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
       <proceding-label v-if="isLoading" procedingLabel="Sending" />
       <!-- LOG IN LABEL FROM 'SHARED' -->
-      <button-label v-else labelText="Log in" />
+      <button-label v-else labelText="Log in" class="text-custom-black"/>
     </button>
   </form>
 </template>

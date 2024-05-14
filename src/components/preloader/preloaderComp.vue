@@ -12,11 +12,11 @@
         tabindex="0"
       />
       <!-- LOGO / HEADING -->
-      <div class="flex flex-col text-xl leading-none" aria-label="logo">
+      <p class="flex flex-col text-xl leading-none" aria-label="Shadow Boxing Workout Logotype">
         <span>Shadow</span>
         <span>Boxing</span>
         <span>Workout</span>
-      </div>
+      </p>
       <!-- QUOTES BOX -->
       <div>
         <!-- QUOTE -->

@@ -19,7 +19,7 @@
       <div class="h-full flex flex-col justify-between">
         <!-- APP DESCRIPTION -->
         <div
-          class="text-base sm:text-xl md:text-2xl xl:text-3xl lg:mb-12 text-justify animate-text-show-up"
+          class="text-base sm:text-xl md:text-2xl xl:text-3xl lg:mb-12 animate-text-show-up"
         >
           <p class="mb-3 indent-10">
             This app takes boxing training to a new level. With our app, you can practice 'shadow

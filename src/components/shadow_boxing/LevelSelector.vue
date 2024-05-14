@@ -1,14 +1,18 @@
 <template>
-  <button title="click to select" class="group cursor-pointer animate-button-show-from-left">
+  <button
+    title="click to select"
+    class="group cursor-pointer animate-button-show-from-left"
+    aria-label="Click to Select Level"
+  >
     <div class="p-4 h-full">
-      <p class="font-bold text-2xl md:text-4xl text-left relative md:px-5">
+      <h3 class="font-bold text-2xl md:text-4xl text-left relative md:px-5">
         {{ level }}
-      </p>
+      </h3>
       <div class="text-sm">
-        <div class="text-justify md:px-6 md:py-4">
-          <ul class="list-disc md:block hidden">
+        <div class="md:px-6 md:py-4">
+          <ol class="list-disc md:block hidden">
             <slot></slot>
-          </ul>
+          </ol>
         </div>
       </div>
     </div>
