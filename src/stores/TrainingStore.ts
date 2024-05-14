@@ -45,7 +45,7 @@ interface AdvStateInt {
   rounds: number
   complexity: number
   intensity: number
-  status: string | null
+  status?: string | null
 }
 
 export const useAdvTrainigStore = defineStore('AdvTrainingStore', {
