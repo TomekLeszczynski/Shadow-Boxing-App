@@ -1,19 +1,19 @@
 <template>
   <div class="animate-text-show-up">
-    <form @submit.prevent="populateWeights">
+    <form @submit.prevent="populateWeights" class="grid-cols-2 grid h-full md:w-1/2">
       <input
         v-model="weightInput"
         type="number"
         step="0.1"
-        placeholder="00.0"
-        class="text-custom-white text-xl bg-custom-white bg-opacity-20 p-5 text-center h-full appearance-none"
+        placeholder="00.0 kg/lbs"
+        class="text-custom-white bg-custom-white bg-opacity-20 text-center h-full appearance-none"
         aria-label="Type in New Measurement"
       />
       <button
-        class="bg-red-500 py-5 px-12 group tracking-wide"
+        class="bg-red-500 px-12 group tracking-wide"
         aria-label="Add & Save New Measurement"
       >
-        <button-label labelText="Add new measurement" />
+        <button-label labelText="Add new"/>
       </button>
     </form>
   </div>

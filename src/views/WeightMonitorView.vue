@@ -1,12 +1,12 @@
 <template>
-  <div class="grid grid-rows-12 p-4 w-full">
+  <div class="grid grid-rows-12 p-4 w-full max-h-svh gap-px">
     <!-- ADD NEW VALUE -->
-    <div class="row-start-2 row-end-3 grid justify-center">
+    <div class="row-start-2 row-end-3 grid justify-center grid-cols-1">
       <weight-input />
     </div>
     <!-- DETAILS BOXES -->
-    <div v-if="measurements.length > 0" class="grid row-start-3 row-end-7">
-      <div class="grid grid-cols-5 h-full divide-x-2 border-custom-black pt-9">
+    <div v-if="measurements.length > 2" class="grid row-start-3 row-end-7">
+      <div class="grid grid-rows-5 md:grid-rows-none md:grid-cols-5 h-full pt-9 gap-px">
         <stats-box
           title="Current weight:"
           :value="computedDetails.lastMeasure"
@@ -35,9 +35,15 @@
         />
       </div>
     </div>
+    <div
+      v-else
+      class="grid row-start-3 row-end-13 bg-custom-white bg-opacity-20 text-center justify-center items-center font-thin"
+    >
+      Add at least 2 measurements to see stats.
+    </div>
     <!-- CHART -->
     <div class="grid row-start-7 row-end-13 w-full relative border-t border-custom-black">
-      <weight-display v-if="measurements.length > 0" :measurements="measurements" />
+      <weight-display v-if="measurements.length > 2" :measurements="measurements" />
     </div>
   </div>
 </template>
@@ -47,7 +53,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 // component import
 import WeightInput from '@/components/weight_monitor/WeightInput.vue'
-import StatsBox from '@/components/weight_monitor/helpers/StatsBox.vue'
+import StatsBox from '@/components/weight_monitor/StatsBox.vue'
 import WeightDisplay from '@/components/weight_monitor/WeightDisplay.vue'
 
 // helpers import
