@@ -1,6 +1,6 @@
 <template>
   <button
-    @click.prevent="getAccessAsGuest"
+    @click.prevent="getAccessAsGuest(router)"
     aria-label="Try as Guest - Access all features without an account"
     class="bg-custom-orange-dark text-md md:text-lg font-semibold mt-5 py-4 md:py-5 md:px-6 flex items-center justify-center group tracking-wide w-full animate-button-show-from-left"
   >
@@ -11,11 +11,11 @@
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 // get access as an anonymous user, redirect user to Home page with Nav items accessible only for auth users
-import { useRouter } from 'vue-router'
+import { useRouter, type Router } from 'vue-router'
 import { useAuthStore } from '@/stores/AuthentificationStore'
-const getAccessAsGuest = async (): Promise<void> => {
-  const router = useRouter()
-  const authStore = useAuthStore()
+const router = useRouter()
+const authStore = useAuthStore()
+const getAccessAsGuest = async (router: Router): Promise<void> => {
   try {
     // run firebase function
     await authStore.getAccessAsAnAnonymous()
