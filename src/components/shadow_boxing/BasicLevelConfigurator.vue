@@ -35,8 +35,8 @@
 
       <!-- START BUTTON & ADDITIONAL INFO SECTION -->
       <div class="flex flex-col xl:items-end items-center">
-        <p class="mb-3 text-sm md:text-base">
-          After pressing Start, you'll have 10 seconds to prepare before the workout begins.
+        <p class="mb-3 text-sm md:text-base font-thin" aria-label="Training instructions">
+          After pressing Start, you'll have 10 seconds to prepare before the workout begins. Training contains audio commands.
         </p>
         <!-- START BUTTON -->
         <button

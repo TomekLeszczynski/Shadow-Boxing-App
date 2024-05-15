@@ -58,9 +58,9 @@
 
       <!-- START BUTTON & ADDITIONAL INFO SECTION -->
       <div class="flex flex-col lg:items-end items-center">
-        <p class="mb-3 text-sm md:text-base">
+        <p class="mb-3 text-sm md:text-base font-thin" aria-label="Training instructions">
           Each round lasts for 3 minutes followed by a 1-minute rest period. After pressing Start,
-          you'll have 10 seconds to prepare before the workout begins.
+          you'll have 10 seconds to prepare before the workout begins. Training contains audio commands.
         </p>
         <!-- START BUTTON -->
         <button
