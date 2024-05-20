@@ -6,7 +6,7 @@
         class="text-4xl capitalize md:text-5xl"
         aria-label="Training Phase"
       >
-        {{ advTrainigStore.status }}
+        {{ advTrainingStore.status }}
       </div>
     </template>
     <template #main-info>
@@ -27,11 +27,11 @@
     </template>
     <template #session-data>
       <span v-if="sessionIsInProgress">Round {{ currentRound }} of </span>
-      <span v-if="sessionIsInProgress">{{ advTrainigStore.rounds }}</span>
+      <span v-if="sessionIsInProgress">{{ advTrainingStore.rounds }}</span>
     </template>
     <template #buttons-section>
-      <pause-resume-button :on-click-handler="toggleTimer" :status="advTrainigStore.status" />
-      <quit-training-button :status="advTrainigStore.status" />
+      <pause-resume-button :on-click-handler="toggleTimer" :status="advTrainingStore.status" />
+      <quit-training-button :status="advTrainingStore.status" />
       <save-close-button :save-session="saveAndCloseSession" />
     </template>
   </training-display-layout>
@@ -49,7 +49,7 @@ import {
   playFinishSound,
   playSound
 } from '@/components/shadow_boxing/helpers/playSounds'
-import { useAdvTrainigStore, useTrainingStateStore } from '@/stores/TrainingStore'
+import { useAdvTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
 import {
   intervalId,
   handleInterval
@@ -61,7 +61,7 @@ import {
 } from '@/components/shadow_boxing/helpers/advancedAudioCombinationsHandler'
 import { nextCommandDelay } from '@/components/shadow_boxing/helpers/nextCommandDelay'
 
-const advTrainigStore = useAdvTrainigStore()
+const advTrainingStore = useAdvTrainingStore()
 const trainingState = useTrainingStateStore()
 const currentRound = ref<number>(0)
 
@@ -69,7 +69,7 @@ const minutes = ref<number>(0)
 const seconds = ref<number>(0)
 
 const toggleTimer = (): void => {
-  advTrainigStore.toggleStatus()
+  advTrainingStore.toggleStatus()
 }
 const saveAndCloseSession = () => {
   // SAVE TO FIREBASE FUNCTION
@@ -77,16 +77,16 @@ const saveAndCloseSession = () => {
 }
 
 const sessionCompleted = computed(() => {
-  return currentRound.value === advTrainigStore.rounds
+  return currentRound.value === advTrainingStore.rounds
 })
 const sessionIsInProgress = computed(() => {
-  return advTrainigStore.status == 'work'
+  return advTrainingStore.status == 'work'
 })
 const sessionIsPaused = computed(() => {
-  return advTrainigStore.status == 'paused'
+  return advTrainingStore.status == 'paused'
 })
 const sessionIsFinished = computed(() => {
-  return advTrainigStore.status == 'done'
+  return advTrainingStore.status == 'done'
 })
 // const isRestTime = computed(() => {
 //   return advTrainigStore.status == 'rest'
@@ -112,7 +112,7 @@ const handleWorkTimer = (): void => {
   handleInterval(minutes, seconds, switchToRest, playFinishSound)
 }
 const switchToWork = () => {
-  advTrainigStore.status = 'work'
+  advTrainingStore.status = 'work'
   currentRound.value++
 }
 const continueWorkAfterPaused = () => {
@@ -128,11 +128,11 @@ const handleRestTimer = (): void => {
     resetTimerValues(restDuration.minutes, restDuration.seconds)
     handleInterval(minutes, seconds, switchToWork)
   } else {
-    advTrainigStore.status = 'done'
+    advTrainingStore.status = 'done'
   }
 }
 const switchToRest = () => {
-  !sessionCompleted.value ? (advTrainigStore.status = 'rest') : (advTrainigStore.status = null)
+  !sessionCompleted.value ? (advTrainingStore.status = 'rest') : (advTrainingStore.status = null)
 }
 
 const clearAllIntervals = (): void => {
@@ -145,7 +145,7 @@ const startWorking = () => {
 }
 
 watch(
-  () => advTrainigStore.status,
+  () => advTrainingStore.status,
   (newValue, oldValue) => {
     if (newValue == 'work') {
       if (oldValue == 'paused') {
@@ -166,7 +166,7 @@ watch(
   (newValue) => {
     if (newValue) {
       currentRound.value = 1
-      advTrainigStore.status = 'work'
+      advTrainingStore.status = 'work'
     }
   }
 )
@@ -191,13 +191,13 @@ const getCombinationIndex = (URLsArray: string[]) => {
 }
 
 const handleAdvancedSession = (): void => {
-  if (advTrainigStore.status === 'work' && !tooLateForNextCombination.value) {
+  if (advTrainingStore.status === 'work' && !tooLateForNextCombination.value) {
     getCombinationIndex(combinationsArray)
     playSound(currentCombination)
     clearInterval(combinationsIntervalId)
     combinationsIntervalId = setInterval(
       handleAdvancedSession,
-      nextCommandDelay(nextCommandMinDelay, advTrainigStore.intensity) * 1000
+      nextCommandDelay(nextCommandMinDelay, advTrainingStore.intensity) * 1000
     )
   } else {
     clearInterval(combinationsIntervalId)
@@ -214,6 +214,6 @@ onMounted(async () => {
 
 onUnmounted(() => {
   clearAllIntervals()
-  advTrainigStore.$reset()
+  advTrainingStore.$reset()
 })
 </script>
