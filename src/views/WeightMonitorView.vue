@@ -1,11 +1,11 @@
 <template>
-  <div class="grid grid-rows-12 p-4 w-full max-h-svh gap-px">
+  <div class="grid grid-rows-12 p-4 grid-cols-1 w-full max-h-svh md:h-full gap-px">
     <!-- ADD NEW VALUE -->
-    <div class="row-start-2 row-end-3 grid justify-center grid-cols-1">
+    <div class="row-start-2 row-end-3 grid  grid-cols-1">
       <weight-input />
     </div>
     <!-- DETAILS BOXES -->
-    <div v-if="measurements.length > 2" class="grid row-start-3 row-end-7">
+    <div v-if="measurements.length > 1" class="grid row-start-3 row-end-7">
       <div class="grid grid-rows-5 md:grid-rows-none md:grid-cols-5 h-full pt-9 gap-px">
         <stats-box
           title="Current weight:"
@@ -35,15 +35,12 @@
         />
       </div>
     </div>
-    <div
-      v-else
-      class="grid row-start-3 row-end-13 bg-custom-white bg-opacity-20 text-center justify-center items-center font-thin"
-    >
-      Add at least 2 measurements to see stats.
+    <div v-else class="grid row-start-3 row-end-13 justify-center items-center text-xl">
+      {{ chartPlaceholder }}
     </div>
     <!-- CHART -->
-    <div class="grid row-start-7 row-end-13 w-full relative border-t border-custom-black">
-      <weight-display v-if="measurements.length > 2" :measurements="measurements" />
+    <div class="grid row-start-7 row-end-13 w-full relative">
+      <weight-display v-if="measurements.length > 1" :measurements="measurements" />
     </div>
   </div>
 </template>
@@ -99,6 +96,8 @@ const mapSnapshot = (snapshot: DocumentData[]): WeightData[] => {
 
 // modyfing measurements by imported math functions - get by details box
 const computedDetails = computed(() => getDetails(measurements.value))
+// info text for chart placeholder
+const chartPlaceholder = ref<string>('')
 
 // check if user is logged in and get data stored in firebase - according to firbase docs.
 const getMeasures = async (): Promise<void> => {
@@ -125,6 +124,7 @@ const getUser = async (): Promise<void> => {
 
 // get user data and then get his measurements stored in firebase
 onMounted(async () => {
+  chartPlaceholder.value = 'Loading...'
   try {
     await getUser()
     getMeasures()
