@@ -145,7 +145,9 @@ Examples of my extensions:
 
 ### 'Utilizing the cloud platform for handling authentication and user data storage':
 
-High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification**. **Firebase Storage** and **Cloud Firestore** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification**. **Firebase Storage** and **Firestore Database** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+
+#### Authentification
 
 ```AuthentificationStore.ts:
 actions: {
@@ -230,6 +232,89 @@ Created Users accessibility categories:
 - **Full Access:** For registered users, the ability to get and post weight measurements and training results, _make purchases, save favorite blogs, posts, or create content_(_to be implemented in further stages of project development_).
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
 - **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
+
+#### Firestore Database
+
+Saving & getting training sessions data or weight monitor measurements:
+
+```WeightInput.vue:
+// submit weight value to firebase user's data collection
+const populateWeights = async (): Promise<void> => {
+  const user = authStore.user
+  if (user && weightInput.value && weightInput.value > 0) {
+    try {
+      // according to firebase docs: function creates records in 'measurements' folder
+      const measurementsCollection = collection(db, 'users', user.uid, 'measurements')
+      // record keeps weight value & date of creation
+      await addDoc(measurementsCollection, { weight: weightInput.value, date: new Date() })
+    } catch (error) {
+      console.error('Error from WeightInput:', error)
+    }
+  }
+  weightInput.value = null
+}
+```
+
+```WeightMonitorView.vue:
+const getMeasures = async (): Promise<void> => {
+  if (authStore.user != null) {
+    const measurementsCollection = collection(db, 'users', authStore.user.uid, 'measurements')
+    q = query(measurementsCollection, orderBy('date'))
+    try {
+      const querySnapshot = await getDocs(q)
+      measurements.value = mapSnapshot(querySnapshot.docs)
+    } catch (error) {
+      console.error('getMeasures error: ' + error)
+    }
+  }
+}
+```
+
+```AdvancedTrainingDisplay.vue:
+// submit session details to firebase user's data collection
+const saveAndCloseSession = async (): Promise<void> => {
+  const user = authStore.user
+  if (user && advTrainingStore.status === 'done') {
+    try {
+      // according to firebase docs: function creates records in 'trainings' folder
+      const trainingCollection = collection(db, 'users', user.uid, 'trainings')
+      await addDoc(trainingCollection, {
+        training: 'advanced',
+        rounds: advTrainingStore.rounds,
+        complexity: advTrainingStore.complexity,
+        intensity: advTrainingStore.intensity,
+        // record keeps weight value & date of creation
+        date: new Date()
+      })
+    } catch (error) {
+      console.error('Saving Advanced Training Session Error:' + error)
+    }
+  }
+  console.log('Session end! Saving')
+}
+```
+
+#### Storage
+
+Getting audio-command files from firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on firebase storage.
+
+```advancedAudioCombinationsHandler.ts:
+const getAudioFiles = async (): Promise<void> => {
+  try {
+    const audioFiles = await listAll(folderRef)
+    for (const itemRef of audioFiles.items) {
+      try {
+        const url = await getDownloadURL(itemRef)
+        combinationsArray.push(url)
+      } catch (error) {
+        console.error('Error downloading advanced combinations audio files:' + error)
+      }
+    }
+  } catch (error: unknown) {
+    console.error('Error listing files:' + error)
+  }
+}
+```
 
 For "Create an account" form I used Vuelidate (https://vuelidate-next.netlify.app/) - lightweight model-based validation dedicated for Vue.js.
 Vuelidate comes with a set of validators which I set up in the code.
@@ -340,6 +425,7 @@ interface WeightGraphProps {
   measurements: WeightData[]
 }
 const props = defineProps<WeightGraphProps>()
+
 ```
 
 ### 'Version control and tracking changes in the project':
@@ -388,6 +474,8 @@ Responsiveness tested on web browsers as follows:
 <!-- TO UPDATE -->
 
 # Issues & Conclusions
+
+<!-- Remove sinced v-for loop is used -->
 
 #### V-model & V-for
 
