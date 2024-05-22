@@ -71,7 +71,7 @@ A simple platform for those training in boxing or other combat sports aimed at s
 ## Programming Goals And Assumptions:
 
 - **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
-- **Efficient Styling**;
+- [**Efficient Styling**](#Efficient-Styling);
 - **Utilizing the cloud platform for handling authentication and user data storage**;
 - **Utilizing TypeScript**;
 - **Version control and tracking changes in the project**;
@@ -97,7 +97,7 @@ Built with:
 
 # Results linked to set objectives.
 
-### [x] From Scratch to Deployment:
+### From Scratch to Deployment:
 
 The project was created using **Vue.js** and related libraries and tools such as:
 
@@ -107,7 +107,7 @@ The project was created using **Vue.js** and related libraries and tools such as
 
 It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
 
-### [x] Efficient Styling:
+### Efficient Styling:
 
 After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
 
