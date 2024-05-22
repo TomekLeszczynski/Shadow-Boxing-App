@@ -65,8 +65,8 @@ A simple platform for those training in boxing or other combat sports aimed at s
 
 - [x] The Core - **Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
 - [x] **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
-- [] **Blogs:** User blog section;
-- [] **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts.
+- [ ] **Blogs:** User blog section;
+- [ ] **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts.
 
 ## Programming Goals And Assumptions:
 
