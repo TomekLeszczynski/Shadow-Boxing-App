@@ -61,12 +61,12 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
 
 A simple platform for those training in boxing or other combat sports aimed at supporting users' training and sports development; building a community and as a source of knowledge and information about the world of boxing.
 
-## Main Elements And Features Included:
+## Main Elements And Features:
 
-- The Core - **Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
-- **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
-- **Blogs:** User blog section (_to be implemented in further stages of project development_);
-- **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts (_to be implemented in further stages of project development_).
+- [x] The Core - **Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
+- [x] **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
+- [] **Blogs:** User blog section;
+- [] **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts.
 
 ## Programming Goals And Assumptions:
 
@@ -97,7 +97,7 @@ Built with:
 
 # Results linked to set objectives.
 
-### 'From Scratch to Deployment':
+### [x] From Scratch to Deployment:
 
 The project was created using **Vue.js** and related libraries and tools such as:
 
@@ -107,7 +107,7 @@ The project was created using **Vue.js** and related libraries and tools such as
 
 It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
 
-### 'Efficient Styling':
+### [x] Efficient Styling:
 
 After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
 
@@ -143,7 +143,7 @@ Examples of my extensions:
       }
 ```
 
-### 'Utilizing the cloud platform for handling authentication and user data storage':
+### Utilizing the cloud platform for handling authentication and user data storage:
 
 High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification**. **Firebase Storage** and **Firestore Database** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
 
@@ -367,7 +367,7 @@ It also helps to avoid sending incorrect or empty form to Firebase:
 
 ```
 
-### 'Utilizing TypeScript':
+### Utilizing TypeScript:
 
 TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
 
@@ -429,7 +429,7 @@ const props = defineProps<WeightGraphProps>()
 
 ```
 
-### 'Version control and tracking changes in the project':
+### Version control and tracking changes in the project:
 
 - I used Git for version control to organize the source code.
 - Repository link: https://github.com/TomekLeszczynski/Shadow-Boxing-App.
@@ -438,7 +438,7 @@ const props = defineProps<WeightGraphProps>()
 - Git Lens and built-in Source Control were used for the respository management.
 - The project includes a .gitignore file to ignore Firebase configuration data. Additionally, an .env.example file was included to indicate the configuration structure to other developers.
 
-### 'Responsive Design':
+### Responsive Design:
 
 Responsive interfaces build with Tailwind CSS default breakpoints (https://tailwindcss.com/docs/responsive-design):
 ![Tailwind Css breakpoints table](./readme_graphics/tailwind_breakpoints.jpg)
@@ -460,7 +460,7 @@ Responsiveness tested on web browsers as follows:
 
 ![Responsiveness presented on different device screens](./readme_graphics/responsive_design.png)
 
-### 'Accessibility':
+### Accessibility:
 
 The project takes into account the guidelines for accessibility improvements (WCAG) and allows users with various disabilities to use the application. To improve the user experience, I created 'basic' mode for the shadow boxing training. It provides not only voice commands but also displays the current punch name and descriptive icon. Thanks to this, almost all users may experience benefit of the shadow boxing training.  
 Basic Training Screen:
@@ -497,11 +497,11 @@ Accessibility checking tools used:
 
 <!-- Opisać aria-hidden="true" czyli obrazek jako dekoracja -->
 
-### 'Unit Testing':
+### Unit Testing:
 
 <!-- TO UPDATE -->
 
-### 'Clean Code':
+### Clean Code:
 
 <!-- TO UPDATE -->
 
