@@ -107,6 +107,8 @@ The project was created using **Vue.js** and related libraries and tools such as
 
 It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
 
+<hr>
+
 ### Efficient Styling:
 
 After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
@@ -143,9 +145,20 @@ Examples of my extensions:
       }
 ```
 
+<hr>
+
 ### Utilizing the cloud platform for handling authentication and user data storage:
 
-High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses [**Authentification**](#Authentification). [**Firebase Storage**](#Firebase-Storage) and [**Firestore Database**](#Firestore-Database) products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+
+Products I used in the project:
+
+- [**Authentification**](#Authentification),
+- [**Firebase Storage**](#Firebase-Storage),
+- [**Firestore Database**](#Firestore-Database),
+- [**Vuelidate**](#Vuelidate) for forms validation.
+
+<hr>
 
 #### Authentification
 
@@ -231,7 +244,9 @@ Created Users accessibility categories:
 
 - **Full Access:** For registered users, the ability to get and post weight measurements and training results, _make purchases, save favorite blogs, posts, or create content_(_to be implemented in further stages of project development_).
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
-- **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data won't be be stored in the database but only in local memory.
+- **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data will be stored in Database but user will lose the access to it after logging out.
+
+<hr>
 
 #### Firestore Database
 
@@ -293,6 +308,8 @@ const saveAndCloseSession = async (): Promise<void> => {
 }
 ```
 
+<hr>
+
 #### Firebase Storage
 
 Getting audio-command files from firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on firebase storage.
@@ -314,6 +331,8 @@ const getAudioFiles = async (): Promise<void> => {
   }
 }
 ```
+
+<hr>
 
 ### Vuelidate
 
@@ -366,6 +385,8 @@ It also helps to avoid sending incorrect or empty form to Firebase:
   if (!v$.value.$error || !v$.value.$invalid) return
 
 ```
+
+<hr>
 
 ### Utilizing TypeScript:
 
@@ -429,6 +450,8 @@ const props = defineProps<WeightGraphProps>()
 
 ```
 
+<hr>
+
 ### Version control and tracking changes in the project:
 
 - I used Git for version control to organize the source code.
@@ -437,6 +460,8 @@ const props = defineProps<WeightGraphProps>()
 - The repository was regularly updated with clear and descriptive commits.
 - Git Lens and built-in Source Control were used for the respository management.
 - The project includes a .gitignore file to ignore Firebase configuration data. Additionally, an .env.example file was included to indicate the configuration structure to other developers.
+
+<hr>
 
 ### Responsive Design:
 
@@ -460,6 +485,8 @@ Responsiveness tested on web browsers as follows:
 
 ![Responsiveness presented on different device screens](./readme_graphics/responsive_design.png)
 
+<hr>
+
 ### Accessibility:
 
 The project takes into account the guidelines for accessibility improvements (WCAG) and allows users with various disabilities to use the application. To improve the user experience, I created 'basic' mode for the shadow boxing training. It provides not only voice commands but also displays the current punch name and descriptive icon. Thanks to this, almost all users may experience benefit of the shadow boxing training.  
@@ -475,7 +502,7 @@ Elements that improve Accessibility:
 - Clear and readable font with no hard-coded font sizes;
 - Usage of ARIA tags such as aria-label, aria-hidden, aria-placeholder, aria-live, role, etc.
 
-Przykład kodu z użyciem ARIA:
+Code example with ARIA:
 
 ```LoginForm.vue:
     <!-- ERROR DISPLAY -->
@@ -495,15 +522,19 @@ Accessibility checking tools used:
 - Equal Web Accessibility Checker (Brave),
 - Wave Evaluation Tool (Firefox).
 
-<!-- Opisać aria-hidden="true" czyli obrazek jako dekoracja -->
+<hr>
 
 ### Unit Testing:
 
 <!-- TO UPDATE -->
 
+<hr>
+
 ### Clean Code:
 
 <!-- TO UPDATE -->
+
+<hr>
 
 # Issues & Conclusions
 
@@ -516,33 +547,7 @@ Accessibility checking tools used:
 
 #### V-model & V-for
 
-I found it quite difficult to solve the problem of using a v-model inside a v-for loop. I tried to reduce the code for the input data in LoginForm or SignUpForm. Finally I decided to leave it as is even though I am repeating the code.
-
-```[LoginForm.vue]
-    <!-- EMAIL & INPUTS -->
-    <div class="flex flex-col animate-text-show-up">
-      <label for="email" class="my-3 text-xl">Email</label>
-      <input
-        id="email"
-        type="email"
-        v-model.lazy="email"
-        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
-        placeholder="rocky.balboa@mail.com"
-      />
-    </div>
-
-    <!--  PASSWORD INPUT -->
-    <div class="flex flex-col animate-text-show-up">
-      <label for="password" class="my-3 text-xl">Password</label>
-      <input
-        id="password"
-        type="password"
-        v-model.lazy="password"
-        class="h-10 bg-custom-white border-none px-5 placeholder:text-custom-black text-custom-black"
-        placeholder="********"
-      />
-    </div>
-```
+<hr>
 
 # Design Inspirations
 
@@ -552,9 +557,13 @@ I found it quite difficult to solve the problem of using a v-model inside a v-fo
 <a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 
+<hr>
+
 #### Elements
 
 - https://css-tricks.com/animating-with-clip-path/
+
+<hr>
 
 #### Icons, Graphics & Photos
 
@@ -571,6 +580,3 @@ I found it quite difficult to solve the problem of using a v-model inside a v-fo
     <br>
     **FOR THE LOVE OF BOXING**
 
-```
-
-```
