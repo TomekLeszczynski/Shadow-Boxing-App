@@ -70,15 +70,15 @@ A simple platform for those training in boxing or other combat sports aimed at s
 
 ## Programming Goals And Assumptions:
 
-- **From Scratch to Deployment:** The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
+- [**From Scratch to Deployment**](#From-Scratch-to-Deployment): The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
 - [**Efficient Styling**](#Efficient-Styling);
-- **Utilizing the cloud platform for handling authentication and user data storage**;
-- **Utilizing TypeScript**;
-- **Version control and tracking changes in the project**;
-- **Responsive Design**;
-- **Accessibility**;
-- **Unit Testing**;
-- **Clean Code**;
+- [**Utilizing the cloud platform for handling authentication and user data storage**](#Utilizing-the-cloud-platform-for-handling-authentication-and-user-data-storage);
+- [**Utilizing TypeScript**](#Utilizing-TypeScript);
+- [**Version control and tracking changes in the project**](#Version-control-and-tracking-changes-in-the-project);
+- [**Responsive Design**](#Responsive-Design);
+- [**Accessibility**](#Accessibility);
+- [**Unit Testing**](#Unit-Testing);
+- [**Clean Code**](#Clean-Code);
 
 ## Tech Stack
 
