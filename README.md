@@ -290,7 +290,6 @@ const saveAndCloseSession = async (): Promise<void> => {
       console.error('Saving Advanced Training Session Error:' + error)
     }
   }
-  console.log('Session end! Saving')
 }
 ```
 
@@ -315,6 +314,8 @@ const getAudioFiles = async (): Promise<void> => {
   }
 }
 ```
+
+### Vuelidate
 
 For "Create an account" form I used Vuelidate (https://vuelidate-next.netlify.app/) - lightweight model-based validation dedicated for Vue.js.
 Vuelidate comes with a set of validators which I set up in the code.
@@ -461,7 +462,38 @@ Responsiveness tested on web browsers as follows:
 
 ### 'Accessibility':
 
-<!-- TO UPDATE -->
+The project takes into account the guidelines for accessibility improvements (WCAG) and allows users with various disabilities to use the application. To improve the user experience, I created 'basic' mode for the shadow boxing training. It provides not only voice commands but also displays the current punch name and descriptive icon. Thanks to this, almost all users may experience benefit of the shadow boxing training.  
+Basic Training Screen:
+![Basic Training Screen](./readme_graphics/Basic%20Training%20Screen.jpg)
+
+Elements that improve Accessibility:
+
+- Tabbable interactive elements;
+- Proper color contrast between text and background;
+- Scalable text, up to 200%, without loss of functionality;
+- Alt-text for images and graphic elements;
+- Clear and readable font with no hard-coded font sizes;
+- Usage of ARIA tags such as aria-label, aria-hidden, aria-placeholder, aria-live, role, etc.
+
+Przykład kodu z użyciem ARIA:
+
+```LoginForm.vue:
+    <!-- ERROR DISPLAY -->
+    <p
+      class="text-red-500 py-3 text-left llg:mb-5 h-36"
+      aria-label="Error Message Display"
+      aria-live="assertive"
+      role="alert"
+    >
+      {{ authStore.authError }}
+    </p>
+```
+
+Accessibility checking tools used:
+
+- Lighthouse (Chrome),
+- Equal Web Accessibility Checker (Brave),
+- Wave Evaluation Tool (Firefox).
 
 <!-- Opisać aria-hidden="true" czyli obrazek jako dekoracja -->
 
@@ -474,6 +506,11 @@ Responsiveness tested on web browsers as follows:
 <!-- TO UPDATE -->
 
 # Issues & Conclusions
+
+#### Accessibility
+
+- Due to the specific nature of the boxing training, some functionalities of the shadow boxing training are not fully accessible to users with various disabilities. The advanced training mode doesn't provide any visual display of the punch commands that the user hears. This element requires further development.
+- Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. WAVE (web accessibility evaluation tool) didn't recognized this as an error. This element need further development
 
 <!-- Remove sinced v-for loop is used -->
 
