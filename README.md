@@ -145,7 +145,7 @@ Examples of my extensions:
 
 ### Utilizing the cloud platform for handling authentication and user data storage:
 
-High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses **Authentification**. **Firebase Storage** and **Firestore Database** products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
+High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The project uses [**Authentification**](#Authentification). [**Firebase Storage**](#Firebase-Storage) and [**Firestore Database**](#Firestore-Database) products. The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
 
 #### Authentification
 
@@ -293,7 +293,7 @@ const saveAndCloseSession = async (): Promise<void> => {
 }
 ```
 
-#### Storage
+#### Firebase Storage
 
 Getting audio-command files from firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on firebase storage.
 
