@@ -11,6 +11,7 @@
         to="/signup"
         class="bg-red-500 text-md md:text-lg font-semibold mt-5 py-4 md:py-5 md:px-6 flex items-center justify-center group tracking-wide animate-button-show-from-left text-custom-black"
         role="button"
+        tabindex="0"
         aria-label="Get Started - Unlock the full experience by creating an account"
         ><button-label labelText="Get Started" />
       </router-link>
@@ -28,8 +29,10 @@
 </template>
 
 <script setup lang="ts">
+// vue router import
 import { RouterLink } from 'vue-router'
 
+// components import
 import TryAsGuest from '@/components/authorization/TryAsGuest.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 </script>

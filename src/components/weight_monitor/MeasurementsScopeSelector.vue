@@ -1,3 +1,4 @@
+<!-- PREPARED FOR OPTIONAL FUNCTIONALITY: TIME SPAN SELECTOR -->
 <template>
   <div class="text-lg mt-12">
     <span class="mr-6">Measures from recent:</span>

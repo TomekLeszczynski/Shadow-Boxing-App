@@ -7,6 +7,7 @@ import router from './router'
 import { firebaseApp } from './firebase/firebaseInit'
 import { getAuth } from 'firebase/auth'
 
+
 import './index.css'
 
 const app = createApp(App)

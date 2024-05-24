@@ -443,11 +443,11 @@ const props = defineProps<WeightGraphProps>()
 
 ### Version control and tracking changes in the project:
 
-- I used Git for version control to organize the source code.
-- Since it's my personal project and there were no other persons involved, I decided to create only one branch. I didn't use any pull requests, but I reviewed changes locally using Source Control.
-- The repository was regularly updated with clear and descriptive commits.
-- Git Lens and built-in Source Control were used for the respository management.
-- The project includes a .gitignore file to ignore Firebase configuration data. Additionally, an .env.example file was included to indicate the configuration structure to other developers.
+- I used _Git_ for version control to organize the source code.
+- Since it's my personal project and there were no other persons involved, I decided to create only one _branch_. I didn't use any pull requests, but I reviewed changes locally using Source Control.
+- The repository was regularly updated with clear and descriptive _commits_.
+- Git Lens and built-in _Source Control_ were used for the respository management.
+- The project includes a _.gitignore_ file to ignore Firebase configuration data. Additionally, an _.env.example_ file was included to indicate the configuration structure to other developers.
 
 ### Responsive Design:
 
@@ -465,17 +465,17 @@ screens: {
 
 Responsiveness tested on web browsers as follows:
 
-- Google Chrome ver: (124.0.6367.210)
-- Firefox ver: (126.0)
-- Microsoft Edge ver: (125.0.2535.51 )
-- Brave ver: (125.0.6422.76)
+- **Google Chrome** ver: (124.0.6367.210)
+- **Mozilla Firefox** ver: (126.0)
+- **Microsoft Edge** ver: (125.0.2535.51 )
+- **Brave** ver: (125.0.6422.76)
 
 Home View on various devices below.
 ![Responsiveness presented on different device screens](./readme_graphics/responsive_design.png)
 
 ### Accessibility:
 
-The project takes into account the guidelines for accessibility improvements (WCAG) and allows users with various disabilities to use the application. To improve the user experience, I created 'basic' mode for the shadow boxing training. It provides not only voice commands but also displays the current punch name and descriptive icon. Thanks to this, almost all users may experience benefit of the shadow boxing training.  
+The project takes into account the guidelines for accessibility improvements (**WCAG**) and allows users with various disabilities to use the application. To improve the user experience, I created 'basic' mode for the shadow boxing training. It provides not only voice commands but also displays the current punch name and descriptive icon. Thanks to this, almost all users may experience benefit of the shadow boxing training.  
 Basic Training Screen:
 ![Basic Training Screen](./readme_graphics/Basic%20Training%20Screen.jpg)
 
@@ -505,9 +505,9 @@ Code example with ARIA:
 
 Accessibility checking tools used:
 
-- Lighthouse (Chrome),
-- Equal Web Accessibility Checker (Brave),
-- Wave Evaluation Tool (Firefox).
+- **Lighthouse** (Chrome),
+- **Equal Web Accessibility Checker** (Brave),
+- **Wave Evaluation Tool** (Firefox).
 
 ### Unit Testing:
 
@@ -522,10 +522,10 @@ Accessibility checking tools used:
 - **Accessibility**
 
   - Due to the specific nature of the boxing training, some functionalities of the shadow boxing training are not fully accessible to users with various disabilities. The advanced training mode doesn't provide any visual display of the punch commands that the user hears. This element requires further development;
-  - Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. WAVE (web accessibility evaluation tool) didn't recognized this as an error. This element need further development;
+  - Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. **WAVE** (web accessibility evaluation tool) didn't recognized this as an error. This element need further development;
 
 - **Clean Code**
-  - Following main rule of clean code - DRY (Don't repeat yourself), I used the _v-for_ loop Vue built-in directive for authentication form inputs (log-in & sign-up):
+  - Following main rule of clean code - **DRY** (Don't repeat yourself), I used the _v-for_ loop Vue built-in directive for authentication form inputs (log-in & sign-up):
   ```ts
   <!-- SignUpForm.vue -->
   <!-- FORM INPUTS -->
@@ -550,9 +550,9 @@ Accessibility checking tools used:
   [...] // form sections including vuelidate userData values const formSection = ref
   <signUpFormSection[]></signUpFormSection[]>
   ```
-  This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, likethe one I used in the Weight Monitor Details Section:
+  This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, like the one I used in the Weight Monitor Details Section:
 
-```ts
+```vue
 <!-- WeightMonitorView.vue -->
 <div class="grid grid-rows-5 md:grid-rows-none md:grid-cols-5 h-full pt-9 gap-px">
       <stats-box
@@ -588,9 +588,9 @@ Accessibility checking tools used:
 
 #### Webpages
 
-<a href="https://aim.obys.agency/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-aim-obys.jpg" alt="webiste-homepage-screenshot" width="250"></a>
-<a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
-<a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
+<a href="https://aim.obys.agency/" target="_blank" rel="noopener noreferrer"><img src="./readme_graphics/inspiration-aim-obys.jpg" alt="webiste-homepage-screenshot" width="250"></a>
+<a href="https://memphis.it/en/" target="_blank" rel="noopener noreferrer"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
+<a href="https://www.eclipse.builders/" target="_blank" rel="noopener noreferrer"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 
 #### Elements
 

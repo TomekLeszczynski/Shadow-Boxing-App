@@ -32,14 +32,13 @@
     <template #buttons-section>
       <pause-resume-button :on-click-handler="toggleTimer" :status="advTrainingStore.status" />
       <quit-training-button :status="advTrainingStore.status" />
-      <save-close-button :save-session="saveAndCloseSession" />
+      <save-close-button v-if="sessionIsFinished" :save-session="saveAndCloseSession" />
     </template>
   </training-display-layout>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, onUnmounted, onMounted, computed } from 'vue'
-
 import PauseResumeButton from '@/components/shadow_boxing/PauseResumeButton.vue'
 import QuitTrainingButton from '@/components/shadow_boxing/QuitTrainingButton.vue'
 import SaveCloseButton from '@/components/shadow_boxing/Save&CloseButton.vue'
@@ -50,6 +49,7 @@ import {
   playSound
 } from '@/components/shadow_boxing/helpers/playSounds'
 import { useAdvTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
+import { useAuthStore } from '@/stores/AuthentificationStore'
 import {
   intervalId,
   handleInterval
@@ -60,8 +60,11 @@ import {
   combinationsArray
 } from '@/components/shadow_boxing/helpers/advancedAudioCombinationsHandler'
 import { nextCommandDelay } from '@/components/shadow_boxing/helpers/nextCommandDelay'
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '@/firebase/firebaseInit'
 
 const advTrainingStore = useAdvTrainingStore()
+const authStore = useAuthStore()
 const trainingState = useTrainingStateStore()
 const currentRound = ref<number>(0)
 
@@ -71,12 +74,25 @@ const seconds = ref<number>(0)
 const toggleTimer = (): void => {
   advTrainingStore.toggleStatus()
 }
-const saveAndCloseSession = () => {
-  // SAVE TO FIREBASE FUNCTION
-  console.log('Session end! Saving')
+const saveAndCloseSession = async (): Promise<void> => {
+  const user = authStore.user
+  if (user && advTrainingStore.status === 'done') {
+    try {
+      const trainingCollection = collection(db, 'users', user.uid, 'trainings')
+      await addDoc(trainingCollection, {
+        training: 'advanced',
+        rounds: advTrainingStore.rounds,
+        complexity: advTrainingStore.complexity,
+        intensity: advTrainingStore.intensity,
+        date: new Date()
+      })
+    } catch (error) {
+      console.error('Saving Advanced Training Session Error:' + error)
+    }
+  }
 }
 
-const sessionCompleted = computed(() => {
+const isLastRound = computed(() => {
   return currentRound.value === advTrainingStore.rounds
 })
 const sessionIsInProgress = computed(() => {
@@ -88,13 +104,11 @@ const sessionIsPaused = computed(() => {
 const sessionIsFinished = computed(() => {
   return advTrainingStore.status == 'done'
 })
-// const isRestTime = computed(() => {
-//   return advTrainigStore.status == 'rest'
-// })
 
 const completionSignal = computed(() => {
-  return sessionCompleted.value && minutes.value == 0 && seconds.value == 0
+  return isLastRound.value && minutes.value == 0 && seconds.value == 0
 })
+
 // --- TIMER SETUP ---
 
 const roundDuration: { minutes: number; seconds: number } = { minutes: 3, seconds: 0 }
@@ -129,10 +143,11 @@ const handleRestTimer = (): void => {
     handleInterval(minutes, seconds, switchToWork)
   } else {
     advTrainingStore.status = 'done'
+    clearInterval(intervalId)
   }
 }
 const switchToRest = () => {
-  !sessionCompleted.value ? (advTrainingStore.status = 'rest') : (advTrainingStore.status = null)
+  advTrainingStore.status = 'rest'
 }
 
 const clearAllIntervals = (): void => {
@@ -153,10 +168,9 @@ watch(
       } else {
         startWorking()
       }
-    } else if (newValue == 'rest') {
+    } else if (newValue == 'rest' || newValue == 'done') {
+      console.log('Calling handleRestTimer')
       handleRestTimer()
-    } else {
-      clearInterval(intervalId)
     }
   }
 )

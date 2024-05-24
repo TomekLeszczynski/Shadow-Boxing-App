@@ -13,5 +13,6 @@
   </div>
 </template>
 <script setup lang="ts">
+// props for displayed banner text
 defineProps(['bannerText'])
 </script>

@@ -48,7 +48,7 @@
     <template #buttons-section>
       <pause-resume-button :on-click-handler="toggleTimer" :status="basicTrainingStore.status" />
       <quit-training-button :status="basicTrainingStore.status" />
-      <save-close-button :save-session="saveAndCloseSession" />
+      <save-close-button v-if="sessionIsFinished" :save-session="saveAndCloseSession" />
     </template>
   </training-display-layout>
 </template>
@@ -64,6 +64,10 @@ import { getCurrentPunchImage } from '@/components/shadow_boxing/helpers/punchIc
 import { useBasicTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
 import { playFinishSound, playStartSound } from '@/components/shadow_boxing/helpers/playSounds'
 import { nextCommandDelay } from '@/components/shadow_boxing/helpers/nextCommandDelay'
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '@/firebase/firebaseInit'
+import { useAuthStore } from '@/stores/AuthentificationStore'
+const authStore = useAuthStore()
 
 const randomPunchIndex = ref<number | null>(null)
 const currentPunch = ref<string>('')
@@ -118,24 +122,25 @@ const handlePunches = () => {
   sessionPunchesArray.value.push(currentPunch.value)
   playCurrentPunchSound(currentPunch.value)
 }
+
 const handleSession = (): void => {
   const minDelay: number = 1
-  if (sessionArrayFilled.value) {
-    basicTrainingStore.status = 'done'
-    playFinishSound()
-    resetSessionDisplay()
-    return
-  }
-  if (sessionIsInProgress.value) {
-    handlePunches()
-    clearInterval(punchesIntervalId)
-    punchesIntervalId = setInterval(
-      handleSession,
-      nextCommandDelay(minDelay, basicTrainingStore.intensity) * 1000
-    )
-  } else {
-    basicTrainingStore.status = 'work'
-    handleSession()
+  if (basicTrainingStore.status != 'done') {
+    if (sessionArrayFilled.value) {
+      playFinishSound()
+      basicTrainingStore.status = 'done'
+      return
+    } else if (sessionIsInProgress.value) {
+      handlePunches()
+      clearInterval(punchesIntervalId)
+      punchesIntervalId = setInterval(
+        handleSession,
+        nextCommandDelay(minDelay, basicTrainingStore.intensity) * 1000
+      )
+    } else {
+      basicTrainingStore.status = 'work'
+      handleSession()
+    }
   }
 }
 const resetSessionDisplay = () => {
@@ -145,9 +150,22 @@ const resetSessionDisplay = () => {
   basicTrainingStore.status = null
 }
 
-const saveAndCloseSession = () => {
-  // SAVE TO FIREBASE FUNCTION
-  console.log('Session end! Saving')
+const saveAndCloseSession = async (): Promise<void> => {
+  const user = authStore.user
+  if (user && basicTrainingStore.status === 'done') {
+    try {
+      const trainingCollection = collection(db, 'users', user.uid, 'trainings')
+      await addDoc(trainingCollection, {
+        training: 'basic',
+        punches: basicTrainingStore.punches,
+        intensity: basicTrainingStore.intensity,
+        displayMode: basicTrainingStore.displayMode,
+        date: new Date()
+      })
+    } catch (error) {
+      console.error('Saving Advanced Training Session Error:' + error)
+    }
+  }
 }
 
 onUnmounted(() => {

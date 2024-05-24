@@ -14,6 +14,6 @@ import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 defineProps<{
   onClickHandler: () => void
-  status: string | null
+  status: string | null | undefined
 }>()
 </script>

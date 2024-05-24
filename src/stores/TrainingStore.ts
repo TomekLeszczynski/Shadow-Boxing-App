@@ -48,12 +48,12 @@ interface AdvStateInt {
   status?: string | null
 }
 
-export const useAdvTrainigStore = defineStore('AdvTrainingStore', {
+export const useAdvTrainingStore = defineStore('AdvTrainingStore', {
   state: (): AdvStateInt => {
     return {
       rounds: 1,
       complexity: 0,
-      intensity: 6,
+      intensity: 0,
       status: null
     }
   },

@@ -39,8 +39,7 @@
         <button
           @click="$emit('skipped')"
           class="mt-3 sm:mt-0 py-4 px-12 group md:w-96 w-full border"
-          tabindex="0"
-          aria-label="skip button"
+          aria-label="Skip preloader and get to Home View"
         >
           <button-label labelText="Skip" />
         </button>
@@ -49,15 +48,21 @@
   </div>
 </template>
 <script setup lang="ts">
+// vue import
 import { ref, onMounted } from 'vue'
+
+// shared components import
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
-// picks random quote & author from quotes' array
+// helper import
 import preloaderQuotes from '@/components/preloader/quotes'
+
 const quote = ref<string>("“Hard work beats talent when talent doesn't work hard.”")
 const author = ref<string>('Tim Notke')
 
+// picks random quote & author from quotes' array
 const pickQuoteToDisplay = () => {
+  // set random number based on array lenght which
   const quoteIndex: number = Math.floor(Math.random() * preloaderQuotes.length)
   const randomQuote = preloaderQuotes[quoteIndex]
   quote.value = randomQuote.quote
@@ -68,5 +73,3 @@ onMounted(() => {
   pickQuoteToDisplay()
 })
 </script>
-
-<!-- ACCESSIBILITY SET -->

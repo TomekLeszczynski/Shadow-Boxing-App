@@ -15,6 +15,7 @@
         v-model="section.value"
         :type="section.type"
         :placeholder="section.placeholder"
+        :aria-placeholder="section.placeholder"
         class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
       />
       <!-- VALIDATION ERRORS SECTION -->
@@ -40,21 +41,33 @@
       <button
         @click="registerUser"
         class="bg-custom-orange-dark py-5 px-12 group tracking-wide animate-button-show-from-left"
+        tabindex="0"
+        aria-label="Sign in"
+        aria-live="polite"
+        type="submit"
       >
         <!-- IS LOADING BUTTON LABEL -->
         <proceding-label v-if="inProgress" procedingLabel="Sending" />
         <!-- DEFAULT BUTTON LABEL -->
-        <button-label v-else labelText="Sign in" class="text-custom-black"/>
+        <button-label v-else labelText="Sign in" class="text-custom-black" />
       </button>
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
+// vue import
 import { computed, ref, type Ref } from 'vue'
-import { useRouter, RouterLink } from 'vue-router'
-import { useAuthStore } from '@/stores/AuthentificationStore'
 
+// vue router import
+import { useRouter, RouterLink } from 'vue-router'
+const router = useRouter()
+
+// pinia import
+import { useAuthStore } from '@/stores/AuthentificationStore'
+const authStore = useAuthStore()
+
+// shared components import
 import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
@@ -62,7 +75,10 @@ import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 import useValidate from '@vuelidate/core'
 import { required, email, minLength, alphaNum, sameAs } from '@vuelidate/validators'
 
-// user data (due to Vuelidate docs)
+// sign-up progress marker
+const inProgress = ref<boolean>(false)
+
+// user data (due to Vuelidate docs); need to be type of Ref included
 interface ValidationUserData {
   displayName: Ref<string>
   email: Ref<string>
@@ -71,6 +87,7 @@ interface ValidationUserData {
     confirm: Ref<string>
   }
 }
+
 const userData: ValidationUserData = {
   displayName: ref(''),
   email: ref(''),
@@ -165,31 +182,31 @@ const formSection = ref<signUpFormSection[]>([
 
 // CREATE NEW USER
 
-const router = useRouter()
-const authStore = useAuthStore()
-const inProgress = ref<boolean>(false)
-
 const registerUser = async (): Promise<void> => {
   // check if no vuelidate errors or empty fields before sending request to firebase
-  if (!v$.value.$error || !v$.value.$invalid) return
-
-  // run inProgress button lable
-  inProgress.value = true
-  // create user on firebase
-  try {
-    await authStore.createUser(
-      userData.email.value,
-      userData.password.password.value,
-      userData.displayName.value
-    )
-    router.push({
-      name: 'done'
-    })
-  } catch (error: unknown) {
-    console.error('Unexpected error during registering new user:', error)
-  } finally {
-    // set button label to default
-    inProgress.value = false
+  if (v$.value.$error || v$.value.$invalid) {
+    return
+  } else {
+    // run inProgress button lable
+    inProgress.value = true
+    // create user on firebase; based on default firebase function for creating User
+    try {
+      await authStore.createUser(
+        userData.email.value,
+        userData.password.password.value,
+        userData.displayName.value
+      )
+      // send to 'done'-view with further instructions
+      router.push({
+        name: 'done'
+      })
+    } catch (error) {
+      console.error('Unexpected error during registration:' + error)
+    } finally {
+      // clear inputs, button set to default
+      inProgress.value = false
+      formSection.value.forEach((section) => (section.value = null))
+    }
   }
 }
 </script>

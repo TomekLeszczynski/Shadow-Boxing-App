@@ -15,6 +15,6 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 defineProps<{
-  status: string | null
+  status: string | null | undefined
 }>()
 </script>

@@ -10,7 +10,7 @@
         aria-label="Type in New Measurement"
       />
       <button
-        class="bg-red-500 px-12 group tracking-wide"
+        class="bg-red-500 px-12 group tracking-wide text-custom-black"
         aria-label="Add & Save New Measurement"
       >
         <button-label labelText="Add new"/>

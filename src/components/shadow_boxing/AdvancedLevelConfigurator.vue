@@ -150,9 +150,9 @@ const grabSelectedAdvancedOptions = (name: string) => {
 }
 
 // send data to pinia store and change route
-import { useAdvTrainigStore } from '@/stores/TrainingStore'
+import { useAdvTrainingStore } from '@/stores/TrainingStore'
 import { useRouter } from 'vue-router'
-const advTrainigStore = useAdvTrainigStore()
+const advTrainigStore = useAdvTrainingStore()
 const router = useRouter()
 const sendAdvSessionSetupToStore = () => {
   const data = {

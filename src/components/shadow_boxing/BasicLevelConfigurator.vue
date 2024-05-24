@@ -36,7 +36,8 @@
       <!-- START BUTTON & ADDITIONAL INFO SECTION -->
       <div class="flex flex-col xl:items-end items-center">
         <p class="mb-3 text-sm md:text-base font-thin" aria-label="Training instructions">
-          After pressing Start, you'll have 10 seconds to prepare before the workout begins. Training contains audio commands.
+          After pressing Start, you'll have 10 seconds to prepare before the workout begins.
+          Training contains audio commands.
         </p>
         <!-- START BUTTON -->
         <button
@@ -70,7 +71,7 @@ const formSections = ref<BasicFormSection[]>([
     name: 'punches',
     selectedOption: '50',
     options: [
-      { value: '50', label: '50' },
+      { value: '5', label: '5' },
       { value: '100', label: '100' },
       { value: '250', label: '250' }
     ]
