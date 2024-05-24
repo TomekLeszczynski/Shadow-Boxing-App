@@ -510,7 +510,6 @@ Accessibility checking tools used:
 
 <!-- TO UPDATE -->
 
-````markdown
 # Issues & Conclusions
 
 - **Accessibility**
@@ -546,7 +545,6 @@ Accessibility checking tools used:
   [...] // form sections including vuelidate userData values const formSection = ref
   <signUpFormSection[]></signUpFormSection[]>
   ```
-````
 
 This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, likethe one I used in the Weight Monitor Details Section:
 
