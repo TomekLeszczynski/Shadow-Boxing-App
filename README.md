@@ -107,8 +107,6 @@ The project was created using **Vue.js** and related libraries and tools such as
 
 It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
 
-<hr>
-
 ### Efficient Styling:
 
 After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS** (https://tailwindcss.com/) for this project. The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
@@ -145,8 +143,6 @@ Examples of my extensions:
       }
 ```
 
-<hr>
-
 ### Utilizing the cloud platform for handling authentication and user data storage:
 
 High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The built-in authentification features combined with Pinia allowed me to easily create and save user accounts in the database, log in, reset passwords...
@@ -157,8 +153,6 @@ Products I used in the project:
 - [**Firebase Storage**](#Firebase-Storage),
 - [**Firestore Database**](#Firestore-Database),
 - [**Vuelidate**](#Vuelidate) for forms validation.
-
-<hr>
 
 #### Authentification
 
@@ -246,8 +240,6 @@ Created Users accessibility categories:
 - **Limited Access:** For users without registration, no access to shadow boxing features, weight monitor, _purchasing (only browsing), saving favorite blogs (only browsing), posts, or creating content_(_to be implemented in further stages of project development_).
 - **Try As Guest:** A temporary "Try As Guest" access option has been created to allow interested users to shorten the authentication path and provide access to all functionalities - weight measurements, shadow boxing sessions, etc. The data will be stored in Database but user will lose the access to it after logging out.
 
-<hr>
-
 #### Firestore Database
 
 Saving & getting training sessions data or weight monitor measurements:
@@ -308,8 +300,6 @@ const saveAndCloseSession = async (): Promise<void> => {
 }
 ```
 
-<hr>
-
 #### Firebase Storage
 
 Getting audio-command files from firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on firebase storage.
@@ -332,9 +322,7 @@ const getAudioFiles = async (): Promise<void> => {
 }
 ```
 
-<hr>
-
-### Vuelidate
+#### Vuelidate
 
 For "Create an account" form I used Vuelidate (https://vuelidate-next.netlify.app/) - lightweight model-based validation dedicated for Vue.js.
 Vuelidate comes with a set of validators which I set up in the code.
@@ -385,8 +373,6 @@ It also helps to avoid sending incorrect or empty form to Firebase:
   if (!v$.value.$error || !v$.value.$invalid) return
 
 ```
-
-<hr>
 
 ### Utilizing TypeScript:
 
@@ -450,18 +436,13 @@ const props = defineProps<WeightGraphProps>()
 
 ```
 
-<hr>
-
 ### Version control and tracking changes in the project:
 
 - I used Git for version control to organize the source code.
-- Repository link: https://github.com/TomekLeszczynski/Shadow-Boxing-App.
 - Since it's my personal project and there were no other persons involved, I decided to create only one branch. I didn't use any pull requests, but I reviewed changes locally using Source Control.
 - The repository was regularly updated with clear and descriptive commits.
 - Git Lens and built-in Source Control were used for the respository management.
 - The project includes a .gitignore file to ignore Firebase configuration data. Additionally, an .env.example file was included to indicate the configuration structure to other developers.
-
-<hr>
 
 ### Responsive Design:
 
@@ -478,14 +459,13 @@ screens: {
 
 Responsiveness tested on web browsers as follows:
 
-- Google Chrome ver: (to add)
-- Firefox ver: (to add)
-- Microsoft Edge ver: (to add)
-- Brave ver: (to add)
+- Google Chrome ver: (124.0.6367.210)
+- Firefox ver: (126.0)
+- Microsoft Edge ver: (125.0.2535.51 )
+- Brave ver: (125.0.6422.76)
 
+Home View on various devices below.
 ![Responsiveness presented on different device screens](./readme_graphics/responsive_design.png)
-
-<hr>
 
 ### Accessibility:
 
@@ -522,32 +502,85 @@ Accessibility checking tools used:
 - Equal Web Accessibility Checker (Brave),
 - Wave Evaluation Tool (Firefox).
 
-<hr>
-
 ### Unit Testing:
 
 <!-- TO UPDATE -->
-
-<hr>
 
 ### Clean Code:
 
 <!-- TO UPDATE -->
 
-<hr>
-
+````markdown
 # Issues & Conclusions
 
-#### Accessibility
+- **Accessibility**
 
-- Due to the specific nature of the boxing training, some functionalities of the shadow boxing training are not fully accessible to users with various disabilities. The advanced training mode doesn't provide any visual display of the punch commands that the user hears. This element requires further development.
-- Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. WAVE (web accessibility evaluation tool) didn't recognized this as an error. This element need further development
+  - Due to the specific nature of the boxing training, some functionalities of the shadow boxing training are not fully accessible to users with various disabilities. The advanced training mode doesn't provide any visual display of the punch commands that the user hears. This element requires further development;
+  - Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. WAVE (web accessibility evaluation tool) didn't recognized this as an error. This element need further development;
 
-<!-- Remove sinced v-for loop is used -->
+- **Clean Code**
 
-#### V-model & V-for
+  - Following main rule of clean code - DRY (Don't repeat yourself), I used the _v-for_ loop Vue built-in directive for authentication form inputs (log-in & sign-up):
 
-<hr>
+  ```vue
+  <!-- SignUpForm.vue: -->
+  <!-- FORM INPUTS -->
+  <div
+    v-for="(section, index) in formSection"
+    :key="index"
+    class="md:col-span-5 animate-text-show-up"
+  >
+      <!-- DISPLAYNAME, EMAIL, PASSWORD, PASSWORD CONFIRMATION INPUTS -->
+      <label class="text-xl capitalize" :for="section.id">{{ section.title }}</label>
+      <input
+        @blur="section.blur"
+        :id="section.id"
+        v-model="section.value"
+        :type="section.type"
+        :placeholder="section.placeholder"
+        :aria-placeholder="section.placeholder"
+        class="h-10 text-lg my-1 px-5 w-full bg-custom-white border-none placeholder:text-custom-grey text-custom-black"
+      />
+      [...]
+      </div>
+  [...] // form sections including vuelidate userData values const formSection = ref
+  <signUpFormSection[]></signUpFormSection[]>
+  ```
+````
+
+This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, likethe one I used in the Weight Monitor Details Section:
+
+```vue
+<!-- WeightMonitorView.vue -->
+<div class="grid grid-rows-5 md:grid-rows-none md:grid-cols-5 h-full pt-9 gap-px">
+      <stats-box
+        title="Current weight:"
+        :value="computedDetails.lastMeasure"
+        class="animate-text-show-up"
+      />
+      <stats-box
+        title="Progress / regress:"
+        :value="computedDetails.progress"
+        class="animate-text-show-up-02"
+        :valueColor="computedDetails.progress > 0 ? 'text-red-500' : 'text-green-500'"
+      />
+      <stats-box
+        title="Lowest weight:"
+        :value="computedDetails.minValue"
+        class="animate-text-show-up-03"
+      />
+      <stats-box
+        title="Highest weight:"
+        :value="computedDetails.maxValue"
+        class="animate-text-show-up-02"
+      />
+      <stats-box
+        title="Average weight:"
+        :value="computedDetails.avgValue"
+        class="animate-text-show-up"
+      />
+    </div>
+```
 
 # Design Inspirations
 
@@ -557,13 +590,9 @@ Accessibility checking tools used:
 <a href="https://memphis.it/en/" target="_blank" rel="noopener"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="webiste-homepage-screenshot" width="250"></a>
 
-<hr>
-
 #### Elements
 
 - https://css-tricks.com/animating-with-clip-path/
-
-<hr>
 
 #### Icons, Graphics & Photos
 
@@ -579,4 +608,3 @@ Accessibility checking tools used:
     <br>
     <br>
     **FOR THE LOVE OF BOXING**
-
