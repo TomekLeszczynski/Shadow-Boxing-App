@@ -248,63 +248,23 @@ Created Users accessibility categories:
 
 Saving & getting training sessions data or weight monitor measurements:
 
-```ts
+```vue
 <!-- WeightInput.vue -->
-// submit weight value to firebase user's data collection
-const populateWeights = async (): Promise<void> => {
-  const user = authStore.user
-  if (user && weightInput.value && weightInput.value > 0) {
-    try {
-      // according to firebase docs: function creates records in 'measurements' folder
-      const measurementsCollection = collection(db, 'users', user.uid, 'measurements')
-      // record keeps weight value & date of creation
-      await addDoc(measurementsCollection, { weight: weightInput.value, date: new Date() })
-    } catch (error) {
-      console.error('Error from WeightInput:', error)
-    }
-  }
-  weightInput.value = null
-}
+// submit weight value to firebase user's data collection const populateWeights = async (): Promise
+<void></void>
 ```
 
-```ts
+```vue
 <!-- WeightMonitorView.vue -->
-const getMeasures = async (): Promise<void> => {
-  if (authStore.user != null) {
-    const measurementsCollection = collection(db, 'users', authStore.user.uid, 'measurements')
-    q = query(measurementsCollection, orderBy('date'))
-    try {
-      const querySnapshot = await getDocs(q)
-      measurements.value = mapSnapshot(querySnapshot.docs)
-    } catch (error) {
-      console.error('getMeasures error: ' + error)
-    }
-  }
-}
+const getMeasures = async (): Promise
+<void></void>
 ```
 
-```ts
+```vue
 <!-- AdvancedTrainingDisplay.vue -->
-// submit session details to firebase user's data collection
-const saveAndCloseSession = async (): Promise<void> => {
-  const user = authStore.user
-  if (user && advTrainingStore.status === 'done') {
-    try {
-      // according to firebase docs: function creates records in 'trainings' folder
-      const trainingCollection = collection(db, 'users', user.uid, 'trainings')
-      await addDoc(trainingCollection, {
-        training: 'advanced',
-        rounds: advTrainingStore.rounds,
-        complexity: advTrainingStore.complexity,
-        intensity: advTrainingStore.intensity,
-        // record keeps weight value & date of creation
-        date: new Date()
-      })
-    } catch (error) {
-      console.error('Saving Advanced Training Session Error:' + error)
-    }
-  }
-}
+// submit session details to firebase user's data collection const saveAndCloseSession = async ():
+Promise
+<void></void>
 ```
 
 #### Firebase Storage
@@ -336,48 +296,29 @@ For "Create an account" form I used Vuelidate (https://vuelidate-next.netlify.ap
 Vuelidate comes with a set of validators which I set up in the code.
 Validators I used are responsible for matching values of password and password-confirmation property, email input control, required min. length:
 
-```ts
+```vue
 <!-- SignUpForm.vue -->
-// validation rules (due to Vuelidate docs)
-const validationRules = computed(() => {
-  return {
-    displayName: { required, alphaNum, minLength: minLength(2) },
-    email: { required, email },
-    password: {
-      password: {
-        required,
-        minLength: minLength(8)
-      },
-      confirm: { required, sameAs: sameAs(userData.password.password) }
-    }
-  }
-})
-
+// validation rules (due to Vuelidate docs) const validationRules = computed(() => { return {
+displayName: { required, alphaNum, minLength: minLength(2) }, email: { required, email }, password:
+{ password: { required, minLength: minLength(8) }, confirm: { required, sameAs:
+sameAs(userData.password.password) } } } })
 ```
 
 This validator also helps to generate error messages displayed to the user.$touch method and @blur event causing that error only shows up after user entered and left the input.
 
-```ts
+```vue
 <!-- SignUpForm.vue -->
-  // for email / with validation
-  {
-    title: 'email',
-    blur: () => v$.value.email.$touch(),
-    id: 'email',
-    value: userData.email,
-    type: 'email',
-    placeholder: 'rocky.balboa@mail.com',
-    error: () => v$.value.email.$error,
-    errorMessage: () => v$.value.email.$errors[0].$message
-  },
+// for email / with validation { title: 'email', blur: () => v$.value.email.$touch(), id: 'email',
+value: userData.email, type: 'email', placeholder: 'rocky.balboa@mail.com', error: () =>
+v$.value.email.$error, errorMessage: () => v$.value.email.$errors[0].$message },
 ```
 
 It also helps to avoid sending incorrect or empty form to Firebase:
 
-```ts
+```vue
 <!-- SignUpForm.vue -->
-  // check if no vuelidate errors or empty fields before sending request to firebase
-  if (!v$.value.$error || !v$.value.$invalid) return
+// check if no vuelidate errors or empty fields before sending request to firebase if
+(!v$.value.$error || !v$.value.$invalid) return
 ```
 
 ### Utilizing TypeScript:
@@ -490,15 +431,15 @@ Elements that improve Accessibility:
 
 Code example with ARIA:
 
-```ts
+```vue
 <!-- LoginForm.vue -->
-    <!-- ERROR DISPLAY -->
-    <p
-      class="text-red-500 py-3 text-left llg:mb-5 h-36"
-      aria-label="Error Message Display"
-      aria-live="assertive"
-      role="alert"
-    >
+<!-- ERROR DISPLAY -->
+<p
+  class="text-red-500 py-3 text-left llg:mb-5 h-36"
+  aria-label="Error Message Display"
+  aria-live="assertive"
+  role="alert"
+>
       {{ authStore.authError }}
     </p>
 ```
@@ -526,7 +467,7 @@ Accessibility checking tools used:
 
 - **Clean Code**
   - Following main rule of clean code - **DRY** (Don't repeat yourself), I used the _v-for_ loop Vue built-in directive for authentication form inputs (log-in & sign-up):
-  ```ts
+  ```vue
   <!-- SignUpForm.vue -->
   <!-- FORM INPUTS -->
   <div
