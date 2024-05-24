@@ -114,7 +114,8 @@ After learning about _Bootstrap_, _Sass_, _BEM_, I decided to use **Tailwind CSS
 In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code.
 Examples of my extensions:
 
-```[tailwind.config.ts]
+```ts
+<!-- tailwind.config.ts -->
       colors: {
         'custom-white': '#E7E4DF',
         'custom-black': '#141414',
@@ -156,7 +157,8 @@ Products I used in the project:
 
 #### Authentification
 
-```AuthentificationStore.ts:
+```ts
+<!-- AuthentificationStore.ts -->
 actions: {
     // sign up anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
@@ -211,7 +213,8 @@ actions: {
 
 Firebase helps differentiate the availability of functionality for logged-in and anonymous users, for example rendering/not rendering nav items depending on user status.
 
-```AuthentificationStore.ts:
+```ts
+<!-- AuthentificationStore.ts -->
     async checkUserAuthState() {
       onAuthStateChanged(firebaseAuth, (user) => {
         if (user !== null && (user.emailVerified || user.isAnonymous)) {
@@ -225,11 +228,12 @@ Firebase helps differentiate the availability of functionality for logged-in and
 
 ```
 
-```ShadowBoxingLink.vue:
-  <router-link
-    v-if="authStore.user"
-    :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
-  >
+```vue
+<!-- ShadowBoxingLink.vue -->
+<router-link
+  v-if="authStore.user"
+  :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
+>
     Shadow Boxing
   </router-link>
 ```
@@ -244,7 +248,8 @@ Created Users accessibility categories:
 
 Saving & getting training sessions data or weight monitor measurements:
 
-```WeightInput.vue:
+```ts
+<!-- WeightInput.vue -->
 // submit weight value to firebase user's data collection
 const populateWeights = async (): Promise<void> => {
   const user = authStore.user
@@ -262,7 +267,8 @@ const populateWeights = async (): Promise<void> => {
 }
 ```
 
-```WeightMonitorView.vue:
+```ts
+<!-- WeightMonitorView.vue -->
 const getMeasures = async (): Promise<void> => {
   if (authStore.user != null) {
     const measurementsCollection = collection(db, 'users', authStore.user.uid, 'measurements')
@@ -277,7 +283,8 @@ const getMeasures = async (): Promise<void> => {
 }
 ```
 
-```AdvancedTrainingDisplay.vue:
+```ts
+<!-- AdvancedTrainingDisplay.vue -->
 // submit session details to firebase user's data collection
 const saveAndCloseSession = async (): Promise<void> => {
   const user = authStore.user
@@ -304,7 +311,8 @@ const saveAndCloseSession = async (): Promise<void> => {
 
 Getting audio-command files from firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on firebase storage.
 
-```advancedAudioCombinationsHandler.ts:
+```ts
+<!-- advancedAudioCombinationsHandler.ts -->
 const getAudioFiles = async (): Promise<void> => {
   try {
     const audioFiles = await listAll(folderRef)
@@ -328,8 +336,8 @@ For "Create an account" form I used Vuelidate (https://vuelidate-next.netlify.ap
 Vuelidate comes with a set of validators which I set up in the code.
 Validators I used are responsible for matching values of password and password-confirmation property, email input control, required min. length:
 
-```SignUpForm.vue:
-
+```ts
+<!-- SignUpForm.vue -->
 // validation rules (due to Vuelidate docs)
 const validationRules = computed(() => {
   return {
@@ -349,8 +357,8 @@ const validationRules = computed(() => {
 
 This validator also helps to generate error messages displayed to the user.$touch method and @blur event causing that error only shows up after user entered and left the input.
 
-```SignUpForm.vue:
-
+```ts
+<!-- SignUpForm.vue -->
   // for email / with validation
   {
     title: 'email',
@@ -362,16 +370,14 @@ This validator also helps to generate error messages displayed to the user.$touc
     error: () => v$.value.email.$error,
     errorMessage: () => v$.value.email.$errors[0].$message
   },
-
 ```
 
 It also helps to avoid sending incorrect or empty form to Firebase:
 
-```SignUpForm.vue:
-
+```ts
+<!-- SignUpForm.vue -->
   // check if no vuelidate errors or empty fields before sending request to firebase
   if (!v$.value.$error || !v$.value.$invalid) return
-
 ```
 
 ### Utilizing TypeScript:
@@ -382,7 +388,7 @@ TypeScript is now a 'must have' for any programmer writing in JavaScript. Workin
   Type annotations are crucial as they provide greater typing certainty and helped me avoid errors related to data types. In this project, I used type annotations to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
   For example, in the BasicTrainingModal.vue file, type annotation is used to declare the data type for the punchesArray array:
 
-```
+```ts
 const punchesArray: string[] = [
   'jab',
   'cross',
@@ -396,7 +402,7 @@ const punchesArray: string[] = [
 - Interfaces are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, I was able to clearly specify which properties should be present in objects implementing these interfaces.
   For example, in the quotes.ts file, the Quote interface defines the data structure for a quote, containing the quote and author fields:
 
-```
+```ts
 interface Quote {
   quote: string
   author: string
@@ -406,7 +412,7 @@ interface Quote {
 - Type guards are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, I was able to safely handle different data cases and prevent errors caused by type inconsistencies.
   For example, in the AuthentificationStore.ts file, the errorsHandling function uses a type guard to check if the error is an instance of FirebaseError:
 
-```
+```ts
     errorsHandling(error: unknown | FirebaseError) {
       if (error instanceof FirebaseError) {
         console.error('Firebase Error:', error.code, error.message)
@@ -422,18 +428,17 @@ interface Quote {
 - Union types are used in the project to handle different use cases and conditions that may arise. They allow to specify a variable or function parameter that can have multiple possible types.
   For example, in the BasicTrainingModal.vue file, the intervalId variable is of type union number | null, meaning it can hold either a numeric value or null:
 
-```
+```ts
 const intervalId = ref<number | null>(null)
 ```
 
 - Generics are used in the project to create more generic and reusable components, functions, or classes. Thanks to Generics I was able to write code that can operate on different data types, contributing to code flexibility and reusability:
 
-```
+```ts
 interface WeightGraphProps {
   measurements: WeightData[]
 }
 const props = defineProps<WeightGraphProps>()
-
 ```
 
 ### Version control and tracking changes in the project:
@@ -451,7 +456,8 @@ Responsive interfaces build with Tailwind CSS default breakpoints (https://tailw
 
 I've also added an extra prefix since I found it helpfull to control fonts size on the smallest screens:
 
-```[tailwind.config.ts]
+```ts
+<!-- tailwind.config.ts -->
 screens: {
         xs: '475px'
       },
@@ -484,7 +490,8 @@ Elements that improve Accessibility:
 
 Code example with ARIA:
 
-```LoginForm.vue:
+```ts
+<!-- LoginForm.vue -->
     <!-- ERROR DISPLAY -->
     <p
       class="text-red-500 py-3 text-left llg:mb-5 h-36"
@@ -510,7 +517,7 @@ Accessibility checking tools used:
 
 <!-- TO UPDATE -->
 
-# Issues & Conclusions
+### Issues & Conclusions
 
 - **Accessibility**
 
@@ -518,11 +525,9 @@ Accessibility checking tools used:
   - Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. WAVE (web accessibility evaluation tool) didn't recognized this as an error. This element need further development;
 
 - **Clean Code**
-
   - Following main rule of clean code - DRY (Don't repeat yourself), I used the _v-for_ loop Vue built-in directive for authentication form inputs (log-in & sign-up):
-
-  ```vue
-  <!-- SignUpForm.vue: -->
+  ```ts
+  <!-- SignUpForm.vue -->
   <!-- FORM INPUTS -->
   <div
     v-for="(section, index) in formSection"
@@ -545,10 +550,9 @@ Accessibility checking tools used:
   [...] // form sections including vuelidate userData values const formSection = ref
   <signUpFormSection[]></signUpFormSection[]>
   ```
+  This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, likethe one I used in the Weight Monitor Details Section:
 
-This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, likethe one I used in the Weight Monitor Details Section:
-
-```vue
+```ts
 <!-- WeightMonitorView.vue -->
 <div class="grid grid-rows-5 md:grid-rows-none md:grid-cols-5 h-full pt-9 gap-px">
       <stats-box
