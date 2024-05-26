@@ -63,6 +63,7 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
 2. [**Programming goals and results linked to set objectives**](#programming-goals-and-assumptions)
 3. [**Firebase**](#firebase)
    - [**Authentication**](#authentication)
+     - [**Accessibility categories**]
    - [**Firestore Database**](#firestore-database)
    - [**Firebase Storage**](#firebase-storage)
 4. [**Vuelidate**](#vuelidate)
@@ -167,30 +168,6 @@ Built with:
    - Firestore Database;
 
    See more in [**Firebase**](#firebase) section.
-
-   Created Users accessibility categories:
-
-   - **Full Access:** For registered users:
-
-     - [x] To get and post weight measurements,
-     - [x] Save training results;
-
-     To be implemented in further stages of the project development:
-
-     - [x] Make purchase in e-store,
-     - [x] Save favorite blogs, posts,
-     - [x] Create and publish on blogs section.
-
-   - **Limited Access:** For users without registration:
-
-     - [x] Access denied to training section & weight monitor;
-
-     To be implemented in further stages of the project development:
-
-     - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
-
-   - **Try As Guest:** A temporary access option:
-     - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
 
 4. **Utilizing TypeScript**;
    TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
@@ -323,6 +300,32 @@ Built with:
     </router-link>
 
    ```
+
+   ### Accessibility Categories
+
+   Created Users accessibility categories:
+
+   - **Full Access:** For registered users:
+
+     - [x] To get and post weight measurements,
+     - [x] Save training results;
+
+     To be implemented in further stages of the project development:
+
+     - [x] Make purchase in e-store,
+     - [x] Save favorite blogs, posts,
+     - [x] Create and publish on blogs section.
+
+   - **Limited Access:** For users without registration:
+
+     - [x] Access denied to training section & weight monitor;
+
+     To be implemented in further stages of the project development:
+
+     - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
+
+   - **Try As Guest:** A temporary access option:
+     - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
 
 2. ## Firestore Database
 
