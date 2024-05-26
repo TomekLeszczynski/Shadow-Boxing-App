@@ -75,11 +75,13 @@ A simple platform for those training in boxing or other combat sports aimed at s
 
 ## Main elements and features.
 
-Implemented:
+1. Implemented:
 
 - [x] **Shadow Boxing Workout** - The core feature: boxing training sessions divided into levels of difficulty;
 - [x] **Weight Monitor**: Recording weight measurements and displaying historical records in a chart format;
-      To be implemented in further stages of the development:
+
+2. To be implemented in further stages of the development:
+
 - [ ] **Blogs**: User blog section;
 - [ ] **E-commerce Store**: Store offering clothing and accessories for combat sports enthusiasts.
 
@@ -168,28 +170,27 @@ Built with:
 
    Created Users accessibility categories:
 
-   1. **Full Access:** For registered users:
+   - **Full Access:** For registered users:
 
-   - [x] To get and post weight measurements,
-   - [x] Save training results;
+     - [x] To get and post weight measurements,
+     - [x] Save training results;
 
-   To be implemented in further stages of the project development:
+     To be implemented in further stages of the project development:
 
-   - [x] Make purchase in e-store,
-   - [x] Save favorite blogs, posts,
-   - [x] Create and publish on blogs section.
+     - [x] Make purchase in e-store,
+     - [x] Save favorite blogs, posts,
+     - [x] Create and publish on blogs section.
 
-   2. **Limited Access:** For users without registration:
+   - **Limited Access:** For users without registration:
 
-   - [x] Access denied to training section & weight monitor;
+     - [x] Access denied to training section & weight monitor;
 
-   To be implemented in further stages of the project development:
+     To be implemented in further stages of the project development:
 
-   - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
+     - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
 
-   3. **Try As Guest:** A temporary access option:
-
-   - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
+   - **Try As Guest:** A temporary access option:
+     - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
 
 4. **Utilizing TypeScript**;
    TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
