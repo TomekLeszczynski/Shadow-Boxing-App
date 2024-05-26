@@ -61,6 +61,9 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
    - [**Features**](#main-elements-and-features)
    - [**Tech Stack**](#tech-stack)
 2. [**Programming goals and results linked to set objectives**](#programming-goals-and-assumptions)
+   - [**From Scratch to Deployment**](#from-scratch-to-deployment)
+   - [**Efficient Styling**](#efficient-styling)
+   - [**Utilizing the cloud platform for handling authentication and user data storage**](#utilizing-the-cloud-platform-for-handling-authentication-and-user-data-storage) -[**Utilizing TypeScript**](#utilizing-typescript)
 3. [**Firebase**](#firebase)
    - [**Authentication**](#authentication)
      - [**Accessibility categories**](#accessibility-categories)
@@ -103,7 +106,8 @@ Built with:
 
 # Programming goals and results linked to set objectives.
 
-1. **From Scratch to Deployment**
+1. ### **From Scratch to Deployment**
+
    The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
    The project was created using Vue.js and related libraries and tools such as:
 
@@ -113,7 +117,8 @@ Built with:
 
    It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with NUXT, which is the next designated step.
 
-2. **Efficient Styling**
+2. ### **Efficient Styling**
+
    During my training of CSS I learned how to effectively use:
 
    - Bootstrap,
@@ -153,7 +158,8 @@ Built with:
       }
    ```
 
-3. **Utilizing the cloud platform for handling authentication and user data storage**
+3. ### **Utilizing the cloud platform for handling authentication and user data storage**
+
    High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The built-in features combined with **Pinia** allowed me to easily manage many aspects such as:
 
    - Creating / Logging in users,
@@ -169,7 +175,8 @@ Built with:
 
    See more in [**Firebase**](#firebase) section.
 
-4. **Utilizing TypeScript**;
+4. ### **Utilizing TypeScript**
+
    TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
 
    - **Type Annotation**
