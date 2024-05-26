@@ -63,7 +63,7 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
 2. [**Programming goals and results linked to set objectives**](#programming-goals-and-assumptions)
 3. [**Firebase**](#firebase)
    - [**Authentication**](#authentication)
-     - [**Accessibility categories**]
+     - [**Accessibility categories**](#accessibility-categories)
    - [**Firestore Database**](#firestore-database)
    - [**Firebase Storage**](#firebase-storage)
 4. [**Vuelidate**](#vuelidate)
