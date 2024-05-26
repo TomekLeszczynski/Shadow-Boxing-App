@@ -55,32 +55,35 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
 
 ![Shadow Boxing Workout Home View](./readme_graphics/app_home_view.jpg)
 
-# General Info
+# Table of content.
 
-## Project
+1. [**Introduction**](#Introduction)
+   - [**Features**](#main-elements-and-features)
+   - [**Tech Stack**](#tech-stack)
+2. [**Programming goals and results linked to set objectives**](#programming-goals-and-assumptions)
+3. [**Firebase**](#firebase)
+   - [**Authentication**](#authentication)
+   - [**Firestore Database**](#firestore-database)
+   - [**Firebase Storage**](#firebase-storage)
+4. [**Vuelidate**](#vuelidate)
+
+# Introduction
+
+## Project idea.
 
 A simple platform for those training in boxing or other combat sports aimed at supporting users' training and sports development; building a community and as a source of knowledge and information about the world of boxing.
 
-## Main Elements And Features:
+## Main elements and features.
 
-- [x] The Core - **Shadow Boxing Workout:** Boxing training sessions divided into levels of difficulty;
-- [x] **Weight Monitor:** Recording weight measurements and displaying historical records in a chart format;
-- [ ] **Blogs:** User blog section;
-- [ ] **E-commerce Store** Store offering clothing and accessories for combat sports enthusiasts.
+Implemented:
 
-## Programming Goals And Assumptions:
+- [x] **Shadow Boxing Workout** - The core feature: boxing training sessions divided into levels of difficulty;
+- [x] **Weight Monitor**: Recording weight measurements and displaying historical records in a chart format;
+      To be implemented in further stages of the development:
+- [ ] **Blogs**: User blog section;
+- [ ] **E-commerce Store**: Store offering clothing and accessories for combat sports enthusiasts.
 
-- [**From Scratch to Deployment**](#From-Scratch-to-Deployment): The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
-- [**Efficient Styling**](#Efficient-Styling);
-- [**Utilizing the cloud platform for handling authentication and user data storage**](#Utilizing-the-cloud-platform-for-handling-authentication-and-user-data-storage);
-- [**Utilizing TypeScript**](#Utilizing-TypeScript);
-- [**Version control and tracking changes in the project**](#Version-control-and-tracking-changes-in-the-project);
-- [**Responsive Design**](#Responsive-Design);
-- [**Accessibility**](#Accessibility);
-- [**Unit Testing**](#Unit-Testing);
-- [**Clean Code**](#Clean-Code);
-
-## Tech Stack
+## Tech Stack.
 
 Built with:
 
@@ -95,28 +98,33 @@ Built with:
 - **Vuelidate**,
 - **Chart.js**.
 
-# Results linked to set objectives.
+# Programming goals and results linked to set objectives.
 
-### From Scratch to Deployment:
+1. **From Scratch to Deployment**
+   The project aims to build a comprehensive application from the ground up, considering my level of knowledge and experience, based on one of the JavaScript frameworks;
+   The project was created using Vue.js and related libraries and tools such as:
 
-The project was created using **Vue.js** and related libraries and tools such as:
+   - Pinia,
+   - Vue Router,
+   - Vite, etc.
 
-- **Pinia**,
-- **Vue Router**,
-- **Vite**, etc.
+It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with NUXT, which is the next designated step.
 
-It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with **NUXT**, which is the next designated step.
+2. **Efficient Styling**
+   During my training of CSS I learned how to effectively use:
 
-### Efficient Styling:
+   - Bootstrap,
+   - Sass,
+   - BEM;
 
-During my training of CSS I how to effectively use:
+For this project I decided to use **Tailwind CSS** (https://tailwindcss.com/). The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
+In addition I've made some extensions, such as:
 
-- **Bootstrap**,
-- **Sass**,
-- **BEM**;
-  For this project I decided to use **Tailwind CSS** (https://tailwindcss.com/). The app is fully styled using Tailwind's built-in CSS classes, with _no additional CSS classes_ (scope nor global).
+- custom colors,
+- custom font (Google Fonts),
+- custom keyframes,
+- defined animations.
 
-In addition, extensions have been created for the custom colors used in the app and a font from Google Fonts has been added. Keyframes were also added and animations were defined. All this allows for better management and easier changes to the code.
 Examples of my extensions:
 
 ```ts
@@ -142,26 +150,114 @@ Examples of my extensions:
       }
 ```
 
-### Utilizing the cloud platform for handling authentication and user data storage:
+3. **Utilizing the cloud platform for handling authentication and user data storage**
+   High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The built-in features combined with **Pinia** allowed me to easily manage many aspects such as:
 
-High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The built-in features combined with **Pinia** allowed me to easily manage many aspects such as:
+   - Creating / Logging in users,
+   - Controlling access to selected services,
+   - Storing users data (weight measurements, training sessions history),
+   - Storing sources like audio files for training sessions;
 
-- Creating / Logging in users,
-- Controlling access to selected services,
-- Storing users data (weight measurements, training sessions history),
-- Storing sources like audio files for training sessions;
+   Products I used in the project:
 
-Products I used in the project:
+   - Firebase Authentication,
+   - Firebase Storage,
+   - Firestore Database;
 
-- [**Authentication**](#Authentication),
-- [**Firebase Storage**](#Firebase-Storage),
-- [**Firestore Database**](#Firestore-Database);
+See more in [**Firebase**](#firebase) section.
 
-- #### Authentication
+Created Users accessibility categories:
 
-```ts
-<!-- AuthenticationStore.ts -->
-actions: {
+1.  **Full Access:** For registered users:
+
+    - [x] To get and post weight measurements,
+    - [x] Save training results;
+
+    To be implemented in further stages of the project development:
+
+    - [x] Make purchase in e-store,
+    - [x] Save favorite blogs, posts,
+    - [x] Create and publish on blogs section.
+
+2.  **Limited Access:** For users without registration:
+
+    - [x] Access denied to training section & weight monitor;
+
+    To be implemented in further stages of the project development:
+
+    - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
+
+3.  **Try As Guest:** A temporary access option:
+
+    - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
+
+4.  **Utilizing TypeScript**;
+    TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
+
+    - **Type Annotation**
+      Type annotations are crucial as they provide greater typing certainty and helped me avoid errors related to data types. In this project, I used type annotations to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
+
+    ```ts
+    <!-- BasicTrainingModal.vue -->
+    const punchesArray: string[] = [
+      'jab',
+      'cross',
+      'lead hook',
+      'rear hook',
+      'lead uppercut',
+      'rear uppercut'
+    ]
+    ```
+
+    - **Interfaces** are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, I was able to clearly specify which properties should be present in objects implementing these interfaces.
+
+    ```ts
+    <!-- quotes.ts -->
+    interface Quote {
+      quote: string
+      author: string
+    }
+    ```
+
+    - **Type guards** are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, I was able to safely handle different data cases and prevent errors caused by type inconsistencies.
+
+    ```ts
+    <!-- AuthenticationStore.ts -->
+        errorsHandling(error: unknown | FirebaseError) {
+          if (error instance of FirebaseError) {
+            console.error('Firebase Error:', error.code, error.message)
+            switch (error.code) {...}
+          } else {
+            console.error('Unexpected Error:', error)
+            switch (error) {...}
+            throw new Error('Unexpected Error')
+          }
+        }
+    ```
+
+    - **Union types** are used in the project to handle different use cases and conditions that may arise. They allow to specify a variable or function parameter that can have multiple possible types.
+
+    ```ts
+    <!-- BasicTrainingModal.vue -->
+    const intervalId = ref<number | null>(null)
+    ```
+
+    - **Generics** are used in the project to create more generic and reusable components, functions, or classes. Thanks to Generics I was able to write code that can operate on different data types, contributing to code flexibility and reusability:
+
+    ```ts
+    interface WeightGraphProps {
+      measurements: WeightData[]
+    }
+    const props = defineProps<WeightGraphProps>()
+    ```
+
+# Firebase
+
+1. ## Authentication
+
+   ```ts
+   <!-- AuthenticationStore.ts -->
+   actions: {
     // sign up anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
       try {
@@ -210,54 +306,33 @@ actions: {
         this.errorsHandling(error)
       }
     },
-}
-```
+   }
+   ```
 
-**Firebase** helps differentiate the availability of functionality for logged-in and anonymous users, for example rendering/not rendering nav items depending on user status.
+   **Firebase** helps differentiate the availability of functionality for logged-in and anonymous users, for example rendering/not rendering nav items depending on user status.
 
-```ts
-<!-- ShadowBoxingLink.vue -->
-<router-link
-// display menu item if the user exist and is authenticated / change route to 'shadow-boxing'
-  v-if="authStore.user"
-  :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
->
-    Shadow Boxing
-  </router-link>
+   ```ts
+   <!-- ShadowBoxingLink.vue -->
+   <router-link
+   // display menu item if the user exist and is authenticated / change route to 'shadow-boxing'
+    v-if="authStore.user"
+    :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
+   >
+     Shadow Boxing
+    </router-link>
 
-```
+   ```
 
-Created Users accessibility categories:
+2. ## Firestore Database
 
-**Full Access:** For registered users:
+   Saving & getting training sessions data or weight monitor measurements:
 
-- [x] To get and post weight measurements,
-- [x] Save training results,
-      To be implemented in further stages of the project development:
-- [x] Make purchase in e-store,
-- [x] Save favorite blogs, posts,
-- [x] Create and publish on blogs section.
-
-**Limited Access:** For users without registration:
-
-- [x] Access denied to training section & weight monitor,
-      To be implemented in further stages of the project development:
-- [x] Limited access to blog section (only reading, no creating, no adding to favorite),
-
-**Try As Guest:** A temporary "Try As Guest" access option:
-
-- [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
-
-- #### Firestore Database
-
-Saving & getting training sessions data or weight monitor measurements:
-
-```ts
-<!-- WeightInput.vue -->
-// submit weight value to firebase user's data collection
-const populateWeights = async (): Promise<void> => {
-  const user = authStore.user
-  if (user && weightInput.value && weightInput.value > 0) {
+   ```ts
+   <!-- WeightInput.vue -->
+   // submit weight value to firebase user's data collection
+   const populateWeights = async (): Promise<void> => {
+   const user = authStore.user
+   if (user && weightInput.value && weightInput.value > 0) {
     try {
       // according to firebase docs: function creates records in 'measurements' folder
       const measurementsCollection = collection(db, 'users', user.uid, 'measurements')
@@ -266,38 +341,38 @@ const populateWeights = async (): Promise<void> => {
     } catch (error) {
       console.error('Error from WeightInput:', error)
     }
-  }
-  weightInput.value = null
-}
-```
+   }
+   weightInput.value = null
+   }
+   ```
 
-```ts
-<!-- WeightMonitorView.vue -->
-// get measurements data collection related to current user
-const getMeasures = async (): Promise<void> => {
-  if (authStore.user != null) {
+   ```ts
+    <!-- WeightMonitorView.vue -->
+    // get measurements data collection related to current user
+    const getMeasures = async (): Promise<void> => {
+    if (authStore.user != null) {
     const measurementsCollection = collection(db, 'users', authStore.user.uid, 'measurements')
     q = query(measurementsCollection, orderBy('date'))
     try {
       const querySnapshot = await getDocs(q)
       measurements.value = mapSnapshot(querySnapshot.docs)
-    } catch (error) {
+     } catch (error) {
       console.error('getMeasures error: ' + error)
+      }
     }
-  }
-}
-```
+   }
+   ```
 
-```ts
-<!-- AdvancedTrainingDisplay.vue -->
-// submit session details to firebase user's data collection
-const saveAndCloseSession = async (): Promise<void> => {
-  const user = authStore.user
-  if (user && advTrainingStore.status === 'done') {
-    try {
-      // according to firebase docs: function creates records in 'trainings' folder
-      const trainingCollection = collection(db, 'users', user.uid, 'trainings')
-      await addDoc(trainingCollection, {
+   ```ts
+   <!-- AdvancedTrainingDisplay.vue -->
+   // submit session details to firebase user's data collection
+   const saveAndCloseSession = async (): Promise<void> => {
+     const user = authStore.user
+     if (user && advTrainingStore.status === 'done') {
+       try {
+         // according to firebase docs: function creates records in 'trainings' folder
+         const trainingCollection = collection(db, 'users', user.uid, 'trainings')
+         await addDoc(trainingCollection, {
         training: 'advanced',
         rounds: advTrainingStore.rounds,
         complexity: advTrainingStore.complexity,
@@ -305,21 +380,19 @@ const saveAndCloseSession = async (): Promise<void> => {
         // record keeps weight value & date of creation
         date: new Date()
       })
-    } catch (error) {
+      } catch (error) {
       console.error('Saving Advanced Training Session Error:' + error)
+      }
     }
-  }
-}
-```
+    }
+   ```
 
-- #### Firebase Storage
-
-Firebase Storage is used for storing audio files used during training sessions:
-
-```ts
-<!-- advancedAudioCombinationsHandler.ts -->
-const getAudioFiles = async (): Promise<void> => {
-  try {
+3. ## Firebase Storage
+   Firebase Storage is used for storing audio files used during training sessions:
+   ```ts
+   <!-- advancedAudioCombinationsHandler.ts -->
+   const getAudioFiles = async (): Promise<void> => {
+   try {
     const audioFiles = await listAll(folderRef)
     for (const itemRef of audioFiles.items) {
       try {
@@ -329,13 +402,13 @@ const getAudioFiles = async (): Promise<void> => {
         console.error('Error downloading advanced combinations audio files:' + error)
       }
     }
-  } catch (error: unknown) {
+    } catch (error: unknown) {
     console.error('Error listing files:' + error)
-  }
-}
-```
+    }
+   }
+   ```
 
-- #### Vuelidate
+# Vuelidate
 
 For "Create an account" form I used **Vuelidate** (https://vuelidate-next.netlify.app/) - lightweight model-based validation dedicated for **Vue.js**.
 Vuelidate comes with a set of validators which I set up in the code.
@@ -385,66 +458,15 @@ It also helps to avoid sending incorrect or empty form to Firebase:
   if (!v$.value.$error || !v$.value.$invalid) return
 ```
 
-### Utilizing TypeScript:
+<!--  -->
+<!--  -->
+<!--  -->
 
-**TypeScript** is now a 'must have' for any programmer writing in **JavaScript**. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
-
-- _Type Annotation_
-  Type annotations are crucial as they provide greater typing certainty and helped me avoid errors related to data types. In this project, I used type annotations to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
-
-```ts
-<!-- BasicTrainingModal.vue -->
-const punchesArray: string[] = [
-  'jab',
-  'cross',
-  'lead hook',
-  'rear hook',
-  'lead uppercut',
-  'rear uppercut'
-]
-```
-
-- _Interfaces_ are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, I was able to clearly specify which properties should be present in objects implementing these interfaces.
-
-```ts
-<!-- quotes.ts -->
-interface Quote {
-  quote: string
-  author: string
-}
-```
-
-- _Type guards_ are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, I was able to safely handle different data cases and prevent errors caused by type inconsistencies.
-
-```ts
-<!-- AuthenticationStore.ts -->
-    errorsHandling(error: unknown | FirebaseError) {
-      if (error instance of FirebaseError) {
-        console.error('Firebase Error:', error.code, error.message)
-        switch (error.code) {...}
-      } else {
-        console.error('Unexpected Error:', error)
-        switch (error) {...}
-        throw new Error('Unexpected Error')
-      }
-    }
-```
-
-- _Union types_ are used in the project to handle different use cases and conditions that may arise. They allow to specify a variable or function parameter that can have multiple possible types.
-
-```ts
-<!-- BasicTrainingModal.vue -->
-const intervalId = ref<number | null>(null)
-```
-
-- _Generics_ are used in the project to create more generic and reusable components, functions, or classes. Thanks to Generics I was able to write code that can operate on different data types, contributing to code flexibility and reusability:
-
-```ts
-interface WeightGraphProps {
-  measurements: WeightData[]
-}
-const props = defineProps<WeightGraphProps>()
-```
+- [**Version control and tracking changes in the project**](#Version-control-and-tracking-changes-in-the-project);
+- [**Responsive Design**](#Responsive-Design);
+- [**Accessibility**](#Accessibility);
+- [**Unit Testing**](#Unit-Testing);
+- [**Clean Code**](#Clean-Code);
 
 ### Version control and tracking changes in the project:
 
