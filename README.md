@@ -108,7 +108,7 @@ Built with:
    - Vue Router,
    - Vite, etc.
 
-It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with NUXT, which is the next designated step.
+   It is the result of independent work from the idea through the structure, selection of tools and design solutions and their implementation. It is a summary of the consecutive stages of learning programming and an introduction to working with NUXT, which is the next designated step.
 
 2. **Efficient Styling**
    During my training of CSS I learned how to effectively use:
@@ -117,18 +117,18 @@ It is the result of independent work from the idea through the structure, select
    - Sass,
    - BEM;
 
-For this project I decided to use **Tailwind CSS** (https://tailwindcss.com/). The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
-In addition I've made some extensions, such as:
+   For this project I decided to use **Tailwind CSS** (https://tailwindcss.com/). The app is fully styled using Tailwind's built-in CSS classes, with no additional CSS classes (scope nor global).
+   In addition I've made some extensions, such as:
 
-- custom colors,
-- custom font (Google Fonts),
-- custom keyframes,
-- defined animations.
+   - custom colors,
+   - custom font (Google Fonts),
+   - custom keyframes,
+   - defined animations.
 
-Examples of my extensions:
+   Examples of my extensions:
 
-```ts
-<!-- tailwind.config.ts -->
+   ```ts
+   <!-- tailwind.config.ts -->
       colors: {
         'custom-white': '#E7E4DF',
         'custom-black': '#141414',
@@ -148,7 +148,7 @@ Examples of my extensions:
       animation:{
         'appear-slow-and-delayed': 'appearance 1s linear 700ms both',
       }
-```
+   ```
 
 3. **Utilizing the cloud platform for handling authentication and user data storage**
    High popularity, good quality documentation and numerous resources and tutorials led me to use the **Firebase** platform (https://firebase.google.com/). The built-in features combined with **Pinia** allowed me to easily manage many aspects such as:
@@ -164,92 +164,92 @@ Examples of my extensions:
    - Firebase Storage,
    - Firestore Database;
 
-See more in [**Firebase**](#firebase) section.
+   See more in [**Firebase**](#firebase) section.
 
-Created Users accessibility categories:
+   Created Users accessibility categories:
 
-1.  **Full Access:** For registered users:
+   1. **Full Access:** For registered users:
 
-    - [x] To get and post weight measurements,
-    - [x] Save training results;
+   - [x] To get and post weight measurements,
+   - [x] Save training results;
 
-    To be implemented in further stages of the project development:
+   To be implemented in further stages of the project development:
 
-    - [x] Make purchase in e-store,
-    - [x] Save favorite blogs, posts,
-    - [x] Create and publish on blogs section.
+   - [x] Make purchase in e-store,
+   - [x] Save favorite blogs, posts,
+   - [x] Create and publish on blogs section.
 
-2.  **Limited Access:** For users without registration:
+   2. **Limited Access:** For users without registration:
 
-    - [x] Access denied to training section & weight monitor;
+   - [x] Access denied to training section & weight monitor;
 
-    To be implemented in further stages of the project development:
+   To be implemented in further stages of the project development:
 
-    - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
+   - [x] Limited access to blog section (only reading, no creating, no adding to favorite),
 
-3.  **Try As Guest:** A temporary access option:
+   3. **Try As Guest:** A temporary access option:
 
-    - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
+   - [x] Allow interested users to shorten the authentication path and provide access to all functionalities. The data will be stored in Database but user will lose the access to it after logging out.
 
-4.  **Utilizing TypeScript**;
-    TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
+4. **Utilizing TypeScript**;
+   TypeScript is now a 'must have' for any programmer writing in JavaScript. Working on this project was an opportunity to learn and use it in a real project. I used basic elements such as:
 
-    - **Type Annotation**
-      Type annotations are crucial as they provide greater typing certainty and helped me avoid errors related to data types. In this project, I used type annotations to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
+   - **Type Annotation**
+     Type annotations are crucial as they provide greater typing certainty and helped me avoid errors related to data types. In this project, I used type annotations to declare data types for variables, making it easier to understand their intentions and preventing errors during programming.
 
-    ```ts
-    <!-- BasicTrainingModal.vue -->
-    const punchesArray: string[] = [
-      'jab',
-      'cross',
-      'lead hook',
-      'rear hook',
-      'lead uppercut',
-      'rear uppercut'
-    ]
-    ```
+   ```ts
+   <!-- BasicTrainingModal.vue -->
+   const punchesArray: string[] = [
+     'jab',
+     'cross',
+     'lead hook',
+     'rear hook',
+     'lead uppercut',
+     'rear uppercut'
+   ]
+   ```
 
-    - **Interfaces** are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, I was able to clearly specify which properties should be present in objects implementing these interfaces.
+   - **Interfaces** are used in the project mainly to define data structures and improve code readability and maintainability. By defining interfaces for different data types, such as quotes or user data, I was able to clearly specify which properties should be present in objects implementing these interfaces.
 
-    ```ts
-    <!-- quotes.ts -->
-    interface Quote {
-      quote: string
-      author: string
-    }
-    ```
+   ```ts
+   <!-- quotes.ts -->
+   interface Quote {
+     quote: string
+     author: string
+   }
+   ```
 
-    - **Type guards** are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, I was able to safely handle different data cases and prevent errors caused by type inconsistencies.
+   - **Type guards** are essential in the project for handling various data types, including errors related to the Firebase service. With type guards, I was able to safely handle different data cases and prevent errors caused by type inconsistencies.
 
-    ```ts
-    <!-- AuthenticationStore.ts -->
-        errorsHandling(error: unknown | FirebaseError) {
-          if (error instance of FirebaseError) {
-            console.error('Firebase Error:', error.code, error.message)
-            switch (error.code) {...}
-          } else {
-            console.error('Unexpected Error:', error)
-            switch (error) {...}
-            throw new Error('Unexpected Error')
-          }
-        }
-    ```
+   ```ts
+   <!-- AuthenticationStore.ts -->
+       errorsHandling(error: unknown | FirebaseError) {
+         if (error instance of FirebaseError) {
+           console.error('Firebase Error:', error.code, error.message)
+           switch (error.code) {...}
+         } else {
+           console.error('Unexpected Error:', error)
+           switch (error) {...}
+           throw new Error('Unexpected Error')
+         }
+       }
+   ```
 
-    - **Union types** are used in the project to handle different use cases and conditions that may arise. They allow to specify a variable or function parameter that can have multiple possible types.
+   - **Union types** are used in the project to handle different use cases and conditions that may arise. They allow to specify a variable or function parameter that can have multiple possible types.
 
-    ```ts
-    <!-- BasicTrainingModal.vue -->
-    const intervalId = ref<number | null>(null)
-    ```
+   ```ts
+   <!-- BasicTrainingModal.vue -->
+   const intervalId = ref<number | null>(null)
+   ```
 
-    - **Generics** are used in the project to create more generic and reusable components, functions, or classes. Thanks to Generics I was able to write code that can operate on different data types, contributing to code flexibility and reusability:
+   - **Generics** are used in the project to create more generic and reusable components, functions, or classes. Thanks to Generics I was able to write code that can operate on different data types, contributing to code flexibility and reusability:
 
-    ```ts
-    interface WeightGraphProps {
-      measurements: WeightData[]
-    }
-    const props = defineProps<WeightGraphProps>()
-    ```
+   ```ts
+   interface WeightGraphProps {
+     measurements: WeightData[]
+   }
+   const props = defineProps<WeightGraphProps>()
+   ```
 
 # Firebase
 
