@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount } from 'vue'
 import SignUpForm from '@/components/authorization/SignUpForm.vue'
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 
 const authStore = useAuthStore()
 

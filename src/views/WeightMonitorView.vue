@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-rows-12 p-4 grid-cols-1 w-full max-h-svh md:h-full gap-px">
     <!-- ADD NEW VALUE -->
-    <div class="row-start-2 row-end-3 grid  grid-cols-1">
+    <div class="row-start-2 row-end-3 grid grid-cols-1">
       <weight-input />
     </div>
     <!-- DETAILS BOXES -->
@@ -71,7 +71,7 @@ import type { Unsubscribe } from 'firebase/auth'
 import { db } from '@/firebase/firebaseInit'
 
 // pinia import
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 
 // pinia instance
 const authStore = useAuthStore()

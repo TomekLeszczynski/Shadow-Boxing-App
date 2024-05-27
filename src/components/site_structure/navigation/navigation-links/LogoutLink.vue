@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 // import pinia store
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 
 // import router
 import { useRouter } from 'vue-router'

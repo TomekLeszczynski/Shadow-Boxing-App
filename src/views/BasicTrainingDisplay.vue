@@ -66,7 +66,7 @@ import { playFinishSound, playStartSound } from '@/components/shadow_boxing/help
 import { nextCommandDelay } from '@/components/shadow_boxing/helpers/nextCommandDelay'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '@/firebase/firebaseInit'
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 const authStore = useAuthStore()
 
 const randomPunchIndex = ref<number | null>(null)

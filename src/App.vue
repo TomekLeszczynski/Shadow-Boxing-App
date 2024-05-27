@@ -55,7 +55,7 @@ const skipPreloader = () => {
 }
 
 // check the route on onMounted. Display preloader only when user enters website or refresh home view.
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 import { RouterView, useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()

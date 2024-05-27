@@ -64,7 +64,7 @@ import { useRouter, RouterLink } from 'vue-router'
 const router = useRouter()
 
 // pinia import
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 const authStore = useAuthStore()
 
 // shared components import

@@ -13,7 +13,7 @@
         class="bg-red-500 px-12 group tracking-wide text-custom-black"
         aria-label="Add & Save New Measurement"
       >
-        <button-label labelText="Add new"/>
+        <button-label labelText="Add new" />
       </button>
     </form>
   </div>
@@ -23,7 +23,7 @@
 import { ref } from 'vue'
 
 // pinia import
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 
 // firebase import
 import { addDoc, collection } from 'firebase/firestore'

@@ -17,7 +17,7 @@ import { useRouter, type Router } from 'vue-router'
 const router = useRouter()
 
 // import pinia auth store and create instance
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 const authStore = useAuthStore()
 
 // get access as an anonymous user, redirect user to Home page with Nav items accessible only for auth users

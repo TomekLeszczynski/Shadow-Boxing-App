@@ -67,7 +67,7 @@
 import { ref } from 'vue'
 
 // import pinia store
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 
 // component import / navigation links
 import HomeLink from './navigation-links/HomeLink.vue'

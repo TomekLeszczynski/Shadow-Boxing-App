@@ -49,7 +49,7 @@ import {
   playSound
 } from '@/components/shadow_boxing/helpers/playSounds'
 import { useAdvTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 import {
   intervalId,
   handleInterval

@@ -63,7 +63,7 @@ import { ref, onUnmounted } from 'vue'
 import { useRouter, RouterLink } from 'vue-router'
 
 // pinia auth store instance
-import { useAuthStore } from '@/stores/AuthentificationStore'
+import { useAuthStore } from '@/stores/AuthenticationStore'
 const authStore = useAuthStore()
 
 // shared components import
