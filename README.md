@@ -1,57 +1,6 @@
-<!-- This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-``` -->
-
 # Shadow Boxing Workout
 
-_As a boxing enthusiast and adept, I wanted to create a training app based on the most common boxing training - shadow boxing. It was intended to allow users at any level to work on punch combinations, footwork or reflexes even more effectively. The original idea has been developed with additional features to cater to a wider range of users._
+_As a boxing enthusiast, I wanted to create a training app based on the most common boxing training - shadow boxing. It was intended to allow users at any level to work on punch combinations, footwork or reflexes even more effectively. The original idea has been developed with additional features to cater to a wider range of users._
 
 ![Shadow Boxing Workout Home View](./readme_graphics/app_home_view.jpg)
 
@@ -60,6 +9,7 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
 1. [**Introduction**](#Introduction)
    - [**Features**](#main-elements-and-features)
    - [**Tech Stack**](#tech-stack)
+   - [**Installing**](#installing)
 2. **Programming goals and results linked to set objectives**
    - [**From scratch to deployment**](#from-scratch-to-deployment)
    - [**Efficient styling**](#efficient-styling)
@@ -141,6 +91,57 @@ Built with:
 - **Typescript**,
 - **Vuelidate**,
 - **Chart.js**.
+
+## Installing
+
+### Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+### Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+
+1. Disable the built-in TypeScript Extension
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+### Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+### Project Setup
+
+```sh
+npm install
+```
+
+#### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+#### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+#### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+#### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
 
 # Programming goals and results linked to set objectives.
 
@@ -637,11 +638,11 @@ It also helps to avoid sending incorrect or empty form to Firebase:
 if (!v$.value.$error || !v$.value.$invalid) return
 ```
 
-### Issues & Conclusions
+# Issues & Conclusions
 
 - **Accessibility**
 
-  - Due to the specific nature of the boxing training, some functionalities of the shadow boxing training are not fully accessible to users with various disabilities. The advanced training mode doesn't provide any visual display of the punch commands that the user hears. This element requires further development;
+  - Due to the specific nature of the boxing training, some functionalities are not fully accessible to users with various disabilities. The advanced training mode doesn't provide any visual display of the punch commands that the user hears. This element requires further development;
   - Router Links are not tabbable properly. All router links are working correctly while navigating by 'Tab' by user but don't see outline or any visual sign of focus. Adding additional tailwind classes didn't help. **WAVE** (web accessibility evaluation tool) didn't recognized this as an error. This element need further development;
 
 - **Clean Code**
@@ -649,7 +650,7 @@ if (!v$.value.$error || !v$.value.$invalid) return
   - I used the _v-for_ loop Vue built-in directive for authentication form inputs (log-in & sign-up). This method seems a bit difficult for me to read and manage when combined with _v-model_ and **Vuelidate**. I feel more comfortable with the longer version, like the one I used in the Weight Monitor Details Section:
 
   ```ts
-  <!-- WeightMonitorView.vue -->
+  // WeightMonitorView.vue
    <div class="grid grid-rows-5 md:grid-rows-none md:grid-cols-5 h-full pt-9 gap-px">
       <stats-box
         title="Current weight:"
@@ -685,17 +686,17 @@ if (!v$.value.$error || !v$.value.$invalid) return
 
 # Design Inspirations
 
-#### Webpages
+## Webpages
 
 <a href="https://aim.obys.agency/" target="_blank" rel="noopener noreferrer"><img src="./readme_graphics/inspiration-aim-obys.jpg" alt="website-homepage-screenshot" width="250"></a>
 <a href="https://memphis.it/en/" target="_blank" rel="noopener noreferrer"><img src="./readme_graphics/inspiration-memphis-milano.jpg" alt="website-homepage-screenshot" width="250"></a>
 <a href="https://www.eclipse.builders/" target="_blank" rel="noopener noreferrer"><img src="./readme_graphics//inspiration-eclipse.jpg" alt="website-homepage-screenshot" width="250"></a>
 
-#### Elements
+## Elements
 
 - https://css-tricks.com/animating-with-clip-path/
 
-#### Icons, Graphics & Photos
+## Icons, Graphics & Photos
 
 - Icons:
   - https://heroicons.com/
