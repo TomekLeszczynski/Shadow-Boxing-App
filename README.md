@@ -75,6 +75,8 @@ _As a boxing enthusiast and adept, I wanted to create a training app based on th
    - [**Firestore Database**](#firestore-database)
    - [**Firebase Storage**](#firebase-storage)
 4. [**Form validation - Vuelidate**](#form-validation---vuelidate)
+5. [**Issues & conclusions**](#issues--conclusions)
+6. [**Design inspirations**](#design-inspirations)
 
 # Introduction
 
@@ -86,13 +88,44 @@ A simple platform for those training in boxing or other combat sports aimed at s
 
 1. Implemented:
 
-- [x] **Shadow Boxing Workout** - The core feature: boxing training sessions divided into levels of difficulty;
-- [x] **Weight Monitor**: Recording weight measurements and displaying historical records in a chart format;
+- **Shadow Boxing Workout**
+
+  - _Feature_: The core feature: boxing training sessions divided into levels of difficulty;
+  - _Usage_: Users can set up training sessions at various levels and practice different elements of boxing by following displayed and audio commands based on the shadow boxing numbering system. This system aids in remembering and developing winning combinations, with even-numbered punches being right-hand punches and odd-numbered punches being left-hand punches.
+
+  - **Basic level**:
+
+    - set punches amount per session,
+    - set intensity (time span between following commands),
+    - set display mode (digits or icons).
+    - Suitable for beginners and those who are looking for a less intense workout,
+    - Focuses on basic combinations and slower pace to help users grasp fundamental movements,
+    - Audio commands and simplified figure which demonstrates each punch, making it easier to follow along
+
+  - **Advanced level**:
+
+    - set amounts of rounds,
+    - set complexity (amount of punches in each combo),
+    - set intensity (time span between following combos).
+    - Designed for advanced users aiming for a high-intensity workout,
+    - Emphasizes rapid movements and more complex combinations,
+    - Audio commands allows helps users to stay focused on the movements.
+
+- **Weight Monitor**
+  - _Feature_: Recording weight measurements and displaying historical records in a chart format;
+  - _Usage_: Users can regularly save their weight measurements. These measurements are stored externally and displayed as a chart with additional info such as current weight, max weight, min weight, and progress/regress compared to the previous measurement. This helps users track their progress over time.
 
 2. To be implemented in further stages of the development:
 
-- [ ] **Blogs**: User blog section;
-- [ ] **E-commerce Store**: Store offering clothing and accessories for combat sports enthusiasts.
+- **Blogs**
+
+  - _Feature_: User's blog section;
+  - _Usage_: Users can create blogs - sharing experiences and various content about boxing, fitness or martial arts. Readers can give kudos, add posts to favorites and follow favorite authors.
+
+- **E-commerce Store**
+
+  - _Feature_: Store offering clothing and accessories for combat sports enthusiasts.
+  - _Usage_: Users can browse and buy clothes or accessories from the dedicated brand "średnio".
 
 ## Tech Stack.
 
@@ -389,7 +422,7 @@ Built with:
 1. ## Authentication
 
    ```ts
-   <!-- AuthenticationStore.ts -->
+   // AuthenticationStore.ts
    actions: {
     // sign up anonymously with firebase
     async getAccessAsAnAnonymous(): Promise<void> {
@@ -445,7 +478,7 @@ Built with:
 **Firebase** helps differentiate the availability of functionality for logged-in and anonymous users, for example rendering/not rendering nav items depending on user status.
 
 ```vue
-<!-- ShadowBoxingLink.vue -->
+ <!-- ShadowBoxingLink.vue -->
 <router-link
 // display menu item if the user exist and is authenticated / change route to 'shadow-boxing'
  v-if="authStore.user"
@@ -603,7 +636,6 @@ It also helps to avoid sending incorrect or empty form to Firebase:
 // check if no vuelidate errors or empty fields before sending request to firebase
 if (!v$.value.$error || !v$.value.$invalid) return
 ```
-
 
 ### Issues & Conclusions
 
