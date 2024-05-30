@@ -21,6 +21,7 @@
       <div>
         <!-- QUOTE -->
         <p
+          id="quote"
           class="text-2xl xs:text-4xl md:text-6xl lg:text-7xl font-bold uppercase mb-5 animate-text-show-up-delayed"
           aria-label="quote"
         >
@@ -28,6 +29,7 @@
         </p>
         <!-- AUTHOR -->
         <p
+          id="author"
           class="text-xl md:text-3xl lg:text-4xl text-end animate-text-show-up-delayed pt-9"
           aria-label="quote's author"
         >
