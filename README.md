@@ -90,7 +90,9 @@ Built with:
 - **Tailwind CSS**,
 - **Typescript**,
 - **Vuelidate**,
-- **Chart.js**.
+- **Chart.js**,
+- **Vue Test Utils**,
+- **Testing Library**.
 
 ## Installing
 
@@ -134,7 +136,7 @@ npm run build
 #### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-npm run test:unit
+npm run test
 ```
 
 #### Lint with [ESLint](https://eslint.org/)
@@ -340,7 +342,11 @@ npm run lint
 
 8.  ## **Code testing**
 
-    <!-- to be updated -->
+    For testing my project I used Vitest (https://vitest.dev/), which is dedicated testing framework for Vue.js.
+    Libraries I used for testing:
+
+    - Vue Test Utils (https://test-utils.vuejs.org/guide/);
+    - Testing Library (https://testing-library.com/)
 
 9.  ## **Clean code**
 
