@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onUnmounted, computed } from 'vue'
-
-import { playSound } from '@/components/shadow_boxing/helpers/playSounds'
-import { useAdvTrainigStore, useTrainingStateStore } from '@/stores/TrainingStore'
-const advTrainigStore = useAdvTrainigStore()
+import { useAdvTrainingStore, useTrainingStateStore } from '@/stores/TrainingStore'
+const advTrainingStore = useAdvTrainingStore()
 const trainingState = useTrainingStateStore()
 const totalRounds = ref<number>(0)
 const currentRound = ref<number>(0)
@@ -12,9 +10,9 @@ const minutes = ref<number>(0)
 const seconds = ref<number>(0)
 
 const setInitialValues = () => {
-  totalRounds.value = advTrainigStore.rounds
+  totalRounds.value = advTrainingStore.rounds
   currentRound.value = 1
-  advTrainigStore.trainingStatus = 'work'
+  advTrainingStore.status = 'work'
 }
 
 const sessionCompleted = computed(() => {
@@ -24,11 +22,14 @@ import {
   intervalId,
   handleInterval
 } from '@/components/shadow_boxing/helpers/advancedTimerInterval'
-import startSound from '@/assets/audio/boxing-bell-signal-start.mp3'
-import finishSound from '@/assets/audio/boxing-bell-signal-finish.mp3'
+import { playFinishSound, playStartSound } from '@/components/shadow_boxing/helpers/playSounds'
 
-const roundDuration: { minutes: number; seconds: number } = { minutes: 0, seconds: 30 }
-const restDuration: { minutes: number; seconds: number } = { minutes: 0, seconds: 10 }
+interface TimerValues {
+  minutes: number
+  seconds: number
+}
+const roundDuration: TimerValues = { minutes: 0, seconds: 30 }
+const restDuration: TimerValues = { minutes: 0, seconds: 10 }
 
 const resetTimerValues = (min: number, sec: number) => {
   minutes.value = min
@@ -38,27 +39,25 @@ const resetTimerValues = (min: number, sec: number) => {
 // --- ROUND TIMER ---
 const handleWorkTimer = (): void => {
   resetTimerValues(roundDuration.minutes, roundDuration.seconds)
-  playSound(startSound)
-  handleInterval(minutes, seconds, switchToRest, finishSound)
+  playStartSound()
+  handleInterval(minutes, seconds, switchToRest, playFinishSound)
 }
 const switchToWork = () => {
-  advTrainigStore.trainingStatus = 'work'
+  advTrainingStore.status = 'work'
   currentRound.value++
 }
 
 // --- REST TIMER ---
 const handleRestTimer = (): void => {
   resetTimerValues(restDuration.minutes, restDuration.seconds)
-  handleInterval(minutes, seconds, switchToWork, null)
+  handleInterval(minutes, seconds, switchToWork, undefined)
 }
 const switchToRest = () => {
-  !sessionCompleted.value
-    ? (advTrainigStore.trainingStatus = 'rest')
-    : (advTrainigStore.trainingStatus = null)
+  !sessionCompleted.value ? (advTrainingStore.status = 'rest') : (advTrainingStore.status = null)
 }
 
 watch(
-  () => advTrainigStore.trainingStatus,
+  () => advTrainingStore.status,
   (newValue) => {
     if (newValue == 'work') {
       handleWorkTimer()
