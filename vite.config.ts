@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [vue()],
   test: {
     globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom',
+    setupFiles: './vitest.setup.js'
   },
   resolve: {
     alias: {
