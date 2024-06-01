@@ -23,7 +23,7 @@
         functionality, but keep in mind that data won't be saved without registration.
       </p>
       <!-- TRY-AS-GUEST -->
-      <try-as-guest />
+      <try-as-guest data-testid="try-as-guest"/>
     </div>
   </div>
 </template>
