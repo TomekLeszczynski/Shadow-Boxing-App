@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { render, screen, fireEvent } from '@testing-library/vue'
 import { mount, flushPromises } from '@vue/test-utils'
 import preloaderComp from '@/components/preloader/preloaderComp.vue'
@@ -10,7 +11,7 @@ describe('Preloader', () => {
     test('renders skip button', () => {
       render(preloaderComp)
       const skipButton = screen.getByRole('button', { name: /skip/i })
-      expect(skipButton).toBeDefined()
+      expect(skipButton).toBeInTheDocument()
     })
 
     test('emits "skipped" event when button is clicked', async () => {
@@ -25,13 +26,13 @@ describe('Preloader', () => {
     test('renders quote', () => {
       const { container } = render(preloaderComp)
       const quoteDisplay = container.querySelector('#quote')
-      expect(quoteDisplay).toBeDefined()
+      expect(quoteDisplay).toBeInTheDocument()
     })
 
     test('renders author', () => {
       const { container } = render(preloaderComp)
       const authorDisplay = container.querySelector('#author')
-      expect(authorDisplay).toBeDefined()
+      expect(authorDisplay).toBeInTheDocument()
     })
   })
 
