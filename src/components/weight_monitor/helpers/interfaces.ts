@@ -6,6 +6,8 @@ export interface WeightData {
     measurements: WeightData[]
   }
   export interface Details {
+    measures: number[]
+    previousMeasure: number
     lastMeasure: number
     progress: number
     minValue: number

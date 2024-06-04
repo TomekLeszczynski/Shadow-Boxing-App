@@ -18,11 +18,11 @@ export function getDetails(data: WeightData[]): Details {
   const minValue: number = Math.min(...measures)
   const maxValue: number = Math.max(...measures)
   const avgValue: number = (minValue + maxValue) / 2
-  return { lastMeasure, progress, minValue, maxValue, avgValue }
+  return { measures, previousMeasure, lastMeasure, progress, minValue, maxValue, avgValue }
 }
 // specify a date range of measurements taken
-export function setTimespan(value: number, data: WeightData[]) {
-  const cutoffDate: Date = new Date()
-  cutoffDate.setDate(cutoffDate.getDate() - value)
-  return data.filter((data) => data.date >= cutoffDate)
-}
+// export function setTimespan(value: number, data: WeightData[]) {
+//   const cutoffDate: Date = new Date()
+//   cutoffDate.setDate(cutoffDate.getDate() - value)
+//   return data.filter((data) => data.date >= cutoffDate)
+// }
