@@ -124,12 +124,12 @@ const getUser = async (): Promise<void> => {
 
 // get user data and then get his measurements stored in firebase
 onMounted(async () => {
-  chartPlaceholder.value = 'Loading...'
   try {
     await getUser()
     getMeasures()
     // unsubscribe: according to firebase docs; updates data in real time
     if (q) {
+      chartPlaceholder.value='Add at least 2 measurements to see chart'
       unsubscribe = onSnapshot(q, (snapshot: { docs: DocumentData[] }) => {
         measurements.value = mapSnapshot(snapshot.docs)
       })
