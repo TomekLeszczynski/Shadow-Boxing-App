@@ -3,7 +3,6 @@ import { describe, test, expect } from 'vitest'
 import {
   setAxisScope,
   getDetails,
-  setTimespan
 } from '@/components/weight_monitor/helpers/handleMeasurements.ts'
 
 // example of user record follows created interface
