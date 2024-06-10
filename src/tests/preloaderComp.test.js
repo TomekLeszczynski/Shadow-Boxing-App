@@ -38,7 +38,6 @@ describe('Preloader', () => {
 
   // vue test utils
   describe('Quotes & author display', () => {
-
     test('picks paired quotes and author', async () => {
       const wrapper = mount(preloaderComp)
       await flushPromises()
@@ -64,6 +63,7 @@ describe('Preloader', () => {
 
       const newQuote = newWrapper.get('#quote').text().trim()
       const newAuthor = newWrapper.get('#author').text().replace('~ ', '').trim()
+
       expect(newQuote).not.toBe(previousQuote)
       expect(newAuthor).not.toBe(previousAuthor)
     })
