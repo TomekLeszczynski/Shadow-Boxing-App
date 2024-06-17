@@ -24,7 +24,7 @@
                 class="peer hidden"
               />
               <label
-                class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-custom-white hover:bg-custom-grey hover:bg-opacity-20"
+                class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-red-500  peer-checked:text-custom-black hover:bg-custom-grey hover:bg-opacity-20"
                 :for="option.value"
                 >{{ option.label }}</label
               >
@@ -45,7 +45,7 @@
           class="bg-red-500 text-custom-white py-4 2xl:w-1/2 w-full group tracking-wide"
           aria-label="Start session"
         >
-          <button-label labelText="Start" />
+          <button-label class="text-custom-black" labelText="Start" />
         </button>
       </div>
     </form>
@@ -71,7 +71,7 @@ const formSections = ref<BasicFormSection[]>([
     name: 'punches',
     selectedOption: '50',
     options: [
-      { value: '5', label: '5' },
+      { value: '50', label: '50' },
       { value: '100', label: '100' },
       { value: '250', label: '250' }
     ]

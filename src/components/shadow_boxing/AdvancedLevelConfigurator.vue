@@ -26,7 +26,7 @@
                 />
                 <label
                   :for="option.id"
-                  class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-custom-orange-light peer-checked:font-semibold peer-checked:text-custom-black hover:bg-custom-grey hover:bg-opacity-20"
+                  class="text-lg block cursor-pointer select-none py-2 text-center bg-custom-white bg-opacity-20 peer-checked:bg-custom-orange-light  peer-checked:text-custom-black hover:bg-custom-grey hover:bg-opacity-20"
                   >{{ option.label }}</label
                 >
               </div>
