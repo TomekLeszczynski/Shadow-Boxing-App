@@ -346,7 +346,8 @@ npm run lint
     Libraries I used for testing:
 
     - Vue Test Utils (https://test-utils.vuejs.org/guide/);
-    - Testing Library (https://testing-library.com/)
+    - Testing Library (https://testing-library.com/);
+    - Vue-router-mock (https://github.com/posva/vue-router-mock);
 
 9.  ## **Clean code**
 
