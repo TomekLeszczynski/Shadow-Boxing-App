@@ -19,7 +19,7 @@ import type { RouteLocationNamedRaw } from 'vue-router'
 // firebase getAuth instance
 import { firebaseAuth } from '@/main'
 
-// create authentification store
+// create authentication store
 export const useAuthStore = defineStore('Auth', {
   state: () => {
     return {
@@ -79,7 +79,7 @@ export const useAuthStore = defineStore('Auth', {
       }
     },
 
-    // check user's authentification state and update properties accordingly
+    // check user's authentication state and update properties accordingly
     async checkUserAuthState() {
       onAuthStateChanged(firebaseAuth, (user) => {
         if (user !== null && (user.emailVerified || user.isAnonymous)) {
@@ -91,7 +91,7 @@ export const useAuthStore = defineStore('Auth', {
       })
     },
 
-    // Fireabse Authentification Errors handling
+    // Firebase Authentication Errors handling
     errorsHandling(error: unknown | FirebaseError) {
       if (error instanceof FirebaseError) {
         console.error('Firebase Error:', error.code, error.message)

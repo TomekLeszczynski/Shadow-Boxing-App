@@ -2,7 +2,7 @@
   <!-- LABEL -->
   <div class="flex items-center justify-center text-nowrap">
     <span>{{ labelText }}</span>
-    <!-- HOVERED ICOM -->
+    <!-- HOVERED ICON -->
     <span class="group-hover:translate-x-3 transition duration-300 ease-in-out">
       <svg
         xmlns="http://www.w3.org/2000/svg"

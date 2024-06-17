@@ -21,7 +21,7 @@
         :src="getCurrentPunchImage(currentPunch)"
         alt="Current punch icon"
         class="object-contain h-full"
-        aria-label="Currentunch icon"
+        aria-label="Current punch icon"
       />
     </template>
     <template #training-status-info>

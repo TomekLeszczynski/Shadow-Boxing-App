@@ -64,7 +64,7 @@ export const useAdvTrainingStore = defineStore('AdvTrainingStore', {
       this.intensity = data.intensity
     },
     toggleStatus(): void {
-      this.status == 'work' ? (this.status = 'paused') : (this.status = 'work')
+      this.status === 'work' ? (this.status = 'paused') : (this.status = 'work')
     }
   }
 })

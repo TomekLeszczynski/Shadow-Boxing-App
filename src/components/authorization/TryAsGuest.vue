@@ -1,6 +1,6 @@
 <template>
   <button
-    @click.prevent="getAccessAsGuest()"
+    @click.prevent="getAccessAsGuest"
     aria-label="Try as Guest - Access all features without an account"
     class="bg-custom-orange-dark text-md md:text-lg font-semibold mt-5 py-4 md:py-5 md:px-6 flex items-center justify-center group tracking-wide w-full animate-button-show-from-left"
     tabindex="0"

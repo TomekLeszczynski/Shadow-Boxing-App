@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-4 items-center w-full">
+  <div class="flex flex-col p-4 items-center w-full" data-testid="reset-form">
     <!--  HEADER -->
     <h1
       class="animate-text-show-up text-8xl lg:text-[9rem] text-red-500 font-semibold tracking-tighter py-3 lg:mb-12"
@@ -27,8 +27,6 @@
           />
         </div>
         <!-- VALIDATION ERROR DISPLAY -->
-
-        <!-- !!!!!!!!!!!!!!!!!!! sprawdzić czy aria-invalid i error display nie dublują się !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
         <div class="h-5" aria-live="assertive" aria-label="Form validation error">
           <span v-if="v$.email.$error" class="text-red-500">{{
