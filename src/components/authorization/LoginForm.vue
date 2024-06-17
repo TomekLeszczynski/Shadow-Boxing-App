@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent autocomplete="on" class="items-center grid grid-cols-full">
+  <form @submit.prevent autocomplete="on" role="form" class="items-center grid grid-cols-full">
     <!-- EMAIL & PASSWORD INPUTS -->
     <div
       v-for="(section, index) in formSection"
@@ -34,6 +34,7 @@
         to="/password-reset"
         class="cursor-pointer hover:underline font-semibold"
         aria-label="Reset password link"
+        data-testid="reset-link"
       >
         Reset password
       </RouterLink>
@@ -48,7 +49,7 @@
       class="bg-custom-orange-dark py-5 px-12 group tracking-wide animate-button-show-from-left"
     >
       <!-- LOADING LABEL WITH SPINNER FROM 'SHARED' -->
-      <proceding-label v-if="isLoading" procedingLabel="Sending" />
+      <processing-label v-if="isLoading" processingLabel="Sending" />
       <!-- LOG IN LABEL FROM 'SHARED' -->
       <button-label v-else labelText="Log in" class="text-custom-black" />
     </button>
@@ -67,7 +68,7 @@ import { useAuthStore } from '@/stores/AuthenticationStore'
 const authStore = useAuthStore()
 
 // shared components import
-import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
+import ProcessingLabel from '@/components/shared/ProcessingLabel.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 // FORM SECTIONS V-FOR LOOP SETUP

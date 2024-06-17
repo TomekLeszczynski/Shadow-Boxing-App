@@ -47,7 +47,7 @@
         type="submit"
       >
         <!-- IS LOADING BUTTON LABEL -->
-        <proceding-label v-if="inProgress" procedingLabel="Sending" />
+        <processing-label v-if="inProgress" processingLabel="Sending" />
         <!-- DEFAULT BUTTON LABEL -->
         <button-label v-else labelText="Sign in" class="text-custom-black" />
       </button>
@@ -68,7 +68,7 @@ import { useAuthStore } from '@/stores/AuthenticationStore'
 const authStore = useAuthStore()
 
 // shared components import
-import ProcedingLabel from '@/components/shared/ProcedingLabel.vue'
+import ProcessingLabel from '@/components/shared/ProcessingLabel.vue'
 import ButtonLabel from '@/components/shared/ButtonLabel.vue'
 
 // vuelidate import

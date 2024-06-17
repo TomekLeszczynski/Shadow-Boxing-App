@@ -13,6 +13,7 @@
         role="button"
         tabindex="0"
         aria-label="Get Started - Unlock the full experience by creating an account"
+        data-testid="get-started"
         ><button-label labelText="Get Started" />
       </router-link>
     </div>
