@@ -26,7 +26,7 @@ _As a boxing enthusiast, I wanted to create a training app based on the most com
    - [**Firebase Storage**](#firebase-storage)
 4. [**Form validation - Vuelidate**](#form-validation---vuelidate)
 5. [**Issues & conclusions**](#issues--conclusions)
-6. [**Performance test**](#performance)
+6. [**Performance**](#performance)
 7. [**Design inspirations**](#design-inspirations)
 
 # Introduction
