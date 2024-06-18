@@ -26,7 +26,8 @@ _As a boxing enthusiast, I wanted to create a training app based on the most com
    - [**Firebase Storage**](#firebase-storage)
 4. [**Form validation - Vuelidate**](#form-validation---vuelidate)
 5. [**Issues & conclusions**](#issues--conclusions)
-6. [**Design inspirations**](#design-inspirations)
+6. [**Performance test**](#performance)
+7. [**Design inspirations**](#design-inspirations)
 
 # Introduction
 
@@ -690,6 +691,11 @@ if (!v$.value.$error || !v$.value.$invalid) return
 
 - **Firebase**
   Getting audio-command files from Firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from Firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on Firebase storage.
+
+# Performance
+The project is published via Render cloud infrastructure. (https://render.com/). After publishing, Google's Lighthouse was used to check the performance,quality and correctness of the project. 
+The report is available below. 
+[See Lighthouse report](./docs/shadow-boxing.onrender.com_2024-06-18_21-43-32.html)
 
 # Design Inspirations
 
