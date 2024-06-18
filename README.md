@@ -693,9 +693,9 @@ if (!v$.value.$error || !v$.value.$invalid) return
   Getting audio-command files from Firebase. I mixed the way that audio files are stored and used - For 'basic' session it's stored in 'assets' folder. For 'advanced' session it's stored and downloaded from Firebase storage. I did it on purpose to try both ways and see how it influence on the performance. I'm considering to store all audio files on Firebase storage.
 
 # Performance
-The project is published via Render cloud infrastructure. (https://render.com/). After publishing, Google's Lighthouse was used to check the performance,quality and correctness of the project. 
-The report is available below. 
-[See Lighthouse report](./docs/shadow-boxing.onrender.com_2024-06-18_21-43-32.html)
+
+The project is published via Render cloud infrastructure. (https://render.com/). After publishing, Google's Lighthouse was used to check the performance,quality and correctness of the project.
+[See Lighthouse report](./readme_graphics/Lighthouse-report.jpg)
 
 # Design Inspirations
 
