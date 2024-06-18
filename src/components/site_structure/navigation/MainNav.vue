@@ -101,6 +101,7 @@ const toggleHamburger = () => {
   showHamburger.value = !showHamburger.value
 }
 
+// hide/show hamburger when any training session is active
 const noActiveSession = computed(() => {
   return basisStore.status == null && advStore.status == null
 })
