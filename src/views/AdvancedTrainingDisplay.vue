@@ -111,8 +111,8 @@ const completionSignal = computed(() => {
 
 // --- TIMER SETUP ---
 
-const roundDuration: { minutes: number; seconds: number } = { minutes: 3, seconds: 0 }
-const restDuration: { minutes: number; seconds: number } = { minutes: 1, seconds: 0 }
+const roundDuration: { minutes: number; seconds: number } = { minutes: 0, seconds: 0 }
+const restDuration: { minutes: number; seconds: number } = { minutes: 3, seconds: 0 }
 
 const resetTimerValues = (min: number, sec: number) => {
   minutes.value = min
@@ -169,8 +169,9 @@ watch(
         startWorking()
       }
     } else if (newValue == 'rest' || newValue == 'done') {
-      console.log('Calling handleRestTimer')
       handleRestTimer()
+    } else if (newValue == 'paused') {
+      clearInterval(intervalId)
     }
   }
 )

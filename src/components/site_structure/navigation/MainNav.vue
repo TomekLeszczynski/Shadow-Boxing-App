@@ -92,4 +92,5 @@ const navLinks = [
   { name: 'login', component: LoginLink, text: 'Login' },
   { name: 'logout', component: LogoutLink, text: 'Logout' }
 ]
+
 </script>

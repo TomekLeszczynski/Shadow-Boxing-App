@@ -1,6 +1,6 @@
 <template>
   <router-link
-    v-if="authStore.user"
+    v-if="authStore.user" 
     :to="{ name: 'shadow-boxing', params: { userId: authStore.user.uid } }"
   >
     Shadow Boxing

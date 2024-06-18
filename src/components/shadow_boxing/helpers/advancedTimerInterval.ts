@@ -8,6 +8,7 @@ export const handleInterval = (
   playRingBellSound?: () => void
 ): void => {
   intervalId = setInterval(() => {
+ 
     if (secs.value > 0) {
       secs.value--
       return
