@@ -10,7 +10,7 @@
       </div>
     </template>
     <template #main-info>
-      <div v-if="sessionIsInProgress" class="text-[14rem] text-center divide-y-4 w-[20rem]">
+      <div v-if="sessionIsInProgress" class="text-[10rem] md:text-[14rem] text-center divide-y-4 w-[20rem]">
         <span class="block pb-4">0{{ minutes }}</span>
         <div class="pt-4">
           <span v-if="seconds < 10">0</span>
@@ -19,8 +19,8 @@
       </div>
     </template>
     <template #training-status-info>
-      <span v-if="sessionIsPaused" class="text-[12rem] text-custom-white">Paused</span>
-      <div v-if="sessionIsFinished" class="text-[12rem]">
+      <span v-if="sessionIsPaused" class="text-6xl md:text-[12rem] text-custom-white">Paused</span>
+      <div v-if="sessionIsFinished" class="text-8xl md:text-[12rem]">
         <p>Well</p>
         <p>done!</p>
       </div>
@@ -111,8 +111,8 @@ const completionSignal = computed(() => {
 
 // --- TIMER SETUP ---
 
-const roundDuration: { minutes: number; seconds: number } = { minutes: 0, seconds: 0 }
-const restDuration: { minutes: number; seconds: number } = { minutes: 3, seconds: 0 }
+const roundDuration: { minutes: number; seconds: number } = { minutes: 3, seconds: 0 }
+const restDuration: { minutes: number; seconds: number } = { minutes: 1, seconds: 0 }
 
 const resetTimerValues = (min: number, sec: number) => {
   minutes.value = min

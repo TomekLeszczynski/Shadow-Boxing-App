@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="status == 'work' || status == 'paused'"
-    class="row-start-1 row-span-1 py-4 w-full group tracking-wide"
+    class="row-start-1 row-span-1 p-4 w-full group tracking-wide"
     :class="status == 'paused' ? 'bg-custom-orange-dark' : 'bg-red-500'"
     @click="onClickHandler"
     aria-live="assertive"

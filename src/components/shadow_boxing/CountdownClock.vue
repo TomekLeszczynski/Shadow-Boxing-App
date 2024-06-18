@@ -1,5 +1,5 @@
 <template>
-  <span class="text-[36rem]" role="timer" aria-label="Countdown clock">
+  <span class="text-[20rem] md:text-[28rem] lg:text-[36rem]" role="timer" aria-label="Countdown clock">
     {{ clockTimeSpan }}
   </span>
 </template>

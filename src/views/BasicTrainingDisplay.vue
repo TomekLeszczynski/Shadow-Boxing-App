@@ -25,8 +25,8 @@
       />
     </template>
     <template #training-status-info>
-      <span v-if="sessionIsPaused" class="text-[12rem] text-custom-white">Paused</span>
-      <div v-if="sessionIsFinished" class="text-[12rem]">
+      <span v-if="sessionIsPaused" class="text-6xl md:text-[12rem] text-custom-white">Paused</span>
+      <div v-if="sessionIsFinished" class="text-8xl md:text-[12rem]">
         <p>Well</p>
         <p>done!</p>
       </div>
