@@ -2,9 +2,9 @@
   <!-- MOBILE NAV -->
   <!-- HAMBURGER ICON / CLOSE ICON FOR MOBILE NAV -->
   <div
-    class="inline-block absolute top-0 right-0 p-3 xs:hidden z-30"
-    @click="showHamburger = !showHamburger"
-    v-if="authStore.authCompleted"
+    class="inline-block absolute top-0 right-0 p-3 xs:hidden z-50"
+    @click="toggleHamburger"
+    v-if="authStore.authCompleted && noActiveSession"
   >
     <hamburger-icon v-if="!showHamburger" class="w-8 h-8" />
     <close-icon v-if="showHamburger" class="w-8 h-8" />
@@ -31,7 +31,7 @@
           v-for="link in navLinks"
           :key="link.name"
           :is="link.component"
-          @click="showHamburger = !showHamburger"
+          @click="toggleHamburger"
           :text="link.text"
           class="border-t py-2 hover:bg-custom-white hover:bg-opacity-30 hover:duration-300 font-semibold"
         />
@@ -64,10 +64,11 @@
 
 <script setup lang="ts">
 // vue import
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 // import pinia store
 import { useAuthStore } from '@/stores/AuthenticationStore'
+import { useBasicTrainingStore, useAdvTrainingStore } from '@/stores/TrainingStore'
 
 // component import / navigation links
 import HomeLink from './navigation-links/HomeLink.vue'
@@ -81,6 +82,9 @@ import CloseIcon from './mobile-nav-icons/CloseIcon.vue'
 
 // store instance
 const authStore = useAuthStore()
+const basisStore = useBasicTrainingStore()
+const advStore = useAdvTrainingStore()
+
 // mobile nav indicator
 const showHamburger = ref<boolean>(false)
 
@@ -93,4 +97,11 @@ const navLinks = [
   { name: 'logout', component: LogoutLink, text: 'Logout' }
 ]
 
+const toggleHamburger = () => {
+  showHamburger.value = !showHamburger.value
+}
+
+const noActiveSession = computed(() => {
+  return basisStore.status == null && advStore.status == null
+})
 </script>
