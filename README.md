@@ -695,7 +695,7 @@ if (!v$.value.$error || !v$.value.$invalid) return
 # Performance
 
 The project is published via Render cloud infrastructure. (https://render.com/). After publishing, Google's Lighthouse was used to check the performance,quality and correctness of the project.
-[See Lighthouse report](./readme_graphics/Lighthouse-report.jpg)
+![See Lighthouse report](./readme_graphics/Lighthouse-report.jpg)
 
 # Design Inspirations
 
